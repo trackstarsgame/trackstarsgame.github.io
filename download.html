@@ -18,8 +18,8 @@
     }
 
     a, button, input, select, textarea {
-  -webkit-tap-highlight-color: transparent;
-}
+      -webkit-tap-highlight-color: transparent;
+    }
 
     /* Prevent horizontal page scrolling and zooming out into white space */
     html, body {
@@ -128,7 +128,7 @@
       opacity: 0.9;
     }
 
-    /* FIXED: Clean 3-Column Grid with fixed mobile padding */
+    /* Clean 3-Column Grid */
     .app-meta {
       max-width: 1100px;
       margin: 0 auto;
@@ -142,7 +142,7 @@
     }
 
     .meta-item {
-      min-width: 0; /* Prevents text overflow squishing */
+      min-width: 0;
     }
 
     .meta-item span {
@@ -179,12 +179,16 @@
       display: block;
     }
 
-    /* Screenshots Section */
+    /* Screenshots Section with Edge Fade Mask */
     .screenshots-section {
       max-width: 1100px;
       width: 100%;
       margin: 20px auto 40px auto;
       padding: 0 20px;
+      
+      /* Edge Fade Gradient Mask */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
     }
 
     .screenshots-scroll {
