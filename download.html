@@ -18,14 +18,14 @@
     }
 
     body {
-      background-color: #1e1e1e;
-      color: #ffffff;
+      background-color: #ffffff; /* Changed main page to Light Mode */
+      color: #111111;           /* Main text color to dark */
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* Top Navigation (Optional, to get back home) */
+    /* Top Navigation */
     .top-nav {
       padding: 20px 10%;
       background: transparent;
@@ -41,9 +41,9 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
-      opacity: 0.8;
+      opacity: 0.9;
       transition: opacity 0.2s;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Added shadow so it's readable over images */
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
     
     .top-nav a:hover {
@@ -52,8 +52,8 @@
 
     /* App Store Header Section */
     .app-header-bg {
-      /* Uses an image (header-bg.jpg) and fades into the background color at the bottom */
-      background: linear-gradient(to bottom, rgba(30, 30, 30, 0.3) 0%, #1e1e1e 100%), url('header-bg.jpg');
+      /* Fades from dark overlay image into clean light page background */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, #ffffff 100%), url('header-bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -71,35 +71,36 @@
     .app-icon {
       width: 160px;
       height: 160px;
-      border-radius: 22.5%; /* Classic app store squircle */
+      border-radius: 22.5%;
       object-fit: cover;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      border: 1px solid rgba(0,0,0,0.1);
     }
 
     .app-title-group h1 {
       font-size: 2.5rem;
       font-weight: 700;
+      color: #111111;
       margin-bottom: 8px;
     }
 
     .app-title-group h2 {
       font-size: 1.2rem;
-      color: #d0d0d0;
+      color: #444444;
       font-weight: 500;
       margin-bottom: 8px;
     }
 
     .app-title-group p {
       font-size: 0.95rem;
-      color: #a0a0a0;
+      color: #666666;
       margin-bottom: 20px;
     }
 
     .download-btn {
       display: inline-block;
       padding: 10px 32px;
-      background-color: #DC8009; /* Matches homepage theme */
+      background-color: #DC8009;
       color: #fff;
       text-decoration: none;
       font-weight: 700;
@@ -120,15 +121,15 @@
       padding: 30px 10%;
       display: flex;
       justify-content: space-around; 
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
       text-align: center;
     }
 
     .meta-item span {
       display: block;
       font-size: 0.75rem;
-      color: #888;
+      color: #777777;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 6px;
@@ -138,10 +139,10 @@
       display: block;
       font-size: 1.2rem;
       font-weight: 600;
-      color: #ddd;
+      color: #111111;
     }
 
-    /* Horizontal Promo Banner Section */
+    /* Horizontal Promo Image Section */
     .promo-section {
       max-width: 1100px;
       margin: 40px auto 20px auto;
@@ -152,8 +153,8 @@
       width: 100%;
       height: auto;
       border-radius: 18px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      border: 1px solid rgba(0,0,0,0.08);
       display: block;
     }
 
@@ -169,9 +170,9 @@
       display: flex;
       gap: 20px;
       overflow-x: auto;
-      padding-bottom: 15px; /* Room for scrollbar */
+      padding-bottom: 15px;
       scrollbar-width: thin;
-      scrollbar-color: #555 #1e1e1e;
+      scrollbar-color: #ccc #ffffff;
     }
 
     .screenshots-scroll::-webkit-scrollbar {
@@ -179,7 +180,7 @@
     }
     
     .screenshots-scroll::-webkit-scrollbar-thumb {
-      background: #555;
+      background: #ccc;
       border-radius: 10px;
     }
 
@@ -187,8 +188,8 @@
       height: 400px;
       border-radius: 18px;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid rgba(0,0,0,0.08);
     }
 
     /* Description Section */
@@ -197,16 +198,18 @@
       margin: 20px auto 60px auto;
       padding: 0 10%;
       line-height: 1.6;
-      color: #c0c0c0;
+      color: #444444;
     }
     
     .description-section h3 {
-      color: #ffffff;
+      color: #111111;
       margin-bottom: 16px;
       font-size: 1.3rem;
     }
 
-    /* Footer Container */
+    /* ========================================================
+       FOOTER CONTAINER (STAYS DARK AS REQUESTED)
+       ======================================================== */
     footer {
       background-color: #383838;
       color: #d8d8d8;
@@ -268,14 +271,12 @@
   <!-- App Profile Header -->
   <div class="app-header-bg">
     <header class="app-header">
-      <!-- Replace with your actual app icon file -->
       <img src="app-icon.png" alt="App Icon" class="app-icon">
       
       <div class="app-title-group">
         <h1>Track Stars</h1>
         <h2>Join the endless running fun!</h2>
         <p>Action & Arcade</p>
-        <!-- Link to your GitHub Release APK or Cloud link here -->
         <a href="downloads/your-game.apk" class="download-btn" download>Get</a>
       </div>
     </header>
@@ -299,14 +300,12 @@
 
   <!-- Horizontal Promo Image Section -->
   <section class="promo-section">
-    <!-- Replace promo.png with your horizontal banner image -->
     <img src="promo.png" alt="Track Stars Featured Promo" class="promo-banner">
   </section>
 
   <!-- Horizontal Scrolling Screenshots -->
   <section class="screenshots-section">
     <div class="screenshots-scroll">
-      <!-- Replace with your actual screenshot images -->
       <img src="screenshot1.jpg" alt="Gameplay screenshot 1">
       <img src="screenshot2.jpg" alt="Gameplay screenshot 2">
       <img src="screenshot3.jpg" alt="Gameplay screenshot 3">
@@ -322,17 +321,17 @@
     </p>
   </section>
 
-  <!-- Footer Navigation Tab -->
+  <!-- Footer Navigation Tab (DARK FOOTER KEPT AS IS) -->
   <footer>
     <div class="footer-content">
       <div class="brand-col">
         <img src="logo.png" alt="Game Logo" class="footer-logo">
         <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
+          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
         <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
       </div>
