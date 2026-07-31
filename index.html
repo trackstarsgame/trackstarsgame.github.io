@@ -23,8 +23,8 @@
     }
 
     a, button, input, select, textarea {
-  -webkit-tap-highlight-color: transparent;
-}
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       background-color: #1e1e1e;
@@ -87,6 +87,75 @@
     .download-btn:active {
       transform: scale(0.96);
       opacity: 0.9;
+    }
+
+    /* Trailer Section */
+    .trailer-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #ffffff;
+      color: #111111;
+    }
+
+    /* Make the iframe responsive within its column */
+    .video-container {
+      position: relative;
+      width: 100%;
+      /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%; 
+      background-color: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .trailer-text {
+      padding: 60px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trailer-text h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #666;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .trailer-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .trailer-text p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* Adjust the grid for mobile devices */
+    @media (max-width: 900px) {
+      .trailer-section {
+        grid-template-columns: 1fr;
+      }
+      .video-container {
+        padding-bottom: 56.25%; /* Keeps 16:9 ratio on mobile */
+      }
+      .trailer-text {
+        padding: 40px 20px;
+        text-align: center;
+      }
     }
 
     /* Footer Container */
@@ -189,6 +258,19 @@
     <p>a Subway Surfers Sequel</p>
     <a href="download.html" class="download-btn">Get Track Stars</a>
   </main>
+
+  <!-- Trailer Section -->
+  <section class="trailer-section">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/fGy-x3H-nxU?rel=0" title="Subway Surfers Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <div class="trailer-text">
+      <h4>WATCH THE OFFICIAL TRAILER</h4>
+      <h2>TRACK STARS</h2>
+      <p>Have you got what it takes to help Jake and his friends escape the grumpy guard? Tour the world and avoid oncoming trains in one of the most exciting endless runner games of all time!</p>
+    </div>
+  </section>
 
   <!-- Footer Navigation Tab -->
   <footer>
