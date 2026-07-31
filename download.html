@@ -179,16 +179,17 @@
       display: block;
     }
 
-    /* Screenshots Section with Edge Fade Mask */
+    /* Screenshots Section */
     .screenshots-section {
       max-width: 1100px;
       width: 100%;
       margin: 20px auto 40px auto;
-      padding: 0 20px;
       
-      /* Edge Fade Gradient Mask */
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      /* Removed the side padding so the container touches the screen edges */
+      
+      /* Use a fixed 40px fade instead of percentages so it shows up cleanly on mobile */
+      -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+      mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
     }
 
     .screenshots-scroll {
@@ -196,6 +197,12 @@
       gap: 20px;
       overflow-x: auto;
       padding-bottom: 15px;
+      
+      /* Moved the spacing INSIDE the scroll area. 
+         This matches the 40px mask, so images only fade when actively scrolling past the edge */
+      padding-left: 40px;
+      padding-right: 40px;
+      
       scrollbar-width: thin;
       scrollbar-color: #ccc #ffffff;
     }
