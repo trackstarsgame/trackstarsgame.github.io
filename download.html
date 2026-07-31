@@ -17,7 +17,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    /* FIXED: Prevent horizontal page scrolling and zooming out into white space */
+    /* Prevent horizontal page scrolling and zooming out into white space */
     html, body {
       max-width: 100%;
       overflow-x: hidden;
@@ -33,7 +33,7 @@
 
     /* Top Navigation */
     .top-nav {
-      padding: 20px 10%;
+      padding: 20px 20px;
       background: transparent;
       position: absolute;
       top: 0;
@@ -62,7 +62,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      padding: 100px 10% 40px 10%;
+      padding: 100px 20px 40px 20px;
     }
 
     .app-header {
@@ -119,16 +119,21 @@
       transform: translateY(-2px);
     }
 
-    /* Meta Details */
+    /* FIXED: Clean 3-Column Grid with fixed mobile padding */
     .app-meta {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 30px 10%;
-      display: flex;
-      justify-content: space-around; 
+      padding: 24px 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
       border-top: 1px solid rgba(0,0,0,0.1);
       border-bottom: 1px solid rgba(0,0,0,0.1);
       text-align: center;
+    }
+
+    .meta-item {
+      min-width: 0; /* Prevents text overflow squishing */
     }
 
     .meta-item span {
@@ -138,20 +143,22 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 6px;
+      white-space: nowrap;
     }
 
     .meta-item strong {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #111111;
+      white-space: nowrap;
     }
 
     /* Horizontal Promo Image Section */
     .promo-section {
       max-width: 1100px;
       margin: 40px auto 20px auto;
-      padding: 0 10%;
+      padding: 0 20px;
     }
 
     .promo-banner {
@@ -168,7 +175,7 @@
       max-width: 1100px;
       width: 100%;
       margin: 20px auto 40px auto;
-      padding: 0 10%;
+      padding: 0 20px;
     }
 
     .screenshots-scroll {
@@ -203,7 +210,7 @@
     .description-section {
       max-width: 1100px;
       margin: 20px auto 60px auto;
-      padding: 0 10%;
+      padding: 0 20px;
       line-height: 1.6;
       color: #444444;
     }
@@ -218,7 +225,7 @@
     footer {
       background-color: #383838;
       color: #d8d8d8;
-      padding: 60px 10%;
+      padding: 60px 20px;
       margin-top: auto;
     }
 
@@ -250,14 +257,6 @@
       .app-icon {
         width: 120px;
         height: 120px;
-      }
-      .app-meta {
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-      }
-      .meta-item {
-        width: 30%;
       }
       .footer-content {
         grid-template-columns: 1fr;
