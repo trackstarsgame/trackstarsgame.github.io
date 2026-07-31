@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download - Your Game Title</title>
+  
+  <!-- Font Awesome CDN for social media icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Navigation (Optional, to get back home) */
+    .top-nav {
+      padding: 20px 10%;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .top-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    .top-nav a:hover {
+      opacity: 1;
+    }
+
+    /* App Store Header Section */
+    .app-header-bg {
+      /* Simulates the blurred background color block from the screenshot */
+      background: linear-gradient(180deg, #4a3424 0%, #1e1e1e 100%);
+      padding: 100px 10% 40px 10%;
+    }
+
+    .app-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 22.5%; /* Classic app store squircle */
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .app-title-group h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .app-title-group h2 {
+      font-size: 1.2rem;
+      color: #d0d0d0;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .app-title-group p {
+      font-size: 0.95rem;
+      color: #a0a0a0;
+      margin-bottom: 20px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 10px 32px;
+      background-color: #ff3b30; /* Matches homepage theme */
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      font-size: 1.05rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #e03126;
+      transform: translateY(-2px);
+    }
+
+    /* Meta Details (Replaces Charts/Ratings) */
+    .app-meta {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 10%;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ddd;
+    }
+
+    /* Screenshots Section */
+    .screenshots-section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 10%;
+      overflow: hidden;
+    }
+
+    .screenshots-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 15px; /* Room for scrollbar */
+      scrollbar-width: thin;
+      scrollbar-color: #555 #1e1e1e;
+    }
+
+    .screenshots-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .screenshots-scroll::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 10px;
+    }
+
+    .screenshots-scroll img {
+      height: 400px;
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Description Section */
+    .description-section {
+      max-width: 1100px;
+      margin: 20px auto 60px auto;
+      padding: 0 10%;
+      line-height: 1.6;
+      color: #c0c0c0;
+    }
+    
+    .description-section h3 {
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+    }
+
+    /* Footer Container (Identical to index.html) */
+    footer {
+      background-color: #383838;
+      color: #d8d8d8;
+      padding: 60px 10%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .brand-col { display: flex; flex-direction: column; gap: 24px; }
+    .footer-logo { max-width: 180px; height: auto; }
+    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
+    .social-link { width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease; }
+    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
+    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+    .nav-col ul { list-style: none; }
+    .nav-col li { margin-bottom: 16px; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
+    .nav-col a:hover { color: #ffffff; }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      .app-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .app-icon {
+        width: 120px;
+        height: 120px;
+      }
+      .app-meta {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .meta-item {
+        width: 40%;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top back navigation -->
+  <nav class="top-nav">
+    <a href="index.html"><i class="fas fa-chevron-left"></i> Home</a>
+  </nav>
+
+  <!-- App Profile Header -->
+  <div class="app-header-bg">
+    <header class="app-header">
+      <!-- Replace with your actual app icon file -->
+      <img src="app-icon.png" alt="App Icon" class="app-icon">
+      
+      <div class="app-title-group">
+        <h1>Your Game Title</h1>
+        <h2>Join the endless running fun!</h2>
+        <p>Free • Action & Arcade</p>
+        <!-- Link to your GitHub Release APK or Cloud link here -->
+        <a href="downloads/your-game.apk" class="download-btn" download>Download APK</a>
+      </div>
+    </header>
+  </div>
+
+  <!-- Clean Meta Stats -->
+  <section class="app-meta">
+    <div class="meta-item">
+      <span>Developer</span>
+      <strong>Your Studio</strong>
+    </div>
+    <div class="meta-item">
+      <span>Age Rating</span>
+      <strong>9+</strong>
+    </div>
+    <div class="meta-item">
+      <span>Category</span>
+      <strong>Action</strong>
+    </div>
+    <div class="meta-item">
+      <span>Language</span>
+      <strong>EN</strong>
+    </div>
+  </section>
+
+  <!-- Horizontal Scrolling Screenshots -->
+  <section class="screenshots-section">
+    <div class="screenshots-scroll">
+      <!-- Replace with your actual screenshot images -->
+      <img src="screenshot1.jpg" alt="Gameplay screenshot 1">
+      <img src="screenshot2.jpg" alt="Gameplay screenshot 2">
+      <img src="screenshot3.jpg" alt="Gameplay screenshot 3">
+      <img src="screenshot4.jpg" alt="Gameplay screenshot 4">
+    </div>
+  </section>
+
+  <!-- Game Description -->
+  <section class="description-section">
+    <h3>About This Game</h3>
+    <p>
+      Dash as fast as you can and dodge the oncoming obstacles! Experience lightning-fast swipe controls and smooth 60fps action as you grind trains, collect coins, and unlock new characters. How long can you survive the run?
+    </p>
+  </section>
+
+  <!-- Footer Navigation Tab -->
+  <footer>
+    <div class="footer-content">
+      <div class="brand-col">
+        <img src="logo.png" alt="Game Logo" class="footer-logo">
+        <div class="social-grid">
+          <a href="https://facebook.com" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+        <p class="copyright">&copy; Copyright Your Studio 2026</p>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
