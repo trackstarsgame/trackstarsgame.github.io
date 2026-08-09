@@ -40,7 +40,6 @@
       background-color: #111;
       padding: 40px 20px;
       text-align: center;
-      border-bottom: 4px solid #F08300;
     }
 
     .page-header h1 {
@@ -58,77 +57,54 @@
     }
 
     .city-section {
-      background-color: #ffc800; /* Milan Yellow */
+      background-color: #ffcc00; /* Milan Yellow matching screenshot */
       color: #ffffff;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .city-info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       width: 100%;
     }
 
     .city-text {
-      padding: 60px 8%;
+      padding: 30px 20px 0 20px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .city-text h4 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #fff;
-      margin-bottom: 8px;
-      font-weight: 700;
-      opacity: 0.9;
-    }
-
-    .city-text h2 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      color: #ffffff;
-      line-height: 1.1;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      align-items: center;
+      text-align: center;
     }
 
     .city-text p {
-      font-size: 1.1rem;
-      margin-bottom: 28px;
+      font-size: 1.3rem;
+      font-weight: 700;
       color: #fff;
-      font-weight: 600;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     }
 
-    .expand-btn {
-      display: inline-block;
-      padding: 14px 34px;
-      background-color: #111;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 800;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      border: none;
+    /* Expand Chevron */
+    .expand-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding-bottom: 20px;
       cursor: pointer;
     }
 
-    .expand-btn:hover {
-      background-color: #333;
-      transform: translateY(-2px);
+    .expand-trigger i {
+      font-size: 4.5rem;
+      color: #ffffff;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     }
 
-    .expand-btn:active {
-      transform: scale(0.96);
+    .expand-trigger.active i {
+      transform: rotate(180deg);
     }
 
     .city-media {
@@ -136,30 +112,28 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background-color: #e6b400;
+      /* Removed any borders or background padding to ensure it sits flush */
     }
 
     .city-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      display: block; /* Removes bottom baseline gap */
     }
 
     /* -------------------------------------------
-       Expandable Roster Section (Characters & Boards)
+       Expandable Roster Section
        ------------------------------------------- */
     .roster-container {
       display: none; /* Hidden by default */
-      background-color: #242424; /* Dark contrast background */
+      flex-direction: column;
       width: 100%;
-      padding: 40px 20px;
-      border-top: 4px solid #111;
       animation: slideDown 0.3s ease-out forwards;
     }
 
     .roster-container.active {
-      display: block;
+      display: flex;
     }
 
     @keyframes slideDown {
@@ -167,116 +141,197 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Characters Dynamic Background Section */
+    .characters-section {
+      /* Default to Penny's pink gradient, will be updated by JS */
+      background: linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%);
+      padding: 30px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: background 0.4s ease; /* Smooth crossfade between character colors */
+    }
+
     .section-title {
-      font-size: 1.8rem;
+      font-size: 2.5rem;
       font-weight: 800;
       text-transform: uppercase;
       color: #ffffff;
       margin-bottom: 20px;
-      padding-left: 10px;
-      border-left: 4px solid #ffc800;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Horizontal Scrolling Area */
-    .scroll-row {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 20px;
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      
-      /* Scrollbar styling */
-      scrollbar-width: thin;
-      scrollbar-color: #ffc800 #333;
-      scroll-snap-type: x mandatory;
-    }
-
-    .scroll-row::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .scroll-row::-webkit-scrollbar-track {
-      background: #333;
-      border-radius: 4px;
-    }
-
-    .scroll-row::-webkit-scrollbar-thumb {
-      background-color: #ffc800;
-      border-radius: 4px;
-    }
-
-    /* Individual Cards */
-    .card {
-      flex: 0 0 220px;
-      background: linear-gradient(135deg, #ff99cc 0%, #ff66a3 100%);
-      border-radius: 16px;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-      scroll-snap-align: start;
-      position: relative;
-    }
-
-    /* Boards get a different color card */
-    .card.board {
-      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-    }
-
-    .card-img {
-      width: 120px;
-      height: 140px;
-      object-fit: contain;
-      margin-bottom: 16px;
-      filter: drop-shadow(0 8px 8px rgba(0,0,0,0.3));
-    }
-
-    .card h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.9);
-      text-transform: uppercase;
+      text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
       letter-spacing: 1px;
     }
 
-    .outfit-row {
+    /* Carousel Layout */
+    .carousel-wrapper {
       display: flex;
-      gap: 10px;
-      margin-top: 15px;
-      height: 36px; /* Fixed height so cards without outfits stay aligned */
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .nav-arrow {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 3.5rem;
+      cursor: pointer;
+      padding: 10px 20px;
+      opacity: 0.9;
+      transition: transform 0.2s;
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .nav-arrow:active {
+      transform: scale(0.9);
+    }
+
+    .slides-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 350px;
+    }
+
+    .char-slide {
+      display: none; /* Only active shows */
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .char-slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .char-img-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 20px;
+    }
+
+    .char-img-container img {
+      height: 320px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.25));
+    }
+
+    .char-info-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 10px;
+    }
+
+    .char-info-container h3 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 2px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .char-info-container .subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: lowercase;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+
+    .char-info-container .info-btn {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: lowercase;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
+    .outfits {
+      display: flex;
+      gap: 12px;
+      height: 42px; /* Reserves space so the layout doesn't shift for chars without outfits */
     }
 
     .outfit-btn {
-      width: 36px;
-      height: 36px;
-      background-color: #cce6ff;
-      border: 2px solid #fff;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      background-color: #cce6ff; /* Light blue */
+      border: 2px solid #ffffff;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 1.1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      font-size: 1.3rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    .outfit-btn.pink-shirt {
+      background-color: #ffb3d9;
+    }
+
+    /* Boards Dark Section */
+    .boards-section {
+      background-color: #1a1a1a;
+      padding: 30px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .boards-scroll {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+      overflow-x: auto;
+      padding: 10px 20px 30px 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none; /* Hide scrollbar for cleaner look */
     }
     
-    .outfit-btn.pink-shirt { background-color: #ffb3d9; }
-    .outfit-btn.white-shirt { background-color: #ffffff; color: #555; }
+    .boards-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .board-card {
+      flex: 0 0 240px;
+      height: 140px;
+      background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      scroll-snap-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .board-card img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+    }
 
 
     /* Footer Container */
@@ -312,16 +367,15 @@
     .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
     .nav-col a:hover { color: #ffffff; }
 
-    /* Responsive */
+    /* Responsive adjustments */
     @media (max-width: 900px) {
-      .city-info-grid { grid-template-columns: 1fr; }
-      .city-text { padding: 50px 20px; text-align: center; align-items: center; }
-      .city-text h2 { font-size: 2.6rem; }
-      .city-media img { max-height: 380px; }
       .footer-content { grid-template-columns: 1fr; gap: 32px; }
-      
-      .scroll-row { padding-left: 20px; padding-right: 20px; }
-      .section-title { padding-left: 20px; border-left: none; text-align: center; }
+    }
+    
+    @media (max-width: 600px) {
+      .char-img-container img { height: 260px; }
+      .char-info-container h3 { font-size: 1.8rem; }
+      .nav-arrow { font-size: 2.5rem; padding: 10px; }
     }
   </style>
 </head>
@@ -336,14 +390,15 @@
     <!-- MILAN SECTION -->
     <section class="city-section" id="milan">
       
-      <!-- Top Grid: Text and Banner Image -->
+      <!-- Yellow Banner Area -->
       <div class="city-info-grid">
         <div class="city-text">
-          <h4>CURRENT DESTINATION</h4>
-          <h2>MILAN</h2>
           <p>Dash through the streets of Milan!</p>
-          <button class="expand-btn" id="milan-btn" onclick="toggleRoster('milan')">View Characters & Boards</button>
+          <div class="expand-trigger" id="milan-trigger" onclick="toggleRoster('milan')">
+            <i class="fas fa-chevron-down"></i>
+          </div>
         </div>
+        
         <div class="city-media">
           <img src="world-tour-milan.png" alt="World Tour Milan Banner">
         </div>
@@ -353,62 +408,87 @@
       <div class="roster-container" id="milan-roster">
         
         <!-- Characters Section -->
-        <h3 class="section-title">Characters</h3>
-        <div class="scroll-row">
+        <div class="characters-section" id="milan-characters-section">
+          <h2 class="section-title">CHARACTERS</h2>
           
-          <!-- Penny Card -->
-          <div class="card">
-            <img src="penny-render.png" alt="Penny" class="card-img">
-            <h3>Penny</h3>
-            <p>Milan Surfer</p>
-            <div class="outfit-row">
-              <div class="outfit-btn pink-shirt" title="Pink Outfit"><i class="fas fa-tshirt"></i></div>
-              <div class="outfit-btn white-shirt" title="Standard Outfit"><i class="fas fa-tshirt"></i></div>
-            </div>
-          </div>
+          <div class="carousel-wrapper">
+            <button class="nav-arrow" onclick="changeSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
+            
+            <div class="slides-container" id="milan-slides">
+              
+              <!-- Slide 1: Penny (Pink Gradient) -->
+              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%)">
+                <div class="char-img-container">
+                  <img src="penny-render.png" alt="Penny">
+                </div>
+                <div class="char-info-container">
+                  <h3>Penny</h3>
+                  <div class="subtitle">milan surfer</div>
+                  <div class="info-btn">info</div>
+                  <div class="outfits">
+                    <div class="outfit-btn" title="Standard Outfit"><i class="fas fa-tshirt"></i></div>
+                    <div class="outfit-btn pink-shirt" title="Pink Outfit"><i class="fas fa-tshirt"></i></div>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Fabrizio Card -->
-          <div class="card">
-            <img src="fabrizio-render.png" alt="Fabrizio" class="card-img">
-            <h3>Fabrizio</h3>
-            <p>Milan Surfer</p>
-            <div class="outfit-row">
-              <!-- Empty space ensures cards stay the exact same height -->
-            </div>
-          </div>
+              <!-- Slide 2: Fabrizio (Teal/Green Gradient) -->
+              <div class="char-slide" data-bg="linear-gradient(135deg, #0bc2a6 0%, #039c84 100%)">
+                <div class="char-img-container">
+                  <img src="fabrizio-render.png" alt="Fabrizio">
+                </div>
+                <div class="char-info-container">
+                  <h3>Fabrizio</h3>
+                  <div class="subtitle">milan surfer</div>
+                  <div class="info-btn">info</div>
+                  <div class="outfits">
+                    <!-- No additional outfits for Fabrizio -->
+                  </div>
+                </div>
+              </div>
 
-          <!-- Chiara Card -->
-          <div class="card">
-            <img src="chiara-render.png" alt="Chiara" class="card-img">
-            <h3>Chiara</h3>
-            <p>Milan Surfer</p>
-            <div class="outfit-row">
-              <!-- No additional outfits -->
-            </div>
-          </div>
+              <!-- Slide 3: Chiara (Purple Gradient) -->
+              <div class="char-slide" data-bg="linear-gradient(135deg, #b485ff 0%, #8c52ff 100%)">
+                <div class="char-img-container">
+                  <img src="chiara-render.png" alt="Chiara">
+                </div>
+                <div class="char-info-container">
+                  <h3>Chiara</h3>
+                  <div class="subtitle">milan surfer</div>
+                  <div class="info-btn">info</div>
+                  <div class="outfits">
+                    <!-- No additional outfits for Chiara -->
+                  </div>
+                </div>
+              </div>
 
+            </div>
+            
+            <button class="nav-arrow" onclick="changeSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
+          </div>
         </div>
 
-        <!-- Boards Section -->
-        <h3 class="section-title">Boards</h3>
-        <div class="scroll-row">
+        <!-- Boards Dark Section -->
+        <div class="boards-section">
+          <h2 class="section-title">BOARDS</h2>
           
-          <!-- Example Board Card -->
-          <div class="card board">
-            <img src="milan-board.png" alt="Milan Board" class="card-img">
-            <h3>Scooter</h3>
-            <p>Milan Board</p>
-            <div class="outfit-row"></div>
+          <div class="boards-scroll">
+            
+            <!-- Milan Board Card (Blue) -->
+            <div class="board-card">
+              <img src="milan-board.png" alt="Milan Board">
+            </div>
+
+            <!-- Add additional board cards here if needed -->
+            <!-- <div class="board-card"> <img src="..." alt="..."> </div> -->
+
           </div>
-
-          <!-- Add more board cards here -->
-
         </div>
 
       </div>
     </section>
 
-    <!-- Additional cities can be copy/pasted here as new <section> blocks -->
+    <!-- Additional cities can be copy/pasted here -->
 
   </main>
 
@@ -444,18 +524,43 @@
     </div>
   </footer>
 
-  <!-- Script for Toggling Expandable Sections -->
+  <!-- Interactive Scripts -->
   <script>
+    // Toggle the expansion of the entire city roster
     function toggleRoster(cityId) {
       const rosterContainer = document.getElementById(cityId + '-roster');
-      const toggleBtn = document.getElementById(cityId + '-btn');
+      const triggerBtn = document.getElementById(cityId + '-trigger');
       
-      if (rosterContainer.classList.contains('active')) {
-        rosterContainer.classList.remove('active');
-        toggleBtn.textContent = 'View Characters & Boards';
-      } else {
-        rosterContainer.classList.add('active');
-        toggleBtn.textContent = 'Hide Characters & Boards';
+      rosterContainer.classList.toggle('active');
+      triggerBtn.classList.toggle('active');
+    }
+
+    // Character Carousel Logic
+    const currentSlide = {
+      'milan': 0
+    };
+
+    function changeSlide(cityId, direction) {
+      const slidesContainer = document.getElementById(cityId + '-slides');
+      const slides = slidesContainer.querySelectorAll('.char-slide');
+      const charSection = document.getElementById(cityId + '-characters-section');
+      
+      // Hide current slide
+      slides[currentSlide[cityId]].classList.remove('active');
+      
+      // Calculate new index (looping around)
+      currentSlide[cityId] = (currentSlide[cityId] + direction + slides.length) % slides.length;
+      
+      // Get the newly active slide
+      const newActiveSlide = slides[currentSlide[cityId]];
+      
+      // Show new slide
+      newActiveSlide.classList.add('active');
+
+      // Update the section background color smoothly
+      const newBg = newActiveSlide.getAttribute('data-bg');
+      if (newBg) {
+        charSection.style.background = newBg;
       }
     }
   </script>
