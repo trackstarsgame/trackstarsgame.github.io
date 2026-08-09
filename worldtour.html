@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Stars - World Tour</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    a, button, input, select, textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Page Header */
+    .page-header {
+      background-color: #111;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 4px solid #F08300;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* City Section Styles */
+    .world-tour-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .city-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #ffc800; /* Milan color from your index */
+      color: #ffffff;
+      position: relative;
+    }
+
+    .city-text {
+      padding: 60px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .city-text h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+
+    .city-text h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .city-text p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .expand-btn {
+      display: inline-block;
+      padding: 14px 34px;
+      background-color: #111;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border: none;
+      cursor: pointer;
+    }
+
+    .expand-btn:hover {
+      background-color: #333;
+      transform: translateY(-2px);
+    }
+
+    .expand-btn:active {
+      transform: scale(0.96);
+    }
+
+    .city-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #e6b400; /* Slightly darker shade for image placeholder area */
+    }
+
+    .city-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* -------------------------------------------
+       Character Viewer Modal (Pink Screen)
+       ------------------------------------------- */
+    .character-modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff99cc 0%, #ff66a3 100%);
+      z-index: 1000;
+      flex-direction: column;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .character-modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Close Button */
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1010;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .close-modal:hover {
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* Character UI Layout */
+    .char-ui-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1000px;
+      margin: 40px auto 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1005;
+    }
+
+    .char-info-left {
+      text-align: left;
+    }
+
+    .char-info-left h2 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .char-info-left p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: lowercase;
+      letter-spacing: 1px;
+    }
+
+    .char-info-center {
+      padding-top: 15px;
+    }
+
+    .char-info-center span {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-transform: lowercase;
+      cursor: pointer;
+    }
+
+    .char-outfits-right {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .outfit-btn {
+      width: 50px;
+      height: 50px;
+      background-color: #cce6ff; /* Light blue button base */
+      border: 3px solid #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+    
+    .outfit-btn.pink-shirt {
+      background-color: #ffb3d9;
+    }
+
+    .outfit-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .outfit-btn i {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    /* Character 3D View Area */
+    .char-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+    }
+
+    .nav-arrow {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 4rem;
+      cursor: pointer;
+      padding: 20px;
+      opacity: 0.8;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-arrow:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .character-render {
+      height: 60vh;
+      max-height: 600px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
+    }
+
+
+    /* Footer Container */
+    footer {
+      background-color: #383838;
+      color: #d8d8d8;
+      padding: 60px 10%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .brand-col { display: flex; flex-direction: column; gap: 24px; }
+    .footer-logo { max-width: 180px; height: auto; }
+    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
+    
+    .social-link {
+      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+    }
+    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
+    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+
+    .nav-col ul { list-style: none; }
+    .nav-col li { margin-bottom: 16px; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
+    .nav-col a:hover { color: #ffffff; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .city-section { grid-template-columns: 1fr; }
+      .city-text { padding: 50px 20px; text-align: center; align-items: center; }
+      .city-text h2 { font-size: 2.6rem; }
+      .city-media img { max-height: 380px; }
+      .footer-content { grid-template-columns: 1fr; gap: 32px; }
+      
+      /* Mobile adjustments for the Character Modal */
+      .char-ui-top { padding: 0 10px; margin-top: 60px; }
+      .char-info-left h2 { font-size: 2.5rem; }
+      .character-render { height: 45vh; }
+      .nav-arrow { font-size: 3rem; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>World Tour Destinations</h1>
+  </header>
+
+  <main class="world-tour-list">
+    
+    <!-- MILAN SECTION -->
+    <section class="city-section" id="milan">
+      <div class="city-text">
+        <h4>CURRENT DESTINATION</h4>
+        <h2>MILAN</h2>
+        <p>Dash through the streets of Milan!</p>
+        <button class="expand-btn" onclick="openCharacterModal()">View Characters & Boards</button>
+      </div>
+      <div class="city-media">
+        <!-- Main World Tour image goes here -->
+        <img src="world-tour-milan.png" alt="World Tour Milan Banner">
+      </div>
+    </section>
+
+    <!-- Additional cities can be copy/pasted here as new <section> blocks -->
+
+  </main>
+
+  <!-- THE CHARACTER VIEWER MODAL (Matches your provided image) -->
+  <div id="characterModal" class="character-modal">
+    <button class="close-modal" onclick="closeCharacterModal()"><i class="fas fa-times"></i></button>
+    
+    <div class="char-ui-top">
+      <div class="char-info-left">
+        <h2>Penny</h2>
+        <p>milan surfer</p>
+      </div>
+      
+      <div class="char-info-center">
+        <span>info</span>
+      </div>
+
+      <div class="char-outfits-right">
+        <!-- Pink Shirt icon -->
+        <div class="outfit-btn pink-shirt">
+          <i class="fas fa-tshirt"></i>
+        </div>
+        <!-- White/Blue Shirt icon -->
+        <div class="outfit-btn">
+          <i class="fas fa-tshirt"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="char-stage">
+      <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+      
+      <!-- Insert your transparent 3D character render here -->
+      <img src="penny-render.png" alt="Penny 3D Model" class="character-render">
+      
+      <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="brand-col">
+        <img src="logo.png" alt="Game Logo" class="footer-logo">
+        <div class="social-grid">
+          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Modal Functionality -->
+  <script>
+    const modal = document.getElementById('characterModal');
+
+    function openCharacterModal() {
+      modal.classList.add('active');
+      // Prevents scrolling on the main page while modal is open
+      document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeCharacterModal() {
+      modal.classList.remove('active');
+      // Restores scrolling
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+
+</body>
+  </html>
