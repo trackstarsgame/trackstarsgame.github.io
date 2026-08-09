@@ -50,7 +50,7 @@
       letter-spacing: 1px;
     }
 
-    /* City Section Styles */
+    /* City Section Grid Wrapper */
     .world-tour-list {
       flex: 1;
       display: flex;
@@ -58,11 +58,16 @@
     }
 
     .city-section {
+      background-color: #ffc800; /* Milan Yellow */
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .city-info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      background-color: #ffc800; /* Milan color from your index */
-      color: #ffffff;
-      position: relative;
+      width: 100%;
     }
 
     .city-text {
@@ -131,7 +136,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background-color: #e6b400; /* Slightly darker shade for image placeholder area */
+      background-color: #e6b400;
     }
 
     .city-media img {
@@ -142,167 +147,136 @@
     }
 
     /* -------------------------------------------
-       Character Viewer Modal (Pink Screen)
+       Expandable Roster Section (Characters & Boards)
        ------------------------------------------- */
-    .character-modal {
+    .roster-container {
       display: none; /* Hidden by default */
-      position: fixed;
-      top: 0;
-      left: 0;
+      background-color: #242424; /* Dark contrast background */
       width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #ff99cc 0%, #ff66a3 100%);
-      z-index: 1000;
-      flex-direction: column;
-      padding: 20px;
-      animation: fadeIn 0.3s ease;
+      padding: 40px 20px;
+      border-top: 4px solid #111;
+      animation: slideDown 0.3s ease-out forwards;
     }
 
-    .character-modal.active {
-      display: flex;
+    .roster-container.active {
+      display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Close Button */
-    .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1010;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .close-modal:hover {
-      background: rgba(255,255,255,0.6);
-    }
-
-    /* Character UI Layout */
-    .char-ui-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 1000px;
-      margin: 40px auto 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 1005;
-    }
-
-    .char-info-left {
-      text-align: left;
-    }
-
-    .char-info-left h2 {
-      font-size: 3.5rem;
+    .section-title {
+      font-size: 1.8rem;
       font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 20px;
+      padding-left: 10px;
+      border-left: 4px solid #ffc800;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .char-info-left p {
-      font-size: 1.2rem;
+    /* Horizontal Scrolling Area */
+    .scroll-row {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      
+      /* Scrollbar styling */
+      scrollbar-width: thin;
+      scrollbar-color: #ffc800 #333;
+      scroll-snap-type: x mandatory;
+    }
+
+    .scroll-row::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .scroll-row::-webkit-scrollbar-track {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    .scroll-row::-webkit-scrollbar-thumb {
+      background-color: #ffc800;
+      border-radius: 4px;
+    }
+
+    /* Individual Cards */
+    .card {
+      flex: 0 0 220px;
+      background: linear-gradient(135deg, #ff99cc 0%, #ff66a3 100%);
+      border-radius: 16px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      scroll-snap-align: start;
+      position: relative;
+    }
+
+    /* Boards get a different color card */
+    .card.board {
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    }
+
+    .card-img {
+      width: 120px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 8px 8px rgba(0,0,0,0.3));
+    }
+
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 0.85rem;
       font-weight: 700;
-      color: #fff;
-      text-transform: lowercase;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .char-info-center {
-      padding-top: 15px;
-    }
-
-    .char-info-center span {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      text-transform: lowercase;
-      cursor: pointer;
-    }
-
-    .char-outfits-right {
+    .outfit-row {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      gap: 10px;
+      margin-top: 15px;
+      height: 36px; /* Fixed height so cards without outfits stay aligned */
     }
 
     .outfit-btn {
-      width: 50px;
-      height: 50px;
-      background-color: #cce6ff; /* Light blue button base */
-      border: 3px solid #fff;
-      border-radius: 12px;
+      width: 36px;
+      height: 36px;
+      background-color: #cce6ff;
+      border: 2px solid #fff;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-      transition: transform 0.2s;
+      color: #fff;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
-    .outfit-btn.pink-shirt {
-      background-color: #ffb3d9;
-    }
-
-    .outfit-btn:hover {
-      transform: scale(1.1);
-    }
-
-    .outfit-btn i {
-      font-size: 1.5rem;
-      color: #fff;
-    }
-
-    /* Character 3D View Area */
-    .char-stage {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-    }
-
-    .nav-arrow {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 4rem;
-      cursor: pointer;
-      padding: 20px;
-      opacity: 0.8;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .nav-arrow:hover {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    .character-render {
-      height: 60vh;
-      max-height: 600px;
-      object-fit: contain;
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3));
-    }
+    .outfit-btn.pink-shirt { background-color: #ffb3d9; }
+    .outfit-btn.white-shirt { background-color: #ffffff; color: #555; }
 
 
     /* Footer Container */
@@ -340,17 +314,14 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .city-section { grid-template-columns: 1fr; }
+      .city-info-grid { grid-template-columns: 1fr; }
       .city-text { padding: 50px 20px; text-align: center; align-items: center; }
       .city-text h2 { font-size: 2.6rem; }
       .city-media img { max-height: 380px; }
       .footer-content { grid-template-columns: 1fr; gap: 32px; }
       
-      /* Mobile adjustments for the Character Modal */
-      .char-ui-top { padding: 0 10px; margin-top: 60px; }
-      .char-info-left h2 { font-size: 2.5rem; }
-      .character-render { height: 45vh; }
-      .nav-arrow { font-size: 3rem; padding: 10px; }
+      .scroll-row { padding-left: 20px; padding-right: 20px; }
+      .section-title { padding-left: 20px; border-left: none; text-align: center; }
     }
   </style>
 </head>
@@ -364,57 +335,82 @@
     
     <!-- MILAN SECTION -->
     <section class="city-section" id="milan">
-      <div class="city-text">
-        <h4>CURRENT DESTINATION</h4>
-        <h2>MILAN</h2>
-        <p>Dash through the streets of Milan!</p>
-        <button class="expand-btn" onclick="openCharacterModal()">View Characters & Boards</button>
+      
+      <!-- Top Grid: Text and Banner Image -->
+      <div class="city-info-grid">
+        <div class="city-text">
+          <h4>CURRENT DESTINATION</h4>
+          <h2>MILAN</h2>
+          <p>Dash through the streets of Milan!</p>
+          <button class="expand-btn" id="milan-btn" onclick="toggleRoster('milan')">View Characters & Boards</button>
+        </div>
+        <div class="city-media">
+          <img src="world-tour-milan.png" alt="World Tour Milan Banner">
+        </div>
       </div>
-      <div class="city-media">
-        <!-- Main World Tour image goes here -->
-        <img src="world-tour-milan.png" alt="World Tour Milan Banner">
+
+      <!-- Expandable Roster (Characters & Boards) -->
+      <div class="roster-container" id="milan-roster">
+        
+        <!-- Characters Section -->
+        <h3 class="section-title">Characters</h3>
+        <div class="scroll-row">
+          
+          <!-- Penny Card -->
+          <div class="card">
+            <img src="penny-render.png" alt="Penny" class="card-img">
+            <h3>Penny</h3>
+            <p>Milan Surfer</p>
+            <div class="outfit-row">
+              <div class="outfit-btn pink-shirt" title="Pink Outfit"><i class="fas fa-tshirt"></i></div>
+              <div class="outfit-btn white-shirt" title="Standard Outfit"><i class="fas fa-tshirt"></i></div>
+            </div>
+          </div>
+
+          <!-- Fabrizio Card -->
+          <div class="card">
+            <img src="fabrizio-render.png" alt="Fabrizio" class="card-img">
+            <h3>Fabrizio</h3>
+            <p>Milan Surfer</p>
+            <div class="outfit-row">
+              <!-- Empty space ensures cards stay the exact same height -->
+            </div>
+          </div>
+
+          <!-- Chiara Card -->
+          <div class="card">
+            <img src="chiara-render.png" alt="Chiara" class="card-img">
+            <h3>Chiara</h3>
+            <p>Milan Surfer</p>
+            <div class="outfit-row">
+              <!-- No additional outfits -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Boards Section -->
+        <h3 class="section-title">Boards</h3>
+        <div class="scroll-row">
+          
+          <!-- Example Board Card -->
+          <div class="card board">
+            <img src="milan-board.png" alt="Milan Board" class="card-img">
+            <h3>Scooter</h3>
+            <p>Milan Board</p>
+            <div class="outfit-row"></div>
+          </div>
+
+          <!-- Add more board cards here -->
+
+        </div>
+
       </div>
     </section>
 
     <!-- Additional cities can be copy/pasted here as new <section> blocks -->
 
   </main>
-
-  <!-- THE CHARACTER VIEWER MODAL (Matches your provided image) -->
-  <div id="characterModal" class="character-modal">
-    <button class="close-modal" onclick="closeCharacterModal()"><i class="fas fa-times"></i></button>
-    
-    <div class="char-ui-top">
-      <div class="char-info-left">
-        <h2>Penny</h2>
-        <p>milan surfer</p>
-      </div>
-      
-      <div class="char-info-center">
-        <span>info</span>
-      </div>
-
-      <div class="char-outfits-right">
-        <!-- Pink Shirt icon -->
-        <div class="outfit-btn pink-shirt">
-          <i class="fas fa-tshirt"></i>
-        </div>
-        <!-- White/Blue Shirt icon -->
-        <div class="outfit-btn">
-          <i class="fas fa-tshirt"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="char-stage">
-      <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
-      
-      <!-- Insert your transparent 3D character render here -->
-      <img src="penny-render.png" alt="Penny 3D Model" class="character-render">
-      
-      <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer>
@@ -448,22 +444,21 @@
     </div>
   </footer>
 
-  <!-- Script for Modal Functionality -->
+  <!-- Script for Toggling Expandable Sections -->
   <script>
-    const modal = document.getElementById('characterModal');
-
-    function openCharacterModal() {
-      modal.classList.add('active');
-      // Prevents scrolling on the main page while modal is open
-      document.body.style.overflow = 'hidden'; 
-    }
-
-    function closeCharacterModal() {
-      modal.classList.remove('active');
-      // Restores scrolling
-      document.body.style.overflow = 'auto';
+    function toggleRoster(cityId) {
+      const rosterContainer = document.getElementById(cityId + '-roster');
+      const toggleBtn = document.getElementById(cityId + '-btn');
+      
+      if (rosterContainer.classList.contains('active')) {
+        rosterContainer.classList.remove('active');
+        toggleBtn.textContent = 'View Characters & Boards';
+      } else {
+        rosterContainer.classList.add('active');
+        toggleBtn.textContent = 'Hide Characters & Boards';
+      }
     }
   </script>
 
 </body>
-  </html>
+</html>
