@@ -57,7 +57,7 @@
     }
 
     .city-section {
-      background-color: #ffcc00; /* Milan Yellow matching screenshot */
+      background-color: #ffcc00; /* Milan Yellow */
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -78,12 +78,14 @@
       text-align: center;
     }
 
-    .city-text p {
-      font-size: 1.3rem;
-      font-weight: 700;
+    .city-name {
+      font-size: 2.8rem;
+      font-weight: 800;
       color: #fff;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+      letter-spacing: 2px;
     }
 
     /* Expand Chevron */
@@ -112,21 +114,20 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      /* Removed any borders or background padding to ensure it sits flush */
     }
 
     .city-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block; /* Removes bottom baseline gap */
+      display: block; 
     }
 
     /* -------------------------------------------
        Expandable Roster Section
        ------------------------------------------- */
     .roster-container {
-      display: none; /* Hidden by default */
+      display: none; 
       flex-direction: column;
       width: 100%;
       animation: slideDown 0.3s ease-out forwards;
@@ -143,14 +144,13 @@
 
     /* Characters Dynamic Background Section */
     .characters-section {
-      /* Default to Penny's pink gradient, will be updated by JS */
       background: linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%);
       padding: 30px 0 40px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
-      transition: background 0.4s ease; /* Smooth crossfade between character colors */
+      transition: background 0.4s ease; 
     }
 
     .section-title {
@@ -163,7 +163,7 @@
       letter-spacing: 1px;
     }
 
-    /* Carousel Layout */
+    /* Carousel Layout (Shared by Characters & Boards) */
     .carousel-wrapper {
       display: flex;
       align-items: center;
@@ -196,11 +196,15 @@
       display: flex;
       justify-content: center;
       overflow: hidden;
+    }
+
+    /* Character Slide Specifics */
+    .char-slides-container {
       min-height: 350px;
     }
 
     .char-slide {
-      display: none; /* Only active shows */
+      display: none; 
       align-items: center;
       justify-content: center;
       width: 100%;
@@ -267,13 +271,13 @@
     .outfits {
       display: flex;
       gap: 12px;
-      height: 42px; /* Reserves space so the layout doesn't shift for chars without outfits */
+      height: 42px;
     }
 
     .outfit-btn {
       width: 42px;
       height: 42px;
-      background-color: #cce6ff; /* Light blue */
+      background-color: #cce6ff;
       border: 2px solid #ffffff;
       border-radius: 10px;
       display: flex;
@@ -297,30 +301,30 @@
       align-items: center;
     }
 
-    .boards-scroll {
-      display: flex;
-      gap: 20px;
-      width: 100%;
-      max-width: 800px;
-      overflow-x: auto;
-      padding: 10px 20px 30px 20px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none; /* Hide scrollbar for cleaner look */
+    .board-slides-container {
+      min-height: 220px;
     }
-    
-    .boards-scroll::-webkit-scrollbar {
-      display: none;
+
+    .board-slide {
+      display: none; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .board-slide.active {
+      display: flex;
     }
 
     .board-card {
-      flex: 0 0 240px;
+      width: 240px;
       height: 140px;
-      background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);
       border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      scroll-snap-align: center;
       box-shadow: 0 6px 12px rgba(0,0,0,0.3);
       position: relative;
       overflow: hidden;
@@ -332,7 +336,16 @@
       object-fit: contain;
       filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
     }
-
+    
+    .board-name {
+      margin-top: 15px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
 
     /* Footer Container */
     footer {
@@ -393,7 +406,7 @@
       <!-- Yellow Banner Area -->
       <div class="city-info-grid">
         <div class="city-text">
-          <p>Dash through the streets of Milan!</p>
+          <h2 class="city-name">MILAN</h2>
           <div class="expand-trigger" id="milan-trigger" onclick="toggleRoster('milan')">
             <i class="fas fa-chevron-down"></i>
           </div>
@@ -412,11 +425,11 @@
           <h2 class="section-title">CHARACTERS</h2>
           
           <div class="carousel-wrapper">
-            <button class="nav-arrow" onclick="changeSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-arrow" onclick="changeCharSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
             
-            <div class="slides-container" id="milan-slides">
+            <div class="slides-container char-slides-container" id="milan-char-slides">
               
-              <!-- Slide 1: Penny (Pink Gradient) -->
+              <!-- Slide 1: Penny -->
               <div class="char-slide active" data-bg="linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%)">
                 <div class="char-img-container">
                   <img src="penny-render.png" alt="Penny">
@@ -432,7 +445,7 @@
                 </div>
               </div>
 
-              <!-- Slide 2: Fabrizio (Teal/Green Gradient) -->
+              <!-- Slide 2: Fabrizio -->
               <div class="char-slide" data-bg="linear-gradient(135deg, #0bc2a6 0%, #039c84 100%)">
                 <div class="char-img-container">
                   <img src="fabrizio-render.png" alt="Fabrizio">
@@ -441,13 +454,11 @@
                   <h3>Fabrizio</h3>
                   <div class="subtitle">milan surfer</div>
                   <div class="info-btn">info</div>
-                  <div class="outfits">
-                    <!-- No additional outfits for Fabrizio -->
-                  </div>
+                  <div class="outfits"></div>
                 </div>
               </div>
 
-              <!-- Slide 3: Chiara (Purple Gradient) -->
+              <!-- Slide 3: Chiara -->
               <div class="char-slide" data-bg="linear-gradient(135deg, #b485ff 0%, #8c52ff 100%)">
                 <div class="char-img-container">
                   <img src="chiara-render.png" alt="Chiara">
@@ -456,39 +467,57 @@
                   <h3>Chiara</h3>
                   <div class="subtitle">milan surfer</div>
                   <div class="info-btn">info</div>
-                  <div class="outfits">
-                    <!-- No additional outfits for Chiara -->
-                  </div>
+                  <div class="outfits"></div>
                 </div>
               </div>
 
             </div>
             
-            <button class="nav-arrow" onclick="changeSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="nav-arrow" onclick="changeCharSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
           </div>
         </div>
 
-        <!-- Boards Dark Section -->
+        <!-- Boards Carousel Section -->
         <div class="boards-section">
           <h2 class="section-title">BOARDS</h2>
           
-          <div class="boards-scroll">
+          <div class="carousel-wrapper">
+            <button class="nav-arrow" onclick="changeBoardSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
             
-            <!-- Milan Board Card (Blue) -->
-            <div class="board-card">
-              <img src="milan-board.png" alt="Milan Board">
+            <div class="slides-container board-slides-container" id="milan-board-slides">
+              
+              <!-- Slide 1: Milan Board -->
+              <div class="board-slide active">
+                <div class="board-card" style="background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);">
+                  <img src="milan-board.png" alt="Milan Board">
+                </div>
+                <div class="board-name">milan</div>
+              </div>
+
+              <!-- Slide 2: Picture Perfect -->
+              <div class="board-slide">
+                <div class="board-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);">
+                  <img src="picture-perfect.png" alt="Picture Perfect Board">
+                </div>
+                <div class="board-name">picture perfect</div>
+              </div>
+
+              <!-- Slide 3: Blush -->
+              <div class="board-slide">
+                <div class="board-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                  <img src="blush-board.png" alt="Blush Board">
+                </div>
+                <div class="board-name">blush</div>
+              </div>
+
             </div>
-
-            <!-- Add additional board cards here if needed -->
-            <!-- <div class="board-card"> <img src="..." alt="..."> </div> -->
-
+            
+            <button class="nav-arrow" onclick="changeBoardSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
           </div>
         </div>
 
       </div>
     </section>
-
-    <!-- Additional cities can be copy/pasted here -->
 
   </main>
 
@@ -535,33 +564,39 @@
       triggerBtn.classList.toggle('active');
     }
 
-    // Character Carousel Logic
-    const currentSlide = {
-      'milan': 0
-    };
+    // State Objects for Carousels
+    const currentCharSlide = { 'milan': 0 };
+    const currentBoardSlide = { 'milan': 0 };
 
-    function changeSlide(cityId, direction) {
-      const slidesContainer = document.getElementById(cityId + '-slides');
+    // Character Carousel Logic
+    function changeCharSlide(cityId, direction) {
+      const slidesContainer = document.getElementById(cityId + '-char-slides');
       const slides = slidesContainer.querySelectorAll('.char-slide');
       const charSection = document.getElementById(cityId + '-characters-section');
       
-      // Hide current slide
-      slides[currentSlide[cityId]].classList.remove('active');
+      slides[currentCharSlide[cityId]].classList.remove('active');
       
-      // Calculate new index (looping around)
-      currentSlide[cityId] = (currentSlide[cityId] + direction + slides.length) % slides.length;
+      currentCharSlide[cityId] = (currentCharSlide[cityId] + direction + slides.length) % slides.length;
       
-      // Get the newly active slide
-      const newActiveSlide = slides[currentSlide[cityId]];
-      
-      // Show new slide
+      const newActiveSlide = slides[currentCharSlide[cityId]];
       newActiveSlide.classList.add('active');
 
-      // Update the section background color smoothly
       const newBg = newActiveSlide.getAttribute('data-bg');
       if (newBg) {
         charSection.style.background = newBg;
       }
+    }
+
+    // Board Carousel Logic
+    function changeBoardSlide(cityId, direction) {
+      const slidesContainer = document.getElementById(cityId + '-board-slides');
+      const slides = slidesContainer.querySelectorAll('.board-slide');
+      
+      slides[currentBoardSlide[cityId]].classList.remove('active');
+      
+      currentBoardSlide[cityId] = (currentBoardSlide[cityId] + direction + slides.length) % slides.length;
+      
+      slides[currentBoardSlide[cityId]].classList.add('active');
     }
   </script>
 
