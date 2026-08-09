@@ -222,15 +222,99 @@
       display: block;
     }
 
-    /* Adjust grids for mobile devices */
+    /* Footer Container */
+    footer {
+      background-color: #383838;
+      color: #d8d8d8;
+      padding: 60px 10%;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* Left Column: Logo, Socials, Copyright */
+    .brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .social-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 240px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid #888888;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      color: #a0a0a0;
+      margin-top: 8px;
+    }
+
+    /* Right Columns: Navigation Links */
+    .nav-col ul {
+      list-style: none;
+    }
+
+    .nav-col li {
+      margin-bottom: 16px;
+    }
+
+    .nav-col a {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-col a:hover {
+      color: #ffffff;
+    }
+
+    /* Responsive Grids for Mobile */
     @media (max-width: 900px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
       .trailer-section,
       .world-tour-section {
         grid-template-columns: 1fr;
       }
 
       .video-container {
-        padding-bottom: 56.25%; /* Keeps 16:9 ratio on mobile */
+        padding-bottom: 56.25%;
       }
 
       .trailer-text {
@@ -251,93 +335,7 @@
       .world-tour-media img {
         max-height: 380px;
       }
-    }
 
-    /* Footer Container */
-    footer {
-      background-color: #383838;
-      color: #d8d8d8;
-      padding: 60px 10%;
-    }
-
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    /* Left Column: Logo, Socials, Copyright */
-    .brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .footer-logo {
-      max-width: 180px;
-      height: auto;
-    }
-
-    .social-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      max-width: 240px;
-    }
-
-    .social-link {
-      width: 42px;
-      height: 42px;
-      border: 1.5px solid #888888;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e0e0e0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: all 0.2s ease;
-    }
-
-    .social-link:hover {
-      border-color: #ffffff;
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .copyright {
-      font-size: 0.85rem;
-      color: #a0a0a0;
-      margin-top: 8px;
-    }
-
-    /* Right Columns: Navigation Links */
-    .nav-col ul {
-      list-style: none;
-    }
-
-    .nav-col li {
-      margin-bottom: 16px;
-    }
-
-    .nav-col a {
-      color: #d0d0d0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-col a:hover {
-      color: #ffffff;
-    }
-
-    /* Mobile Layout Adjustment */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.4rem; /* Scaled down slightly for smaller mobile screens */
-      }
       .footer-content {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -353,299 +351,20 @@
     <p>a Subway Surfers Sequel</p>
     <a href="download.html" class="download-btn">Get Track Stars</a>
   </main>
-
-  <!-- Trailer Section -->
-  <section class="trailer-section">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/fGy-x3H-nxU?rel=0" title="Subway Surfers Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    
-    <div class="trailer-text">
-      <h4>WATCH THE OFFICIAL TRAILER</h4>
-      <h2>TRACK STARS</h2>
-      <p>Official trailer out on YouTube!</p>
-    </div>
-  </section>
 
   <!-- World Tour Section -->
   <section class="world-tour-section">
     <div class="world-tour-text">
       <h4>NEW DESTINATION</h4>
-      <h2>Milan</h2>
-      <p>Dash through the streets of Milan!</p>
+      <h2>PARIS</h2>
+      <p>Dash through the Parisian streets!</p>
       <a href="download.html" class="tour-btn">Explore The World Tour</a>
     </div>
 
     <div class="world-tour-media">
-      <img src="world-tour.png" alt="World Tour Image">
+      <img src="world-tour.png" alt="World Tour Paris">
     </div>
   </section>
-
-  <!-- Footer Navigation Tab -->
-  <footer>
-    <div class="footer-content">
-
-      <!-- Column 1: Brand & Socials -->
-      <div class="brand-col">
-        <img src="logo.png" alt="Game Logo" class="footer-logo">
-
-        <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        </div>
-
-        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
-      </div>
-
-      <!-- Column 2: Core Links -->
-      <div class="nav-col">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Policy & Secondary Links -->
-      <div class="nav-col">
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
-      </div>
-
-    </div>
-  </footer>
-
-</body>
-</html>
-
-    /* Main Hero Area with Background Image */
-    main.hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 100px 20px;
-      
-      /* Background image with a dark gradient overlay for readability */
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('hero-bg.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      margin-bottom: 12px;
-      font-weight: 800;
-      text-shadow: 0 3px 6px rgba(0,0,0,0.6);
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: #d0d0d0;
-      margin-bottom: 28px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-    }
-
-    .download-btn {
-      display: inline-block;
-      padding: 14px 36px;
-      background-color: #DC8009;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .download-btn:hover {
-      background-color: #D46E02;
-      transform: translateY(-2px);
-    }
-
-    .download-btn:active {
-      transform: scale(0.96);
-      opacity: 0.9;
-    }
-
-    /* Trailer Section */
-    .trailer-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background-color: #ffffff;
-      color: #111111;
-    }
-
-    /* Make the iframe responsive within its column */
-    .video-container {
-      position: relative;
-      width: 100%;
-      /* 16:9 Aspect Ratio */
-      padding-bottom: 56.25%; 
-      background-color: #000;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .trailer-text {
-      padding: 60px 8%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .trailer-text h4 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #666;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .trailer-text h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      color: #000;
-    }
-
-    .trailer-text p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    /* Adjust the grid for mobile devices */
-    @media (max-width: 900px) {
-      .trailer-section {
-        grid-template-columns: 1fr;
-      }
-      .video-container {
-        padding-bottom: 56.25%; /* Keeps 16:9 ratio on mobile */
-      }
-      .trailer-text {
-        padding: 40px 20px;
-        text-align: center;
-      }
-    }
-
-    /* Footer Container */
-    footer {
-      background-color: #383838;
-      color: #d8d8d8;
-      padding: 60px 10%;
-    }
-
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    /* Left Column: Logo, Socials, Copyright */
-    .brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .footer-logo {
-      max-width: 180px;
-      height: auto;
-    }
-
-    .social-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      max-width: 240px;
-    }
-
-    .social-link {
-      width: 42px;
-      height: 42px;
-      border: 1.5px solid #888888;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e0e0e0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: all 0.2s ease;
-    }
-
-    .social-link:hover {
-      border-color: #ffffff;
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .copyright {
-      font-size: 0.85rem;
-      color: #a0a0a0;
-      margin-top: 8px;
-    }
-
-    /* Right Columns: Navigation Links */
-    .nav-col ul {
-      list-style: none;
-    }
-
-    .nav-col li {
-      margin-bottom: 16px;
-    }
-
-    .nav-col a {
-      color: #d0d0d0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-col a:hover {
-      color: #ffffff;
-    }
-
-    /* Mobile Layout Adjustment */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.4rem; /* Scaled down slightly for smaller mobile screens */
-      }
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Main Homepage Banner -->
-  <main class="hero">
-    <h1>TRACK STARS</h1>
-    <p>a Subway Surfers Sequel</p>
-    <a href="download.html" class="download-btn">Get Track Stars</a>
-  </main>
 
   <!-- Trailer Section -->
   <section class="trailer-section">
