@@ -142,7 +142,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Characters Dynamic Background Section */
+    /* Common Section Styles */
     .characters-section {
       background: linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%);
       padding: 30px 0 40px 0;
@@ -151,6 +151,14 @@
       align-items: center;
       position: relative;
       transition: background 0.4s ease; 
+    }
+
+    .boards-section {
+      background-color: #1a1a1a;
+      padding: 30px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .section-title {
@@ -163,7 +171,7 @@
       letter-spacing: 1px;
     }
 
-    /* Carousel Layout (Shared by Characters & Boards) */
+    /* Carousel Layout */
     .carousel-wrapper {
       display: flex;
       align-items: center;
@@ -292,22 +300,13 @@
       background-color: #ffb3d9;
     }
 
-    /* Boards Dark Section */
-    .boards-section {
-      background-color: #1a1a1a;
-      padding: 30px 0 40px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
+    /* Board Slide Specifics (Matched to Character Card Structure) */
     .board-slides-container {
-      min-height: 220px;
+      min-height: 240px;
     }
 
     .board-slide {
       display: none; 
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
@@ -316,6 +315,20 @@
 
     .board-slide.active {
       display: flex;
+    }
+
+    .board-content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 30px;
+    }
+
+    .board-img-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .board-card {
@@ -337,14 +350,21 @@
       filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
     }
     
+    .board-info-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .board-name {
-      margin-top: 15px;
-      font-size: 1.6rem;
+      font-size: 2.2rem;
       font-weight: 800;
       color: #ffffff;
       text-transform: lowercase;
       letter-spacing: 0.5px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      line-height: 1;
     }
 
     /* Footer Container */
@@ -387,8 +407,10 @@
     
     @media (max-width: 600px) {
       .char-img-container img { height: 260px; }
-      .char-info-container h3 { font-size: 1.8rem; }
+      .char-info-container h3, .board-name { font-size: 1.8rem; }
       .nav-arrow { font-size: 2.5rem; padding: 10px; }
+      .board-content-wrapper { gap: 15px; }
+      .board-card { width: 180px; height: 110px; }
     }
   </style>
 </head>
@@ -488,26 +510,44 @@
               
               <!-- Slide 1: Milan Board -->
               <div class="board-slide active">
-                <div class="board-card" style="background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);">
-                  <img src="milan-board.png" alt="Milan Board">
+                <div class="board-content-wrapper">
+                  <div class="board-img-container">
+                    <div class="board-card" style="background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);">
+                      <img src="milan-board.png" alt="Milan Board">
+                    </div>
+                  </div>
+                  <div class="board-info-container">
+                    <div class="board-name">milan</div>
+                  </div>
                 </div>
-                <div class="board-name">milan</div>
               </div>
 
               <!-- Slide 2: Picture Perfect -->
               <div class="board-slide">
-                <div class="board-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);">
-                  <img src="picture-perfect.png" alt="Picture Perfect Board">
+                <div class="board-content-wrapper">
+                  <div class="board-img-container">
+                    <div class="board-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);">
+                      <img src="picture-perfect.png" alt="Picture Perfect Board">
+                    </div>
+                  </div>
+                  <div class="board-info-container">
+                    <div class="board-name">picture perfect</div>
+                  </div>
                 </div>
-                <div class="board-name">picture perfect</div>
               </div>
 
               <!-- Slide 3: Blush -->
               <div class="board-slide">
-                <div class="board-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
-                  <img src="blush-board.png" alt="Blush Board">
+                <div class="board-content-wrapper">
+                  <div class="board-img-container">
+                    <div class="board-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                      <img src="blush-board.png" alt="Blush Board">
+                    </div>
+                  </div>
+                  <div class="board-info-container">
+                    <div class="board-name">blush</div>
+                  </div>
                 </div>
-                <div class="board-name">blush</div>
               </div>
 
             </div>
@@ -555,7 +595,6 @@
 
   <!-- Interactive Scripts -->
   <script>
-    // Toggle the expansion of the entire city roster
     function toggleRoster(cityId) {
       const rosterContainer = document.getElementById(cityId + '-roster');
       const triggerBtn = document.getElementById(cityId + '-trigger');
@@ -564,18 +603,15 @@
       triggerBtn.classList.toggle('active');
     }
 
-    // State Objects for Carousels
     const currentCharSlide = { 'milan': 0 };
     const currentBoardSlide = { 'milan': 0 };
 
-    // Character Carousel Logic
     function changeCharSlide(cityId, direction) {
       const slidesContainer = document.getElementById(cityId + '-char-slides');
       const slides = slidesContainer.querySelectorAll('.char-slide');
       const charSection = document.getElementById(cityId + '-characters-section');
       
       slides[currentCharSlide[cityId]].classList.remove('active');
-      
       currentCharSlide[cityId] = (currentCharSlide[cityId] + direction + slides.length) % slides.length;
       
       const newActiveSlide = slides[currentCharSlide[cityId]];
@@ -587,13 +623,11 @@
       }
     }
 
-    // Board Carousel Logic
     function changeBoardSlide(cityId, direction) {
       const slidesContainer = document.getElementById(cityId + '-board-slides');
       const slides = slidesContainer.querySelectorAll('.board-slide');
       
       slides[currentBoardSlide[cityId]].classList.remove('active');
-      
       currentBoardSlide[cityId] = (currentBoardSlide[cityId] + direction + slides.length) % slides.length;
       
       slides[currentBoardSlide[cityId]].classList.add('active');
