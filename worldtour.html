@@ -37,6 +37,26 @@
       background-color: #111;
       padding: 40px 20px;
       text-align: center;
+      position: relative;
+    }
+
+    .back-home-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .back-home-btn:hover {
+      opacity: 0.8;
     }
 
     .page-header h1 {
@@ -367,6 +387,15 @@
     }
     
     @media (max-width: 600px) {
+      .page-header h1 {
+        font-size: 1.5rem;
+        padding-left: 30px; /* Make space for home button on small screens */
+        padding-right: 10px;
+      }
+      .back-home-btn {
+        font-size: 0.9rem;
+        left: 12px;
+      }
       .char-slide, .board-slide {
         flex-direction: column;
         text-align: center;
@@ -395,6 +424,7 @@
 <body>
 
   <header class="page-header">
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
     <h1>World Tour Destinations</h1>
   </header>
 
