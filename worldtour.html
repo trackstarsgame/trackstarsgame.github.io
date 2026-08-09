@@ -367,10 +367,28 @@
     }
     
     @media (max-width: 600px) {
-      .char-img-container img { height: 220px; }
-      .board-img-container img { max-height: 140px; }
+      .char-slide, .board-slide {
+        flex-direction: column;
+        text-align: center;
+      }
+      .char-img-container, .board-img-container {
+        justify-content: center;
+        padding-right: 0;
+        margin-bottom: 12px;
+      }
+      .char-info-container, .board-info-container {
+        align-items: center;
+        padding-left: 0;
+      }
+      .outfits {
+        justify-content: center;
+      }
+      .char-img-container img { height: 210px; }
+      .board-img-container img { max-height: 120px; }
       .char-info-container h3, .board-info-container h3 { font-size: 1.8rem; }
-      .nav-arrow { font-size: 2.5rem; padding: 10px; }
+      .subtitle { margin-bottom: 15px; }
+      .info-btn { margin-bottom: 15px; }
+      .nav-arrow { font-size: 2.2rem; padding: 5px 8px; }
     }
   </style>
 </head>
