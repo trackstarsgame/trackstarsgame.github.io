@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Track Stars - Support[span_65](start_span)[span_65](end_span)</title>
+  <title>Track Stars - Support</title>
   
-  <!-- Google Fonts[span_66](start_span)[span_66](end_span) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome[span_67](start_span)[span_67](end_span) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    /* Reset & Base Styles[span_68](start_span)[span_68](end_span) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -32,7 +28,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Page Header[span_69](start_span)[span_69](end_span) */
     .page-header {
       background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
       background-size: cover;
@@ -70,7 +65,6 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
-    /* Support Content Container[span_70](start_span)[span_70](end_span) */
     .support-container {
       flex: 1;
       max-width: 700px;
@@ -106,7 +100,6 @@
       line-height: 1.5;
     }
 
-    /* Form Styles[span_71](start_span)[span_71](end_span) */
     .support-form {
       display: flex;
       flex-direction: column;
@@ -176,7 +169,6 @@
       transform: scale(0.98);
     }
 
-    /* Success Message State (Hidden by default)[span_72](start_span)[span_72](end_span) */
     .success-message {
       display: none;
       text-align: center;
@@ -195,7 +187,6 @@
       display: block;
     }
 
-    /* Footer Container[span_73](start_span)[span_73](end_span) */
     footer {
       background-color: #383838;
       color: #d8d8d8;
@@ -228,7 +219,6 @@
     .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
     .nav-col a:hover { color: #ffffff; }
 
-    /* Responsive adjustments[span_74](start_span)[span_74](end_span) */
     @media (max-width: 900px) {
       .footer-content { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -252,57 +242,54 @@
 <body>
 
   <header class="page-header">
-    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home[span_75](start_span)[span_75](end_span)</a>
-    <h1>Support & Feedback[span_76](start_span)[span_76](end_span)</h1>
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
+    <h1>Support & Feedback</h1>
   </header>
 
   <main class="support-container">
     <div class="support-card">
       <div class="support-intro">
-        <h2>Need Help?[span_77](start_span)[span_77](end_span)</h2>
-        <p>Found a bug or have a gameplay question? Fill out the form below and our support team will get back to you[span_78](start_span)[span_78](end_span)!</p>
+        <h2>Need Help?</h2>
+        <p>Found a bug or have a gameplay question? Fill out the form below and our support team will get back to you!</p>
       </div>
 
-      <!-- Support Form[span_79](start_span)[span_79](end_span) -->
       <form class="support-form" id="supportForm" onsubmit="handleFormSubmit(event)">
         <div class="form-group">
-          <label for="name">Your Name / Gamertag[span_80](start_span)[span_80](end_span)</label>
+          <label for="name">Your Name / Gamertag</label>
           <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
         </div>
 
         <div class="form-group">
-          <label for="email">Email Address[span_81](start_span)[span_81](end_span)</label>
+          <label for="email">Email Address</label>
           <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
         </div>
 
         <div class="form-group">
-          <label for="category">Issue Type[span_82](start_span)[span_82](end_span)</label>
+          <label for="category">Issue Type</label>
           <select id="category" name="category" class="form-control" required>
-            <option value="" disabled selected>Select an option[span_83](start_span)[span_83](end_span)</option>
-            <option value="bug">Bug Report / Crash[span_84](start_span)[span_84](end_span)</option>
-            <option value="question">Gameplay Question[span_85](start_span)[span_85](end_span)</option>
-            <option value="account">Account / Save Data Issue[span_86](start_span)[span_86](end_span)</option>
-            <option value="other">Other Feedback[span_87](start_span)[span_87](end_span)</option>
+            <option value="" disabled selected>Select an option</option>
+            <option value="bug">Bug Report / Crash</option>
+            <option value="question">Gameplay Question</option>
+            <option value="account">Account / Save Data Issue</option>
+            <option value="other">Other Feedback</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="message">Description[span_88](start_span)[span_88](end_span)</label>
+          <label for="message">Description</label>
           <textarea id="message" name="message" class="form-control" placeholder="Describe your issue or question in detail..." required></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Request[span_89](start_span)[span_89](end_span)</button>
+        <button type="submit" class="submit-btn">Send Request</button>
       </form>
 
-      <!-- Success Confirmation State[span_90](start_span)[span_90](end_span) -->
       <div class="success-message" id="successMessage">
         <i class="fas fa-check-circle"></i>
-        Thank you! Your report has been submitted successfully. We'll look into it right away.[span_91](start_span)[span_91](end_span)
+        Thank you! Your report has been submitted successfully. We'll look into it right away.
       </div>
     </div>
   </main>
 
-  <!-- Footer[span_92](start_span)[span_92](end_span) -->
   <footer>
     <div class="footer-content">
       <div class="brand-col">
@@ -314,7 +301,7 @@
           <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
-        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026[span_93](start_span)[span_93](end_span)</p>
+        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
       </div>
 
       <div class="nav-col">
@@ -334,7 +321,6 @@
     </div>
   </footer>
 
-  <!-- Script to handle form interaction[span_94](start_span)[span_94](end_span) -->
   <script>
     function handleFormSubmit(event) {
       event.preventDefault();
@@ -342,7 +328,6 @@
       const form = document.getElementById('supportForm');
       const successMsg = document.getElementById('successMessage');
 
-      // Hide form and show success notification[span_95](start_span)[span_95](end_span)
       form.style.display = 'none';
       successMsg.style.display = 'block';
     }
