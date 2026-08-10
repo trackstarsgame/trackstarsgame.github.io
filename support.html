@@ -53,9 +53,7 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    .back-home-btn:hover {
-      opacity: 0.8;
-    }
+    .back-home-btn:hover { opacity: 0.8; }
 
     .page-header h1 {
       font-size: 2.5rem;
@@ -143,9 +141,7 @@
       min-height: 140px;
     }
 
-    select.form-control {
-      cursor: pointer;
-    }
+    select.form-control { cursor: pointer; }
 
     .submit-btn {
       background: linear-gradient(135deg, #B17B33 0%, #E3B546 100%);
@@ -163,13 +159,8 @@
       margin-top: 10px;
     }
 
-    .submit-btn:hover {
-      opacity: 0.95;
-    }
-
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
+    .submit-btn:hover { opacity: 0.95; }
+    .submit-btn:active { transform: scale(0.98); }
 
     .success-message {
       display: none;
@@ -190,6 +181,91 @@
       color: #0284c7;
     }
 
+    /* Modal Styling for Credits */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e0f2fe;
+      position: relative;
+      text-align: center;
+      animation: modalFadeIn 0.25s ease-out forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #64748b;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .close-modal-btn:hover { color: #000000; }
+
+    .credits-content h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #111111;
+      margin-bottom: 20px;
+    }
+
+    .credits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .credits-item {
+      background-color: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .credits-item span {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #0284c7;
+    }
+
+    .credits-item p {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 2px;
+    }
+
+    /* Footer */
     footer {
       background-color: #383838;
       color: #d8d8d8;
@@ -219,26 +295,17 @@
 
     .nav-col ul { list-style: none; }
     .nav-col li { margin-bottom: 16px; }
-    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
     .nav-col a:hover { color: #ffffff; }
 
     @media (max-width: 900px) {
       .footer-content { grid-template-columns: 1fr; gap: 32px; }
     }
-    
+
     @media (max-width: 600px) {
-      .page-header h1 {
-        font-size: 1.5rem;
-        padding-left: 30px;
-        padding-right: 10px;
-      }
-      .back-home-btn {
-        font-size: 0.9rem;
-        left: 12px;
-      }
-      .support-card {
-        padding: 24px 20px;
-      }
+      .page-header h1 { font-size: 1.5rem; padding-left: 30px; padding-right: 10px; }
+      .back-home-btn { font-size: 0.9rem; left: 12px; }
+      .support-card { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -293,6 +360,34 @@
     </div>
   </main>
 
+  <!-- Interactive Credits Modal Popup -->
+  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
+      <div class="credits-content">
+        <h3>Game Credits</h3>
+        <div class="credits-list">
+          <div class="credits-item">
+            <span>Development & Engineering</span>
+            <p>Track Stars Studio</p>
+          </div>
+          <div class="credits-item">
+            <span>3D Art & Animation</span>
+            <p>Creative Art Team</p>
+          </div>
+          <div class="credits-item">
+            <span>Publisher & Distribution</span>
+            <p>SYBO Games</p>
+          </div>
+          <div class="credits-item">
+            <span>Special Thanks</span>
+            <p>Track Stars Beta Community</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-content">
       <div class="brand-col">
@@ -319,6 +414,7 @@
         <ul>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
+          <li><a onclick="openCreditsModal(event)">Credits</a></li>
         </ul>
       </div>
     </div>
@@ -328,16 +424,13 @@
     function handleFormSubmit(event) {
       event.preventDefault();
       
-      // Target support email address
-      const supportEmail = "trackstars.support@gmail.com";
+      const supportEmail = "support@yourdomain.com"; // Replace with your target support email
 
-      // Get values from input fields
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const category = document.getElementById('category').value;
       const message = document.getElementById('message').value;
 
-      // Construct formatted mailto parameters
       const subject = encodeURIComponent(`[Track Stars Support] ${category} from ${name}`);
       const body = encodeURIComponent(
         `Player Name: ${name}\n` +
@@ -346,13 +439,27 @@
         `Description:\n${message}`
       );
 
-      // Trigger mailto action
       window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
 
-      // Update UI feedback
       document.getElementById('supportForm').style.display = 'none';
       document.getElementById('successMessage').style.display = 'block';
     }
+
+    function openCreditsModal(event) {
+      if (event) event.preventDefault();
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCreditsModal(event) {
+      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeCreditsModal();
+    });
   </script>
 
 </body>
