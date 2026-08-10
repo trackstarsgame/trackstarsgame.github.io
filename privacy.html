@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Stars - Privacy Policy</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f4f7fa;
+      color: #222222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
+      background-size: cover;
+      background-position: center;
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-home-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s ease;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .back-home-btn:hover { opacity: 0.8; }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .legal-container {
+      flex: 1;
+      max-width: 850px;
+      width: 100%;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .legal-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 45px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      line-height: 1.7;
+    }
+
+    .last-updated {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .legal-card h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 28px 0 12px 0;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+    }
+
+    .legal-card h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .legal-card p {
+      color: #334155;
+      font-size: 0.975rem;
+      margin-bottom: 16px;
+    }
+
+    .legal-card ul {
+      margin: 0 0 20px 20px;
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .legal-card li {
+      margin-bottom: 8px;
+    }
+
+    /* Modal Styling for Credits */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #f8fafc;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 28px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      text-align: center;
+      animation: modalFadeIn 0.25s ease-out forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #64748b;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.2s ease;
+    }
+
+    .close-modal-btn:hover { color: #0f172a; }
+
+    .credits-content h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .credits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .credits-item {
+      background-color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-left: 5px solid #d97706;
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .credits-item span {
+      display: block;
+      font-size: 0.725rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #92400e;
+      letter-spacing: 0.8px;
+    }
+
+    .credits-item p {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #383838;
+      color: #d8d8d8;
+      padding: 60px 10%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .brand-col { display: flex; flex-direction: column; gap: 24px; }
+    .footer-logo { max-width: 180px; height: auto; }
+    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
+    
+    .social-link {
+      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+    }
+    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
+    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+
+    .nav-col ul { list-style: none; }
+    .nav-col li { margin-bottom: 16px; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
+    .nav-col a:hover { color: #ffffff; }
+
+    @media (max-width: 900px) {
+      .footer-content { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 1.5rem; padding-left: 30px; padding-right: 10px; }
+      .back-home-btn { font-size: 0.9rem; left: 12px; }
+      .legal-card { padding: 25px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
+    <h1>Privacy Policy</h1>
+  </header>
+
+  <main class="legal-container">
+    <div class="legal-card">
+      <div class="last-updated">Last Updated: August 2026</div>
+
+      <h2>1. Introduction</h2>
+      <p>Welcome to <strong>Track Stars</strong>. We respect your privacy and are committed to protecting any personal data processed through our mobile game and official website. This Privacy Policy outlines what information we collect, how it is used, and your rights regarding your data.</p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We collect information to provide better gameplay experiences and technical performance across all devices:</p>
+      <ul>
+        <li><strong>Gameplay Data:</strong> High scores, character/outfit selections, unlocked boards, and in-game achievements.</li>
+        <li><strong>Device & Technical Identifiers:</strong> Device model, OS version, GPU/hardware specs, screen resolution, unique advertising IDs, and IP addresses.</li>
+        <li><strong>Support & Feedback:</strong> Name/Gamertag, email address, and message details submitted through our Support portal.</li>
+      </ul>
+
+      <h2>3. How We Use Your Data</h2>
+      <p>Your information is processed for the following essential purposes:</p>
+      <ul>
+        <li>Maintaining game state, cloud saves, and Leaderboard rankings.</li>
+        <li>Diagnosing technical issues, frame rate optimizations, and crash reports.</li>
+        <li>Responding to player inquiries, bug reports, and customer service requests.</li>
+        <li>Delivering rewarded in-game advertisements and personalized events (where permitted).</li>
+      </ul>
+
+      <h2>4. Third-Party Services & SDKs</h2>
+      <p>Track Stars utilizes integrated third-party services for analytics, advertising, and backend operations (e.g., Unity Services). These partners may process data in accordance with their respective privacy policies.</p>
+
+      <h2>5. Children's Privacy</h2>
+      <p>Track Stars does not knowingly collect personal information from children under the age required by local regulations (such as COPPA/GDPR). If you believe personal data from a minor has been collected without parental consent, please contact us immediately.</p>
+
+      <h2>6. Contact Us</h2>
+      <p>If you have any questions or requests regarding your personal data, please reach out through our <a href="support.html" style="color: #0284c7; text-decoration: underline;">Support Page</a>.</p>
+    </div>
+  </main>
+
+  <!-- Interactive Credits Modal Popup -->
+  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
+      <div class="credits-content">
+        <h3>Game Credits</h3>
+        <div class="credits-list">
+          <div class="credits-item">
+            <span>Development & Engineering</span>
+            <p>Snow</p>
+          </div>
+          <div class="credits-item">
+            <span>3D Art & Animation</span>
+            <p>Surfers G Art, Fernando Artwork, Helicopty, Snow</p>
+          </div>
+          <div class="credits-item">
+            <span>2D Art & Concepts</span>
+            <p>Helicopty, Surfers G Art, Snow, Hou, Fernando Artwork</p>
+          </div>
+          <div class="credits-item">
+            <span>Music & Sound Design</span>
+            <p>Mark (SurfVibes)</p>
+          </div>
+          <div class="credits-item">
+            <span>Publisher & Distribution</span>
+            <p>Track Stars</p>
+          </div>
+          <div class="credits-item">
+            <span>Special Credits</span>
+            <p>SYBO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="brand-col">
+        <img src="logo.png" alt="Game Logo" class="footer-logo">
+        <div class="social-grid">
+          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a onclick="openCreditsModal(event)">Credits</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openCreditsModal(event) {
+      if (event) event.preventDefault();
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCreditsModal(event) {
+      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeCreditsModal();
+    });
+  </script>
+
+</body>
+</html>
