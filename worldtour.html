@@ -74,7 +74,7 @@
     }
 
     .city-section {
-      background-color: #ffcc00; /* Milan Yellow */
+      background-color: #111;
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -88,11 +88,15 @@
     }
 
     .city-text {
-      padding: 30px 20px 0 20px;
+      padding: 40px 20px 20px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('world-tour-milan.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
     }
 
     .city-name {
@@ -101,7 +105,7 @@
       color: #fff;
       margin-bottom: 20px;
       text-transform: uppercase;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
       letter-spacing: 2px;
     }
 
@@ -111,7 +115,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
       cursor: pointer;
     }
 
@@ -119,7 +123,7 @@
       font-size: 4.5rem;
       color: #ffffff;
       transition: transform 0.3s ease;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
     }
 
     .expand-trigger.active i {
@@ -293,7 +297,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 10px 0; /* Added padding to give room for scaling */
+      padding: 10px 0;
     }
 
     .outfit-btn {
@@ -442,7 +446,7 @@
     <!-- MILAN SECTION -->
     <section class="city-section" id="milan">
       
-      <!-- Yellow Banner Area -->
+      <!-- Header Banner Area with Image Background -->
       <div class="city-info-grid">
         <div class="city-text">
           <h2 class="city-name">MILAN</h2>
