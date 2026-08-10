@@ -291,8 +291,9 @@
 
     .outfits {
       display: flex;
-      gap: 12px;
-      height: 42px;
+      align-items: center;
+      gap: 16px;
+      height: 48px;
     }
 
     .outfit-btn {
@@ -307,10 +308,18 @@
       color: #fff;
       font-size: 1.3rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .outfit-btn.pink-shirt {
       background-color: #ffb3d9;
+    }
+
+    .outfit-btn.active {
+      transform: scale(1.2);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      z-index: 2;
     }
 
     /* Board Slide Styles (Mirrored from Characters) */
@@ -389,7 +398,7 @@
     @media (max-width: 600px) {
       .page-header h1 {
         font-size: 1.5rem;
-        padding-left: 30px; /* Make space for home button on small screens */
+        padding-left: 30px;
         padding-right: 10px;
       }
       .back-home-btn {
@@ -469,8 +478,8 @@
                   <div class="subtitle">milan surfer</div>
                   <div class="info-btn">info</div>
                   <div class="outfits">
-                    <div class="outfit-btn" title="Standard Outfit"><i class="fas fa-tshirt"></i></div>
-                    <div class="outfit-btn pink-shirt" title="Pink Outfit"><i class="fas fa-tshirt"></i></div>
+                    <div class="outfit-btn active" title="Standard Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                    <div class="outfit-btn pink-shirt" title="Pink Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
                   </div>
                 </div>
               </div>
@@ -603,6 +612,13 @@
       
       rosterContainer.classList.toggle('active');
       triggerBtn.classList.toggle('active');
+    }
+
+    function selectOutfit(element) {
+      const container = element.parentElement;
+      const buttons = container.querySelectorAll('.outfit-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
     }
 
     const currentCharSlide = { 'milan': 0 };
