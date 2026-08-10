@@ -5,151 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Stars - Official Website</title>
   
+  <!-- Google Fonts for reliable cross-platform/mobile font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome CDN for social media icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
+    /* Reset & Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    a, button, input, select, textarea {
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: #f4f7fa;
-      color: #222222;
+      background-color: #1e1e1e;
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Navigation Header */
-    .top-nav {
-      background-color: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 16px 10%;
+    /* Main Hero Area with Background Image */
+    main.hero {
+      flex: 1;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-logo {
-      height: 40px;
-      width: auto;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #334155;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: #0284c7;
-    }
-
-    /* Hero Section */
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('header-world-tour.png');
+      text-align: center;
+      padding: 100px 20px;
+      
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('hero-bg.png');
       background-size: cover;
       background-position: center;
-      padding: 100px 20px;
-      text-align: center;
-      color: #ffffff;
+      background-repeat: no-repeat;
     }
 
-    .hero-title {
-      font-size: 3.5rem;
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 12px;
       font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.7);
-      margin-bottom: 16px;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.6);
     }
 
-    .hero-subtitle {
+    .hero p {
       font-size: 1.25rem;
-      max-width: 650px;
-      margin: 0 auto 32px auto;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      line-height: 1.6;
+      color: #d0d0d0;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
-    .btn-primary {
+    .download-btn {
       display: inline-block;
+      padding: 14px 36px;
       background: linear-gradient(135deg, #B17B33 0%, #E3B546 100%);
-      color: #ffffff;
-      padding: 16px 36px;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      color: #fff;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(177, 123, 51, 0.4);
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      font-weight: 700;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .btn-primary:hover {
+    .download-btn:hover {
       opacity: 0.95;
       transform: translateY(-2px);
     }
 
-    /* Features Section */
-    .features-container {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 0 20px;
+    .download-btn:active {
+      transform: scale(0.96);
+      opacity: 0.9;
     }
 
-    .features-grid {
+    /* Trailer Section */
+    .trailer-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .feature-card {
-      background: #ffffff;
-      padding: 32px;
-      border-radius: 16px;
-      border: 1px solid #e0f2fe;
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.06);
-      text-align: center;
-    }
-
-    .feature-card i {
-      font-size: 2.5rem;
-      color: #0284c7;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      grid-template-columns: 1fr 1fr;
+      background-color: #ffffff;
       color: #111111;
     }
 
-    .feature-card p {
-      color: #64748b;
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; 
+      background-color: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .trailer-text {
+      padding: 60px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trailer-text h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #666;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .trailer-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .trailer-text p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* World Tour Banner Section */
+    .world-tour-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #ffc800;
+      color: #ffffff;
+    }
+
+    .world-tour-text {
+      padding: 60px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .world-tour-text h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .world-tour-text h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .world-tour-text p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      color: #ffffff;
+    }
+
+    .tour-btn {
+      display: inline-block;
+      padding: 14px 34px;
+      background: linear-gradient(135deg, #B17B33 0%, #E3B546 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 30px;
       font-size: 0.95rem;
-      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .tour-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+    }
+
+    .tour-btn:active {
+      transform: scale(0.96);
+    }
+
+    .world-tour-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .world-tour-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* Modal Styling for Credits */
@@ -160,7 +227,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(4px);
       z-index: 1000;
       justify-content: center;
@@ -169,13 +236,13 @@
     }
 
     .modal-card {
-      background: #ffffff;
+      background: #2a2a2a;
       border-radius: 16px;
       max-width: 500px;
       width: 100%;
       padding: 32px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      border: 1px solid #e0f2fe;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid #3a3a3a;
       position: relative;
       text-align: center;
       animation: modalFadeIn 0.25s ease-out forwards;
@@ -191,7 +258,7 @@
       top: 16px;
       right: 20px;
       font-size: 1.5rem;
-      color: #64748b;
+      color: #a0a0a0;
       cursor: pointer;
       background: none;
       border: none;
@@ -199,14 +266,14 @@
     }
 
     .close-modal-btn:hover {
-      color: #000000;
+      color: #ffffff;
     }
 
     .credits-content h3 {
       font-size: 1.6rem;
       font-weight: 800;
       text-transform: uppercase;
-      color: #111111;
+      color: #ffffff;
       margin-bottom: 20px;
     }
 
@@ -218,10 +285,10 @@
     }
 
     .credits-item {
-      background-color: #f8fafc;
+      background-color: #1e1e1e;
       padding: 12px 16px;
       border-radius: 8px;
-      border-left: 4px solid #38bdf8;
+      border-left: 4px solid #E3B546;
     }
 
     .credits-item span {
@@ -229,23 +296,22 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       font-weight: 700;
-      color: #0284c7;
+      color: #E3B546;
       letter-spacing: 0.5px;
     }
 
     .credits-item p {
       font-size: 0.95rem;
       font-weight: 600;
-      color: #1e293b;
+      color: #e0e0e0;
       margin-top: 2px;
     }
 
-    /* Footer */
+    /* Footer Container */
     footer {
       background-color: #383838;
       color: #d8d8d8;
       padding: 60px 10%;
-      margin-top: auto;
     }
 
     .footer-content {
@@ -256,65 +322,142 @@
       gap: 40px;
     }
 
-    .brand-col { display: flex; flex-direction: column; gap: 24px; }
-    .footer-logo { max-width: 180px; height: auto; }
-    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
-    
-    .social-link {
-      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+    .brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
-    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
-    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
 
-    .nav-col ul { list-style: none; }
-    .nav-col li { margin-bottom: 16px; }
-    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
-    .nav-col a:hover { color: #ffffff; }
+    .footer-logo {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .social-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 240px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid #888888;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      color: #a0a0a0;
+      margin-top: 8px;
+    }
+
+    .nav-col ul {
+      list-style: none;
+    }
+
+    .nav-col li {
+      margin-bottom: 16px;
+    }
+
+    .nav-col a {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-col a:hover {
+      color: #ffffff;
+    }
 
     @media (max-width: 900px) {
-      .footer-content { grid-template-columns: 1fr; gap: 32px; }
-      .hero-title { font-size: 2.5rem; }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .trailer-section,
+      .world-tour-section {
+        grid-template-columns: 1fr;
+      }
+
+      .video-container {
+        padding-bottom: 56.25%;
+      }
+
+      .trailer-text {
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .world-tour-text {
+        padding: 50px 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .world-tour-text h2 {
+        font-size: 2.6rem;
+      }
+
+      .world-tour-media img {
+        max-height: 380px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav class="top-nav">
-    <img src="logo.png" alt="Track Stars" class="nav-logo">
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="download.html">Download</a></li>
-      <li><a href="support.html">Support</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero-section">
-    <h1 class="hero-title">Track Stars</h1>
-    <p class="hero-subtitle">Dash through iconic cities, unlock legendary outfits, and race your way to the top of the global leaderboards!</p>
-    <a href="download.html" class="btn-primary"><i class="fas fa-gamepad"></i> Play Now</a>
-  </header>
-
-  <main class="features-container">
-    <div class="features-grid">
-      <div class="feature-card">
-        <i class="fas fa-globe-americas"></i>
-        <h3>World Tour</h3>
-        <p>Explore stunningly vibrant city tracks filled with unique obstacles and dynamic environments.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-user-astronaut"></i>
-        <h3>Custom Characters</h3>
-        <p>Collect characters, customize their outfits directly from the character panel, and style your squad.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-bolt"></i>
-        <h3>60 FPS Action</h3>
-        <p>Experience smooth, high-speed endless runner gameplay optimized for all mobile devices.</p>
-      </div>
-    </div>
+  <main class="hero">
+    <h1>TRACK STARS</h1>
+    <p>a Subway Surfers Sequel</p>
+    <a href="download.html" class="download-btn">Get Track Stars</a>
   </main>
+
+  <section class="trailer-section">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/fGy-x3H-nxU?rel=0" title="Subway Surfers Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <div class="trailer-text">
+      <h4>WATCH THE OFFICIAL TRAILER</h4>
+      <h2>TRACK STARS</h2>
+      <p>Official trailer out on YouTube!</p>
+    </div>
+  </section>
+
+  <section class="world-tour-section">
+    <div class="world-tour-text">
+      <h4>NEW DESTINATION</h4>
+      <h2>MILAN</h2>
+      <p>Dash through the streets of Milan!</p>
+      <a href="worldtour.html" class="tour-btn">Explore The World Tour</a>
+    </div>
+
+    <div class="world-tour-media">
+      <img src="world-tour.png" alt="World Tour Image">
+    </div>
+  </section>
 
   <!-- Interactive Credits Modal Popup -->
   <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
@@ -348,6 +491,7 @@
     <div class="footer-content">
       <div class="brand-col">
         <img src="logo.png" alt="Game Logo" class="footer-logo">
+
         <div class="social-grid">
           <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -355,6 +499,7 @@
           <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
         </div>
+
         <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
       </div>
 
@@ -373,6 +518,7 @@
           <li><a onclick="openCreditsModal(event)">Credits</a></li>
         </ul>
       </div>
+
     </div>
   </footer>
 
