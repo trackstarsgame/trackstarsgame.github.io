@@ -271,10 +271,10 @@
           <label for="category">Issue Type</label>
           <select id="category" name="category" class="form-control" required>
             <option value="" disabled selected>Select an option</option>
-            <option value="bug">Bug Report / Crash</option>
-            <option value="question">Gameplay Question</option>
-            <option value="account">Account / Save Data Issue</option>
-            <option value="other">Other Feedback</option>
+            <option value="Bug Report / Crash">Bug Report / Crash</option>
+            <option value="Gameplay Question">Gameplay Question</option>
+            <option value="Account / Save Data Issue">Account / Save Data Issue</option>
+            <option value="Other Feedback">Other Feedback</option>
           </select>
         </div>
 
@@ -288,7 +288,7 @@
 
       <div class="success-message" id="successMessage">
         <i class="fas fa-check-circle"></i>
-        Thank you! Your report has been submitted successfully. We'll look into it right away.
+        Your email client should now be open! Please click send inside your email app to finish submitting your report.
       </div>
     </div>
   </main>
@@ -328,11 +328,30 @@
     function handleFormSubmit(event) {
       event.preventDefault();
       
-      const form = document.getElementById('supportForm');
-      const successMsg = document.getElementById('successMessage');
+      // Target support email address
+      const supportEmail = "support@yourdomain.com"; // Replace with your support email
 
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
+      // Get values from input fields
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const category = document.getElementById('category').value;
+      const message = document.getElementById('message').value;
+
+      // Construct formatted mailto parameters
+      const subject = encodeURIComponent(`[Track Stars Support] ${category} from ${name}`);
+      const body = encodeURIComponent(
+        `Player Name: ${name}\n` +
+        `Player Email: ${email}\n` +
+        `Issue Type: ${category}\n\n` +
+        `Description:\n${message}`
+      );
+
+      // Trigger mailto action
+      window.location.href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+
+      // Update UI feedback
+      document.getElementById('supportForm').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
     }
   </script>
 
