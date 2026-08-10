@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Stars - Support</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
+      background-size: cover;
+      background-position: center;
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-home-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s ease;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .back-home-btn:hover {
+      opacity: 0.8;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Support Content Container */
+    .support-container {
+      flex: 1;
+      max-width: 700px;
+      width: 100%;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .support-card {
+      background-color: #282828;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .support-intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .support-intro h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .support-intro p {
+      color: #b0b0b0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Form Styles */
+    .support-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      background-color: #1a1a1a;
+      border: 2px solid #3a3a3a;
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #ffffff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #ff66a3;
+      box-shadow: 0 0 0 3px rgba(255, 102, 163, 0.2);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    select.form-control {
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 102, 163, 0.3);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.95;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Success Message State (Hidden by default) */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(46, 204, 113, 0.15);
+      border: 2px solid #2ecc71;
+      border-radius: 12px;
+      color: #2ecc71;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .success-message i {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* Footer Container */
+    footer {
+      background-color: #383838;
+      color: #d8d8d8;
+      padding: 60px 10%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .brand-col { display: flex; flex-direction: column; gap: 24px; }
+    .footer-logo { max-width: 180px; height: auto; }
+    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
+    
+    .social-link {
+      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+    }
+    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
+    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+
+    .nav-col ul { list-style: none; }
+    .nav-col li { margin-bottom: 16px; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
+    .nav-col a:hover { color: #ffffff; }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .footer-content { grid-template-columns: 1fr; gap: 32px; }
+    }
+    
+    @media (max-width: 600px) {
+      .page-header h1 {
+        font-size: 1.5rem;
+        padding-left: 30px;
+        padding-right: 10px;
+      }
+      .back-home-btn {
+        font-size: 0.9rem;
+        left: 12px;
+      }
+      .support-card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
+    <h1>Support & Feedback</h1>
+  </header>
+
+  <main class="support-container">
+    <div class="support-card">
+      <div class="support-intro">
+        <h2>Need Help?</h2>
+        <p>Found a bug or have a gameplay question? Fill out the form below and our support team will get back to you!</p>
+      </div>
+
+      <!-- Support Form -->
+      <form class="support-form" id="supportForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="name">Your Name / Gamertag</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Issue Type</label>
+          <select id="category" name="category" class="form-control" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="bug">Bug Report / Crash</option>
+            <option value="question">Gameplay Question</option>
+            <option value="account">Account / Save Data Issue</option>
+            <option value="other">Other Feedback</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Description</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Describe your issue or question in detail..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Request</button>
+      </form>
+
+      <!-- Success Confirmation State -->
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        Thank you! Your report has been submitted successfully. We'll look into it right away.
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="brand-col">
+        <img src="logo.png" alt="Game Logo" class="footer-logo">
+        <div class="social-grid">
+          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script to handle form interaction -->
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('supportForm');
+      const successMsg = document.getElementById('successMessage');
+
+      // Hide form and show success notification
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
