@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download - Track Stars</title>
+  <title>Track Stars - Download</title>
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -12,222 +15,229 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    a, button, input, select, textarea {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
     body {
-      background-color: #ffffff;
-      color: #111111;
+      background-color: #f4f7fa;
+      color: #222222;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .top-nav {
-      padding: 20px 20px;
-      background: transparent;
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
+      background-size: cover;
+      background-position: center;
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-home-btn {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-    }
-
-    .top-nav a {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
       color: #ffffff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      opacity: 0.9;
-      transition: opacity 0.2s;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-    }
-    
-    .top-nav a:hover {
-      opacity: 1;
-    }
-
-    .app-header-bg {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, #ffffff 100%), url('header-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 100px 20px 40px 20px;
-    }
-
-    .app-header {
-      max-width: 1100px;
-      margin: 0 auto;
+      font-size: 1rem;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 6px;
+      transition: opacity 0.2s ease;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    .app-icon {
-      width: 160px;
-      height: 160px;
-      border-radius: 22.5%;
-      object-fit: cover;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-      border: 1px solid rgba(0,0,0,0.1);
-    }
+    .back-home-btn:hover { opacity: 0.8; }
 
-    .app-title-group h1 {
+    .page-header h1 {
       font-size: 2.5rem;
-      font-weight: 700;
-      color: #111111;
-      margin-bottom: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
-    .app-title-group h2 {
-      font-size: 1.2rem;
-      color: #444444;
-      font-weight: 500;
-      margin-bottom: 8px;
+    .download-container {
+      flex: 1;
+      max-width: 800px;
+      width: 100%;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .app-title-group p {
-      font-size: 0.95rem;
-      color: #666666;
-      margin-bottom: 20px;
-    }
-
-    .download-btn {
-      display: inline-block;
-      padding: 10px 32px;
-      background: linear-gradient(135deg, #B17B33 0%, #E3B546 100%);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      border-radius: 30px;
-      font-size: 1.05rem;
-      transition: opacity 0.2s ease, transform 0.1s ease;
-    }
-
-    .download-btn:hover {
-      opacity: 0.95;
-      transform: translateY(-2px);
-    }
-
-    .download-btn:active {
-      transform: scale(0.96);
-      opacity: 0.9;
-    }
-
-    .app-meta {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      border-bottom: 1px solid rgba(0,0,0,0.1);
+    .download-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.08);
+      border: 1px solid #e0f2fe;
       text-align: center;
     }
 
-    .meta-item {
-      min-width: 0;
+    .download-card h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #111111;
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
-    .meta-item span {
+    .download-card p {
+      color: #555555;
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      min-width: 220px;
+      text-align: left;
+    }
+
+    .store-btn:hover {
+      transform: translateY(-3px);
+      background-color: #1e293b;
+    }
+
+    .store-btn i {
+      font-size: 2.2rem;
+    }
+
+    .store-btn span.small-text {
       display: block;
       font-size: 0.75rem;
-      color: #777777;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-      white-space: nowrap;
+      opacity: 0.8;
     }
 
-    .meta-item strong {
+    .store-btn span.big-text {
       display: block;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #111111;
-      white-space: nowrap;
+      font-size: 1.15rem;
+      font-weight: 700;
     }
 
-    .promo-section {
-      max-width: 1100px;
-      margin: 40px auto 20px auto;
-      padding: 0 20px;
-    }
-
-    .promo-banner {
-      width: 100%;
-      height: auto;
-      border-radius: 18px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-      border: 1px solid rgba(0,0,0,0.08);
-      display: block;
-    }
-
-    .screenshots-section {
-      max-width: 1100px;
-      width: 100%;
-      margin: 20px auto 40px auto;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
-      mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
-    }
-
-    .screenshots-scroll {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 15px;
-      padding-left: 40px;
-      padding-right: 40px;
-      scrollbar-width: thin;
-      scrollbar-color: #ccc #ffffff;
-    }
-
-    .screenshots-scroll::-webkit-scrollbar {
-      height: 8px;
-    }
-    
-    .screenshots-scroll::-webkit-scrollbar-thumb {
-      background: #ccc;
+    .specs-box {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f8fafc;
       border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      color: #64748b;
     }
 
-    .screenshots-scroll img {
-      height: 400px;
-      width: 225px;
-      flex-shrink: 0;
-      border-radius: 18px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 1px solid rgba(0,0,0,0.08);
+    /* Modal Styling for Credits */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
-    .description-section {
-      max-width: 1100px;
-      margin: 20px auto 60px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #444444;
+    .modal-card {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e0f2fe;
+      position: relative;
+      text-align: center;
+      animation: modalFadeIn 0.25s ease-out forwards;
     }
-    
-    .description-section h3 {
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #64748b;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .close-modal-btn:hover { color: #000000; }
+
+    .credits-content h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
       color: #111111;
-      margin-bottom: 16px;
-      font-size: 1.3rem;
+      margin-bottom: 20px;
     }
 
+    .credits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .credits-item {
+      background-color: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .credits-item span {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #0284c7;
+    }
+
+    .credits-item p {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 2px;
+    }
+
+    /* Footer */
     footer {
       background-color: #383838;
       color: #d8d8d8;
-      padding: 60px 20px;
+      padding: 60px 10%;
       margin-top: auto;
     }
 
@@ -242,81 +252,88 @@
     .brand-col { display: flex; flex-direction: column; gap: 24px; }
     .footer-logo { max-width: 180px; height: auto; }
     .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
-    .social-link { width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease; }
+    
+    .social-link {
+      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+    }
     .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
     .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+
     .nav-col ul { list-style: none; }
     .nav-col li { margin-bottom: 16px; }
-    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; }
+    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
     .nav-col a:hover { color: #ffffff; }
 
-    @media (max-width: 768px) {
-      .app-header {
-        flex-direction: column;
-        text-align: center;
-      }
-      .app-icon {
-        width: 120px;
-        height: 120px;
-      }
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
+    @media (max-width: 900px) {
+      .footer-content { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="top-nav">
-    <a href="index.html"><i class="fas fa-chevron-left"></i> Home</a>
-  </nav>
+  <header class="page-header">
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
+    <h1>Get Track Stars</h1>
+  </header>
 
-  <div class="app-header-bg">
-    <header class="app-header">
-      <img src="app-icon.png" alt="App Icon" class="app-icon">
-      
-      <div class="app-title-group">
-        <h1>Track Stars</h1>
-        <h2>Join the endless running fun!</h2>
-        <p>Action & Arcade</p>
-        <a href="downloads/your-game.apk" class="download-btn" download>Get</a>
+  <main class="download-container">
+    <div class="download-card">
+      <h2>Choose Your Platform</h2>
+      <p>Download Track Stars for free on iOS and Android to join the action!</p>
+
+      <div class="store-buttons">
+        <a href="#" class="store-btn">
+          <i class="fab fa-apple"></i>
+          <div>
+            <span class="small-text">Download on the</span>
+            <span class="big-text">App Store</span>
+          </div>
+        </a>
+
+        <a href="#" class="store-btn">
+          <i class="fab fa-google-play"></i>
+          <div>
+            <span class="small-text">Get it on</span>
+            <span class="big-text">Google Play</span>
+          </div>
+        </a>
       </div>
-    </header>
+
+      <div class="specs-box">
+        <strong>System Requirements:</strong> iOS 13.0 or later | Android 8.0 or higher. Minimum 2GB RAM required.
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive Credits Modal Popup -->
+  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
+      <div class="credits-content">
+        <h3>Game Credits</h3>
+        <div class="credits-list">
+          <div class="credits-item">
+            <span>Development & Engineering</span>
+            <p>Track Stars Studio</p>
+          </div>
+          <div class="credits-item">
+            <span>3D Art & Animation</span>
+            <p>Creative Art Team</p>
+          </div>
+          <div class="credits-item">
+            <span>Publisher & Distribution</span>
+            <p>SYBO Games</p>
+          </div>
+          <div class="credits-item">
+            <span>Special Thanks</span>
+            <p>Track Stars Beta Community</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <section class="app-meta">
-    <div class="meta-item">
-      <span>Platform</span>
-      <strong>Android</strong>
-    </div>
-    <div class="meta-item">
-      <span>Category</span>
-      <strong>Action</strong>
-    </div>
-    <div class="meta-item">
-      <span>Language</span>
-      <strong>EN</strong>
-    </div>
-  </section>
-
-  <section class="promo-section">
-    <img src="promo.png" alt="Track Stars Featured Promo" class="promo-banner">
-  </section>
-
-  <section class="screenshots-section">
-    <div class="screenshots-scroll">
-      <img src="screenshot1.jpg" alt="Gameplay screenshot 1">
-      <img src="screenshot2.jpg" alt="Gameplay screenshot 2">
-      <img src="screenshot3.jpg" alt="Gameplay screenshot 3">
-      <img src="screenshot4.jpg" alt="Gameplay screenshot 4">
-    </div>
-  </section>
-
-  <section class="description-section">
-    <h3>About This Game</h3>
-    <p>placeholder</p>
-  </section>
 
   <footer>
     <div class="footer-content">
@@ -344,10 +361,29 @@
         <ul>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
+          <li><a onclick="openCreditsModal(event)">Credits</a></li>
         </ul>
       </div>
     </div>
   </footer>
+
+  <script>
+    function openCreditsModal(event) {
+      if (event) event.preventDefault();
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCreditsModal(event) {
+      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
+      const modal = document.getElementById('creditsModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeCreditsModal();
+    });
+  </script>
 
 </body>
 </html>
