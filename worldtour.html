@@ -170,10 +170,10 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      transition: background 0.4s ease; 
+      transition: background 0.4s ease;
+      overflow: hidden; 
     }
 
-    /* Slight gradients for character and board sections */
     .characters-section {
       background: linear-gradient(135deg, #ff65b3 0%, #d81b60 100%);
     }
@@ -224,8 +224,9 @@
       position: relative;
       display: flex;
       justify-content: center;
+      align-items: center;
       overflow: hidden;
-      min-height: 380px;
+      min-height: 440px; /* Expanded height for zoomed character renders */
     }
 
     @keyframes fadeIn {
@@ -247,17 +248,58 @@
       display: flex;
     }
 
+    /* Desktop: Outfit buttons sit directly to the LEFT of the character render image */
     .char-img-container {
       flex: 1;
       display: flex;
+      align-items: center;
       justify-content: flex-end;
-      padding-right: 20px;
+      padding-right: 25px;
+      position: relative;
     }
 
     .char-img-container img {
-      height: 280px;
+      height: 380px;
       object-fit: contain;
       filter: drop-shadow(0 15px 15px rgba(0,0,0,0.25));
+      /* Scaled up to compensate for transparent square padding */
+      transform: scale(1.35);
+      transform-origin: center center;
+      margin: -25px 0;
+    }
+
+    .outfits {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-right: 20px; /* Space between buttons & character render */
+      z-index: 5;
+    }
+
+    .outfit-btn {
+      width: 46px;
+      height: 46px;
+      background-color: #cce6ff;
+      border: 2.5px solid #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .outfit-btn.pink-shirt {
+      background-color: #ffb3d9;
+    }
+
+    .outfit-btn.active {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      z-index: 2;
     }
 
     .char-info-container {
@@ -265,24 +307,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding-left: 10px;
+      padding-left: 15px;
       max-width: 420px;
-    }
-
-    /* Desktop Header Row: Outfits moved to the left */
-    .char-header-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 20px;
-      width: 100%;
-    }
-
-    .outfits {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      order: -1; /* Positions outfits on the left in desktop view */
     }
 
     .char-title-group {
@@ -355,32 +381,6 @@
       max-width: 360px;
     }
 
-    .outfit-btn {
-      width: 44px;
-      height: 44px;
-      background-color: #cce6ff;
-      border: 2.5px solid #ffffff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 1.3rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .outfit-btn.pink-shirt {
-      background-color: #ffb3d9;
-    }
-
-    .outfit-btn.active {
-      transform: scale(1.1);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-      z-index: 2;
-    }
-
     /* Board Slide Styles */
     .board-slide {
       display: none; 
@@ -416,7 +416,7 @@
       padding-left: 10px;
     }
 
-    /* High-Contrast Light Mode Modal Styling for Credits */
+    /* Light Mode Modal Styling for Credits */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -557,6 +557,9 @@
         font-size: 0.9rem;
         left: 12px;
       }
+      .slides-container {
+        min-height: 480px;
+      }
       .char-slide, .board-slide {
         flex-direction: column;
         text-align: center;
@@ -564,34 +567,40 @@
       .char-img-container, .board-img-container {
         justify-content: center;
         padding-right: 0;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
+        flex-direction: column; /* Stacks image & outfits neatly on mobile */
       }
+      
+      /* Mobile Zoom Fix for Character Models */
+      .char-img-container img {
+        height: 280px;
+        transform: scale(1.35);
+        margin: -15px 0;
+      }
+
+      /* Mobile Outfits layout & Spacing */
+      .outfits {
+        flex-direction: row;
+        margin-right: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
       .char-info-container, .board-info-container {
         align-items: center;
         padding-left: 0;
-      }
-      .char-header-row {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* Mobile Outfits layout & Spacing fix */
-      .outfits {
-        order: 0;
-        flex-direction: row;
-        margin-top: 12px;
-        margin-bottom: 22px; /* Adds space so the info below isn't touching */
+        margin-top: 5px;
       }
 
       .meta-details {
         align-items: center;
-        margin-top: 4px;
+        margin-top: 6px;
       }
 
       .char-bio {
         text-align: center;
       }
-      .char-img-container img { height: 210px; }
+
       .board-img-container img { max-height: 120px; }
       .char-info-container h3, .board-info-container h3 { font-size: 2rem; }
       .subtitle { margin-bottom: 6px; }
@@ -640,18 +649,17 @@
               <!-- Slide 1: Penny -->
               <div class="char-slide active" data-bg="linear-gradient(135deg, #ff65b3 0%, #d81b60 100%)">
                 <div class="char-img-container">
+                  <div class="outfits">
+                    <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                    <div class="outfit-btn pink-shirt" title="Influencer Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                  </div>
                   <img src="penny-render.png" alt="Penny">
                 </div>
+
                 <div class="char-info-container">
-                  <div class="char-header-row">
-                    <div class="char-title-group">
-                      <h3>Penny</h3>
-                      <div class="subtitle">milan surfer</div>
-                    </div>
-                    <div class="outfits">
-                      <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                      <div class="outfit-btn pink-shirt" title="Influencer Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                    </div>
+                  <div class="char-title-group">
+                    <h3>Penny</h3>
+                    <div class="subtitle">milan surfer</div>
                   </div>
                   
                   <div class="meta-details">
@@ -672,12 +680,11 @@
                 <div class="char-img-container">
                   <img src="fabrizioeventpose.png" alt="Fabrizio">
                 </div>
+
                 <div class="char-info-container">
-                  <div class="char-header-row">
-                    <div class="char-title-group">
-                      <h3>Fabrizio</h3>
-                      <div class="subtitle">milan surfer</div>
-                    </div>
+                  <div class="char-title-group">
+                    <h3>Fabrizio</h3>
+                    <div class="subtitle">milan surfer</div>
                   </div>
 
                   <div class="meta-details">
@@ -698,12 +705,11 @@
                 <div class="char-img-container">
                   <img src="chiaraeventpose.png" alt="Chiara">
                 </div>
+
                 <div class="char-info-container">
-                  <div class="char-header-row">
-                    <div class="char-title-group">
-                      <h3>Chiara</h3>
-                      <div class="subtitle">milan surfer</div>
-                    </div>
+                  <div class="char-title-group">
+                    <h3>Chiara</h3>
+                    <div class="subtitle">milan surfer</div>
                   </div>
 
                   <div class="meta-details">
