@@ -23,7 +23,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Prevent Horizontal Page Overflow Glitch */
+    /* Prevent Page-Level Horizontal Stretch */
     html, body {
       width: 100%;
       overflow-x: hidden;
@@ -38,7 +38,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Page Header with Background Image */
+    /* Page Header */
     .page-header {
       background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
       background-size: cover;
@@ -85,7 +85,7 @@
     }
 
     .city-section {
-      background-color: #ffcc00; /* Milan Yellow */
+      background-color: #ffcc00;
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -218,7 +218,7 @@
       padding: 10px 15px;
       opacity: 0.9;
       transition: transform 0.2s;
-      z-index: 10;
+      z-index: 20;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
       flex-shrink: 0;
     }
@@ -233,8 +233,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 440px;
-      min-width: 0; /* Prevents Flexbox overflow */
+      min-width: 0;
     }
 
     @keyframes fadeIn {
@@ -249,42 +248,52 @@
       justify-content: center;
       width: 100%;
       animation: fadeIn 0.3s ease;
-      padding: 0 5px;
+      padding: 0 10px;
     }
 
     .char-slide.active {
       display: flex;
     }
 
+    /* -------------------------------------------------------------
+       IMAGE MASKING CONTAINER (Crops Empty Square Transparent Padding)
+       ------------------------------------------------------------- */
     .char-img-container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 25px;
+      width: 260px;          /* Narrow frame forces side crop */
+      height: 380px;         /* Height of the visible frame */
+      overflow: hidden;      /* MASKS/CROPS the square transparent edges */
       position: relative;
-      min-width: 0;
+      border-radius: 16px;   /* Clean crop container bounds */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      margin-right: 20px;
     }
 
     .char-img-container img {
-      height: 400px;
-      max-width: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;           /* Zooms in to discard empty transparent side padding */
+      object-position: center 10%; /* Pins top of character head in frame */
       filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
       display: block;
     }
 
+    /* Floating Outfit Selector (Positioned Outside Mask Boundary) */
     .outfits {
+      position: absolute;
+      top: 15px;
+      left: 15px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-right: 20px;
-      z-index: 5;
+      gap: 10px;
+      z-index: 15;
     }
 
     .outfit-btn {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
       background-color: #cce6ff;
       border: 2.5px solid #ffffff;
       border-radius: 12px;
@@ -292,10 +301,10 @@
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 1.3rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      font-size: 1.2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease;
     }
 
     .outfit-btn.pink-shirt {
@@ -304,8 +313,7 @@
 
     .outfit-btn.active {
       transform: scale(1.1);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-      z-index: 2;
+      border-color: #ffcc00;
     }
 
     .char-info-container {
@@ -313,7 +321,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding-left: 15px;
+      padding-left: 10px;
       max-width: 420px;
       min-width: 0;
     }
@@ -565,34 +573,29 @@
         font-size: 0.9rem;
         left: 12px;
       }
-      .slides-container {
-        min-height: 480px;
-      }
       .char-slide, .board-slide {
         flex-direction: column;
         text-align: center;
       }
-      .char-img-container, .board-img-container {
-        justify-content: center;
-        padding-right: 0;
-        margin-bottom: 5px;
-        flex-direction: column;
-        width: 100%;
-      }
-      
-      /* Mobile Image Constraints (Prevents Page Stretch) */
-      .char-img-container img {
-        height: auto;
-        max-height: 310px;
-        max-width: 75vw;
-        margin: 0 auto;
+
+      /* Mobile Mask Container Bounds */
+      .char-img-container {
+        width: 210px;
+        height: 310px;
+        margin-right: 0;
+        margin-bottom: 10px;
       }
 
       .outfits {
-        flex-direction: row;
-        margin-right: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+      }
+
+      .outfit-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
       }
 
       .char-info-container, .board-info-container {
