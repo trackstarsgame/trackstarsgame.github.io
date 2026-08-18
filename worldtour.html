@@ -173,8 +173,9 @@
       transition: background 0.4s ease; 
     }
 
+    /* Slight gradients for character and board sections */
     .characters-section {
-      background: linear-gradient(135deg, #ff53a5 0%, #e63889 100%);
+      background: linear-gradient(135deg, #ff65b3 0%, #d81b60 100%);
     }
 
     .boards-section {
@@ -268,12 +269,20 @@
       max-width: 420px;
     }
 
+    /* Desktop Header Row: Outfits moved to the left */
     .char-header-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 20px;
       width: 100%;
-      gap: 15px;
+    }
+
+    .outfits {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      order: -1; /* Positions outfits on the left in desktop view */
     }
 
     .char-title-group {
@@ -344,12 +353,6 @@
       text-transform: lowercase;
       opacity: 0.95;
       max-width: 360px;
-    }
-
-    .outfits {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     .outfit-btn {
@@ -571,20 +574,27 @@
         flex-direction: column;
         align-items: center;
       }
+
+      /* Mobile Outfits layout & Spacing fix */
+      .outfits {
+        order: 0;
+        flex-direction: row;
+        margin-top: 12px;
+        margin-bottom: 22px; /* Adds space so the info below isn't touching */
+      }
+
       .meta-details {
         align-items: center;
+        margin-top: 4px;
       }
+
       .char-bio {
         text-align: center;
-      }
-      .outfits {
-        flex-direction: row;
-        margin-top: 10px;
       }
       .char-img-container img { height: 210px; }
       .board-img-container img { max-height: 120px; }
       .char-info-container h3, .board-info-container h3 { font-size: 2rem; }
-      .subtitle { margin-bottom: 10px; }
+      .subtitle { margin-bottom: 6px; }
       .nav-arrow { font-size: 2.2rem; padding: 5px 8px; }
     }
   </style>
@@ -628,7 +638,7 @@
             <div class="slides-container" id="milan-char-slides">
               
               <!-- Slide 1: Penny -->
-              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff53a5 0%, #e63889 100%)">
+              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff65b3 0%, #d81b60 100%)">
                 <div class="char-img-container">
                   <img src="penny-render.png" alt="Penny">
                 </div>
@@ -658,13 +668,17 @@
               </div>
 
               <!-- Slide 2: Fabrizio -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #3d50bf 0%, #29388c 100%)">
+              <div class="char-slide" data-bg="linear-gradient(135deg, #4c63db 0%, #212c73 100%)">
                 <div class="char-img-container">
                   <img src="fabrizioeventpose.png" alt="Fabrizio">
                 </div>
                 <div class="char-info-container">
-                  <h3>Fabrizio</h3>
-                  <div class="subtitle">milan surfer</div>
+                  <div class="char-header-row">
+                    <div class="char-title-group">
+                      <h3>Fabrizio</h3>
+                      <div class="subtitle">milan surfer</div>
+                    </div>
+                  </div>
 
                   <div class="meta-details">
                     <span>he/him</span>
@@ -680,13 +694,17 @@
               </div>
 
               <!-- Slide 3: Chiara -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #8a5ecf 0%, #683fb0 100%)">
+              <div class="char-slide" data-bg="linear-gradient(135deg, #9b6be6 0%, #522d93 100%)">
                 <div class="char-img-container">
                   <img src="chiaraeventpose.png" alt="Chiara">
                 </div>
                 <div class="char-info-container">
-                  <h3>Chiara</h3>
-                  <div class="subtitle">milan surfer</div>
+                  <div class="char-header-row">
+                    <div class="char-title-group">
+                      <h3>Chiara</h3>
+                      <div class="subtitle">milan surfer</div>
+                    </div>
+                  </div>
 
                   <div class="meta-details">
                     <span>she/her</span>
