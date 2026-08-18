@@ -174,7 +174,7 @@
     }
 
     .characters-section {
-      background: linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%);
+      background: linear-gradient(135deg, #ff53a5 0%, #e63889 100%);
     }
 
     .boards-section {
@@ -224,7 +224,7 @@
       display: flex;
       justify-content: center;
       overflow: hidden;
-      min-height: 320px;
+      min-height: 380px;
     }
 
     @keyframes fadeIn {
@@ -239,6 +239,7 @@
       justify-content: center;
       width: 100%;
       animation: fadeIn 0.3s ease;
+      padding: 0 10px;
     }
 
     .char-slide.active {
@@ -264,10 +265,24 @@
       flex-direction: column;
       align-items: flex-start;
       padding-left: 10px;
+      max-width: 420px;
+    }
+
+    .char-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 15px;
+    }
+
+    .char-title-group {
+      display: flex;
+      flex-direction: column;
     }
 
     .char-info-container h3, .board-info-container h3 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1;
@@ -280,36 +295,73 @@
       font-weight: 700;
       color: #ffffff;
       text-transform: lowercase;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       letter-spacing: 0.5px;
     }
 
-    .info-btn {
-      font-size: 1.1rem;
+    .meta-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .age-zodiac-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .zodiac-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .char-tagline {
+      font-size: 1.35rem;
       font-weight: 800;
       color: #ffffff;
       text-transform: lowercase;
-      margin-bottom: 15px;
-      cursor: pointer;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .char-bio {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      text-transform: lowercase;
+      opacity: 0.95;
+      max-width: 360px;
     }
 
     .outfits {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 10px 0;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .outfit-btn {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       background-color: #cce6ff;
-      border: 2px solid #ffffff;
-      border-radius: 10px;
+      border: 2.5px solid #ffffff;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: #ffffff;
       font-size: 1.3rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.15);
       cursor: pointer;
@@ -321,7 +373,7 @@
     }
 
     .outfit-btn.active {
-      transform: scale(1.2);
+      transform: scale(1.1);
       box-shadow: 0 6px 12px rgba(0,0,0,0.25);
       z-index: 2;
     }
@@ -515,14 +567,24 @@
         align-items: center;
         padding-left: 0;
       }
+      .char-header-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .meta-details {
+        align-items: center;
+      }
+      .char-bio {
+        text-align: center;
+      }
       .outfits {
-        justify-content: center;
+        flex-direction: row;
+        margin-top: 10px;
       }
       .char-img-container img { height: 210px; }
       .board-img-container img { max-height: 120px; }
-      .char-info-container h3, .board-info-container h3 { font-size: 1.8rem; }
-      .subtitle { margin-bottom: 15px; }
-      .info-btn { margin-bottom: 15px; }
+      .char-info-container h3, .board-info-container h3 { font-size: 2rem; }
+      .subtitle { margin-bottom: 10px; }
       .nav-arrow { font-size: 2.2rem; padding: 5px 8px; }
     }
   </style>
@@ -566,44 +628,76 @@
             <div class="slides-container" id="milan-char-slides">
               
               <!-- Slide 1: Penny -->
-              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff85c2 0%, #ff66a3 100%)">
+              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff53a5 0%, #e63889 100%)">
                 <div class="char-img-container">
                   <img src="penny-render.png" alt="Penny">
                 </div>
                 <div class="char-info-container">
-                  <h3>Penny</h3>
-                  <div class="subtitle">milan surfer</div>
-                  <div class="info-btn">info</div>
-                  <div class="outfits">
-                    <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                    <div class="outfit-btn pink-shirt" title="Influencer Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                  <div class="char-header-row">
+                    <div class="char-title-group">
+                      <h3>Penny</h3>
+                      <div class="subtitle">milan surfer</div>
+                    </div>
+                    <div class="outfits">
+                      <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                      <div class="outfit-btn pink-shirt" title="Influencer Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                    </div>
                   </div>
+                  
+                  <div class="meta-details">
+                    <span>she/her</span>
+                    <div class="age-zodiac-row">
+                      <span>19 years old</span>
+                      <span class="zodiac-badge">♎</span>
+                    </div>
+                  </div>
+
+                  <div class="char-tagline">the bimbo princess</div>
+                  <p class="char-bio">penny is a popular makeup influencer from milan, she’s pretty much the definition of a bimbo. she loves shopping, is boy-crazy and she’s actually really sweet and can befriend literally everyone!</p>
                 </div>
               </div>
 
               <!-- Slide 2: Fabrizio -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #0bc2a6 0%, #039c84 100%)">
+              <div class="char-slide" data-bg="linear-gradient(135deg, #3d50bf 0%, #29388c 100%)">
                 <div class="char-img-container">
                   <img src="fabrizioeventpose.png" alt="Fabrizio">
                 </div>
                 <div class="char-info-container">
                   <h3>Fabrizio</h3>
                   <div class="subtitle">milan surfer</div>
-                  <div class="info-btn">info</div>
-                  <div class="outfits"></div>
+
+                  <div class="meta-details">
+                    <span>he/him</span>
+                    <div class="age-zodiac-row">
+                      <span>19 years old</span>
+                      <span class="zodiac-badge">♓</span>
+                    </div>
+                  </div>
+
+                  <div class="char-tagline">the drama queen</div>
+                  <p class="char-bio">fabrizio is charming, unfiltered and VERY dramatic, hes a tailor who runs his own boutique. he does have kinda big ego but he cares deeply and never backs down from standing up for his friends.</p>
                 </div>
               </div>
 
               <!-- Slide 3: Chiara -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #b485ff 0%, #8c52ff 100%)">
+              <div class="char-slide" data-bg="linear-gradient(135deg, #8a5ecf 0%, #683fb0 100%)">
                 <div class="char-img-container">
                   <img src="chiaraeventpose.png" alt="Chiara">
                 </div>
                 <div class="char-info-container">
                   <h3>Chiara</h3>
                   <div class="subtitle">milan surfer</div>
-                  <div class="info-btn">info</div>
-                  <div class="outfits"></div>
+
+                  <div class="meta-details">
+                    <span>she/her</span>
+                    <div class="age-zodiac-row">
+                      <span>20 years old</span>
+                      <span class="zodiac-badge">♓</span>
+                    </div>
+                  </div>
+
+                  <div class="char-tagline">the silent star</div>
+                  <p class="char-bio">chiara is focused and composed, and works well under pressure. very artistic with her clothing & graphic design skills. she could come off stubborn and is also a big perfectionist, but she doesnt let it stop her from expressing herself.</p>
                 </div>
               </div>
 
@@ -630,185 +724,4 @@
                 <div class="board-info-container">
                   <h3>Milan</h3>
                   <div class="subtitle">milan board</div>
-                  <div class="info-btn">info</div>
-                </div>
-              </div>
-
-              <!-- Slide 2: Picture Perfect -->
-              <div class="board-slide" data-bg="linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%)">
-                <div class="board-img-container">
-                  <img src="picture-perfect.png" alt="Picture Perfect Board">
-                </div>
-                <div class="board-info-container">
-                  <h3>Picture Perfect</h3>
-                  <div class="subtitle">milan board</div>
-                  <div class="info-btn">info</div>
-                </div>
-              </div>
-
-              <!-- Slide 3: Blush -->
-              <div class="board-slide" data-bg="linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)">
-                <div class="board-img-container">
-                  <img src="blush-board.png" alt="Blush Board">
-                </div>
-                <div class="board-info-container">
-                  <h3>Blush</h3>
-                  <div class="subtitle">milan board</div>
-                  <div class="info-btn">info</div>
-                </div>
-              </div>
-
-            </div>
-            
-            <button class="nav-arrow" onclick="changeBoardSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Interactive Light Mode Credits Modal Popup -->
-  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
-      <div class="credits-content">
-        <h3>Game Credits</h3>
-        <div class="credits-list">
-          <div class="credits-item">
-            <span>Development & Engineering</span>
-            <p>Snow</p>
-          </div>
-          <div class="credits-item">
-            <span>3D Art & Animation</span>
-            <p>Surfers G Art, Fernando Artwork, Helicopty, Snow</p>
-          </div>
-          <div class="credits-item">
-            <span>2D Art & Concepts</span>
-            <p>Helicopty, Surfers G Art, Snow, Hou, Fernando Artwork</p>
-          </div>
-          <div class="credits-item">
-            <span>Music & Sound Design</span>
-            <p>Mark (SurfVibes)</p>
-          </div>
-          <div class="credits-item">
-            <span>Publisher & Distribution</span>
-            <p>Track Stars</p>
-          </div>
-          <div class="credits-item">
-            <span>Special Credits</span>
-            <p>SYBO</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="brand-col">
-        <img src="logo.png" alt="Game Logo" class="footer-logo">
-        <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        </div>
-        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
-      </div>
-
-      <div class="nav-col">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-col">
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a onclick="openCreditsModal(event)">Credits</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Interactive Scripts -->
-  <script>
-    function toggleRoster(cityId) {
-      const rosterContainer = document.getElementById(cityId + '-roster');
-      const triggerBtn = document.getElementById(cityId + '-trigger');
-      
-      rosterContainer.classList.toggle('active');
-      triggerBtn.classList.toggle('active');
-    }
-
-    function selectOutfit(element) {
-      const container = element.parentElement;
-      const buttons = container.querySelectorAll('.outfit-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      element.classList.add('active');
-    }
-
-    const currentCharSlide = { 'milan': 0 };
-    const currentBoardSlide = { 'milan': 0 };
-
-    function changeCharSlide(cityId, direction) {
-      const slidesContainer = document.getElementById(cityId + '-char-slides');
-      const slides = slidesContainer.querySelectorAll('.char-slide');
-      const charSection = document.getElementById(cityId + '-characters-section');
-      
-      slides[currentCharSlide[cityId]].classList.remove('active');
-      currentCharSlide[cityId] = (currentCharSlide[cityId] + direction + slides.length) % slides.length;
-      
-      const newActiveSlide = slides[currentCharSlide[cityId]];
-      newActiveSlide.classList.add('active');
-
-      const newBg = newActiveSlide.getAttribute('data-bg');
-      if (newBg) {
-        charSection.style.background = newBg;
-      }
-    }
-
-    function changeBoardSlide(cityId, direction) {
-      const slidesContainer = document.getElementById(cityId + '-board-slides');
-      const slides = slidesContainer.querySelectorAll('.board-slide');
-      const boardSection = document.getElementById(cityId + '-boards-section');
-      
-      slides[currentBoardSlide[cityId]].classList.remove('active');
-      currentBoardSlide[cityId] = (currentBoardSlide[cityId] + direction + slides.length) % slides.length;
-      
-      const newActiveSlide = slides[currentBoardSlide[cityId]];
-      newActiveSlide.classList.add('active');
-
-      const newBg = newActiveSlide.getAttribute('data-bg');
-      if (newBg) {
-        boardSection.style.background = newBg;
-      }
-    }
-
-    /* Modal Controls */
-    function openCreditsModal(event) {
-      if (event) event.preventDefault();
-      const modal = document.getElementById('creditsModal');
-      if (modal) modal.style.display = 'flex';
-    }
-
-    function closeCreditsModal(event) {
-      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
-      const modal = document.getElementById('creditsModal');
-      if (modal) modal.style.display = 'none';
-    }
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeCreditsModal();
-    });
-  </script>
-
-</body>
-</html>
+                </
