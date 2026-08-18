@@ -171,7 +171,7 @@
       align-items: center;
       position: relative;
       transition: background 0.4s ease;
-      overflow: hidden; 
+      /* Removed overflow:hidden so top of heads are never clipped */
     }
 
     .characters-section {
@@ -225,12 +225,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      min-height: 440px; /* Expanded height for zoomed character renders */
+      overflow: visible; /* Prevents visual cropping on character models */
+      min-height: 440px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
+      from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
 
@@ -248,7 +248,6 @@
       display: flex;
     }
 
-    /* Desktop: Outfit buttons sit directly to the LEFT of the character render image */
     .char-img-container {
       flex: 1;
       display: flex;
@@ -258,21 +257,20 @@
       position: relative;
     }
 
+    /* Clean Image Heights without Transform Scale (Prevents Clipping & Overlap) */
     .char-img-container img {
-      height: 380px;
+      height: 420px;
+      width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.25));
-      /* Scaled up to compensate for transparent square padding */
-      transform: scale(1.35);
-      transform-origin: center center;
-      margin: -25px 0;
+      filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
+      display: block;
     }
 
     .outfits {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-right: 20px; /* Space between buttons & character render */
+      margin-right: 20px; /* Sits cleanly to the left of desktop image */
       z-index: 5;
     }
 
@@ -542,7 +540,7 @@
     .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
     .nav-col a:hover { color: #ffffff; }
 
-    /* Responsive adjustments */
+    /* Responsive Adjustments */
     @media (max-width: 900px) {
       .footer-content { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -568,33 +566,31 @@
         justify-content: center;
         padding-right: 0;
         margin-bottom: 10px;
-        flex-direction: column; /* Stacks image & outfits neatly on mobile */
+        flex-direction: column;
       }
       
-      /* Mobile Zoom Fix for Character Models */
+      /* Mobile Image Sizing & Layout */
       .char-img-container img {
-        height: 280px;
-        transform: scale(1.35);
-        margin: -15px 0;
+        height: 350px; /* Big enough to compensate for square padding without overflowing */
+        width: auto;
       }
 
-      /* Mobile Outfits layout & Spacing */
       .outfits {
         flex-direction: row;
         margin-right: 0;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       .char-info-container, .board-info-container {
         align-items: center;
         padding-left: 0;
-        margin-top: 5px;
+        margin-top: 10px;
       }
 
       .meta-details {
         align-items: center;
-        margin-top: 6px;
+        margin-top: 4px;
       }
 
       .char-bio {
