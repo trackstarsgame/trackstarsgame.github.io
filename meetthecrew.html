@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    /* Reset & Base Styles[cite: 3] */
+    /* Reset & Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -37,7 +37,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Hero Header[cite: 3] */
+    /* Top Hero Header */
     .timeline-hero {
       position: relative;
       padding: 40px 20px 30px 20px;
@@ -72,7 +72,7 @@
       opacity: 1;
     }
 
-    /* Hero Display Grid[cite: 3] */
+    /* Hero Display Grid */
     .hero-display-grid {
       display: flex;
       flex-direction: column;
@@ -100,7 +100,7 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     }
 
-    /* Dynamic Roster Display Area[cite: 3] */
+    /* Dynamic Roster Display Area */
     .roster-container {
       display: flex;
       flex-direction: column;
@@ -108,7 +108,7 @@
       transition: all 0.3s ease;
     }
 
-    /* Characters & Boards Sections[cite: 3] */
+    /* Characters & Boards Sections */
     .characters-section, .boards-section {
       padding: 35px 0 45px 0;
       display: flex;
@@ -324,7 +324,59 @@
       filter: drop-shadow(0 12px 12px rgba(0,0,0,0.25));
     }
 
-    /* Modal Styling[cite: 3] */
+    /* World Tour Promo Section */
+    .world-tour-section {
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1f4068 0%, #162447 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .world-tour-content {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .world-tour-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1.5px;
+    }
+
+    .world-tour-btn {
+      background-color: #ffcc00;
+      color: #0d0d0d;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      display: inline-block;
+    }
+
+    .world-tour-btn:hover {
+      background-color: #ffd633;
+      transform: scale(1.05);
+    }
+
+    .world-tour-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Modal Styling */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -399,7 +451,7 @@
       margin-top: 2px;
     }
 
-    /* Footer[cite: 3] */
+    /* Footer */
     footer {
       background-color: #121212;
       color: #d8d8d8;
@@ -434,7 +486,7 @@
     .nav-col a { color: #aaaaaa; text-decoration: none; font-size: 0.9rem; cursor: pointer; }
     .nav-col a:hover { color: #ffffff; }
 
-    /* Mobile Responsive Adjustments[cite: 3] */
+    /* Mobile Responsive Adjustments */
     @media (max-width: 650px) {
       .timeline-hero { min-height: 160px; padding: 20px 15px 15px 15px; }
       .city-hero-title h2 { font-size: 2.2rem; }
@@ -451,6 +503,7 @@
       .board-img-container { justify-content: center; padding-right: 0; margin-bottom: 10px; }
       .board-img-container img { max-height: 120px; }
       .nav-arrow { font-size: 2.2rem; padding: 5px; }
+      .world-tour-content h2 { font-size: 2rem; }
       .footer-content { grid-template-columns: 1fr; gap: 25px; }
     }
   </style>
@@ -465,12 +518,12 @@
     <div class="hero-display-grid">
       <div class="city-hero-title">
         <h2>CORE CREW</h2>
-        <p>Meet The Crew</p>
+        <p>Meet The Main Runners</p>
       </div>
     </div>
   </header>
 
-  <!-- Dynamic Content Roster (Characters & Boards) - Open by Default -->
+  <!-- Dynamic Content Roster (Characters & Boards) -->
   <main class="roster-container" id="main-roster">
     
     <!-- Characters Section -->
@@ -503,9 +556,17 @@
       </div>
     </section>
 
+    <!-- Can't Get Enough? Section -->
+    <section class="world-tour-section">
+      <div class="world-tour-content">
+        <h2>Can't Get Enough?</h2>
+        <a href="world-tour.html" class="world-tour-btn">Explore the World Tour</a>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Credits Modal Popup[cite: 3] -->
+  <!-- Credits Modal Popup -->
   <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
@@ -541,7 +602,7 @@
     </div>
   </div>
 
-  <!-- Footer[cite: 3] -->
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="brand-col">
@@ -574,33 +635,33 @@
     </div>
   </footer>
 
-  <!-- Interactive Logic[cite: 3] -->
+  <!-- Interactive Logic -->
   <script>
     const crewData = {
       characters: [
         {
           name: "Sabre",
           subtitle: "core crew",
-          gender: "she/her",
+          gender: "he/him",
           age: "18 years old",
           zodiac: "♌︎",
-          tagline: "sabre lightsaber",
-          bio: "by nummy",
-          img: "sabreeventpose.png",
+          tagline: "the lightning runner",
+          bio: "sabre is fearless and lightning-fast, bringing unmatched energy and style to every track and subway line.",
+          img: "sabre.png",
           bgGradient: "linear-gradient(135deg, #B17B33 0%, #E3B546 100%)",
-          hasOutfits: false
+          hasOutfits: true
         },
         {
           name: "Malikai",
           subtitle: "core crew",
           gender: "he/him",
-          age: "0 years old",
+          age: "18 years old",
           zodiac: "",
-          tagline: "dl trade",
-          bio: "placeholder",
+          tagline: "the smooth operator",
+          bio: "calculated, smooth, and always ahead of the guard, malikai glides past obstacles effortlessly.",
           img: "malikai.png",
           bgGradient: "linear-gradient(135deg, #2b5876 0%, #4e4376 100%)",
-          hasOutfits: false
+          hasOutfits: true
         }
       ],
       boards: [
