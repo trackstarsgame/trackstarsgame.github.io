@@ -23,162 +23,258 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Prevent Page-Level Horizontal Stretch */
     html, body {
       width: 100%;
       overflow-x: hidden;
+      background-color: #0d0d0d;
+      color: #ffffff;
     }
 
     body {
-      background-color: #1e1e1e;
-      color: #ffffff;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Page Header */
-    .page-header {
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('header-world-tour.png');
+    /* Top Banner with Dynamic City Background */
+    .timeline-hero {
+      position: relative;
+      padding: 25px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 520px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('world-tour-milan.png');
       background-size: cover;
       background-position: center;
-      padding: 50px 20px;
-      text-align: center;
-      position: relative;
+      background-repeat: no-repeat;
+      transition: background-image 0.4s ease-in-out;
+      border-bottom: 1px solid #222;
     }
 
     .back-home-btn {
       position: absolute;
       left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 20px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       gap: 6px;
+      z-index: 10;
+      opacity: 0.85;
       transition: opacity 0.2s ease;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .back-home-btn:hover {
-      opacity: 0.8;
+      opacity: 1;
     }
 
-    .page-header h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    /* World Tour Logo */
+    .hero-logo-container {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
-    /* City Section Grid Wrapper */
-    .world-tour-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+    .hero-logo-container img {
+      max-height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
     }
 
-    .city-section {
-      background-color: #ffcc00;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      width: 100%;
-    }
-
-    .city-info-grid {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .city-text {
-      padding: 30px 20px 0 20px;
+    /* City Title & Quick Specs Grid */
+    .hero-display-grid {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      width: 100%;
+      max-width: 900px;
+      gap: 20px;
+      margin-bottom: 15px;
     }
 
-    .city-name {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+    .city-hero-title h2 {
+      font-size: 3rem;
+      font-weight: 900;
       letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
     }
 
-    /* Expand Chevron */
+    .city-hero-title p {
+      font-size: 1.05rem;
+      color: #dddddd;
+      margin-top: 4px;
+      font-weight: 500;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .city-quick-specs {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      width: 100%;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .spec-item .spec-label {
+      font-size: 0.8rem;
+      color: #bbbbbb;
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+
+    .spec-item .spec-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Interactive Timeline Slider Bar */
+    .timeline-bar-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 750px;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    .timeline-svg {
+      width: 100%;
+      height: 35px;
+      overflow: visible;
+    }
+
+    .timeline-path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.35);
+      stroke-width: 2.5;
+    }
+
+    .timeline-nodes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .time-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    .time-node:hover {
+      transform: translateY(-2px);
+    }
+
+    .node-date {
+      font-size: 0.725rem;
+      font-weight: 700;
+      color: #bbbbbb;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .node-dot {
+      width: 14px;
+      height: 14px;
+      background-color: #333333;
+      border: 3px solid #111111;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .node-badge-logo {
+      margin-top: 6px;
+      max-height: 28px;
+      width: auto;
+      opacity: 0.65;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    }
+
+    /* Active Timeline Node */
+    .time-node.active .node-dot {
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px #ffcc00, 0 0 12px rgba(255, 204, 0, 0.8);
+      transform: scale(1.25);
+    }
+
+    .time-node.active .node-date {
+      color: #ffffff;
+    }
+
+    .time-node.active .node-badge-logo {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    /* Chevron Toggle Button */
     .expand-trigger {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      padding-bottom: 20px;
+      margin-top: 15px;
       cursor: pointer;
+      padding: 5px;
     }
 
     .expand-trigger i {
-      font-size: 4.5rem;
+      font-size: 3rem;
       color: #ffffff;
       transition: transform 0.3s ease;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
     }
 
-    .expand-trigger.active i {
+    .expand-trigger.collapsed i {
       transform: rotate(180deg);
     }
 
-    .city-media {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .city-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block; 
-    }
-
-    /* Expandable Roster Section */
+    /* Dynamic Roster Display Area */
     .roster-container {
-      display: none; 
+      display: flex;
       flex-direction: column;
       width: 100%;
-      animation: slideDown 0.3s ease-out forwards;
+      transition: all 0.3s ease;
     }
 
-    .roster-container.active {
-      display: flex;
+    .roster-container.hidden {
+      display: none;
     }
 
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Dynamic Sections */
+    /* Characters & Boards Sections */
     .characters-section, .boards-section {
-      padding: 30px 0 40px 0;
+      padding: 35px 0 45px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
-      transition: background 0.4s ease;
       width: 100%;
+      transition: background 0.4s ease;
     }
 
     .characters-section {
@@ -190,22 +286,21 @@
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 800;
       text-transform: uppercase;
       color: #ffffff;
       margin-bottom: 20px;
-      text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
-      letter-spacing: 1px;
+      text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1.5px;
     }
 
-    /* Carousel Layout */
     .carousel-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      max-width: 900px;
+      max-width: 850px;
       position: relative;
     }
 
@@ -213,14 +308,18 @@
       background: none;
       border: none;
       color: #ffffff;
-      font-size: 3.5rem;
+      font-size: 3rem;
       cursor: pointer;
       padding: 10px 15px;
       opacity: 0.9;
-      transition: transform 0.2s;
+      transition: transform 0.2s, opacity 0.2s;
       z-index: 20;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
       flex-shrink: 0;
+    }
+
+    .nav-arrow:hover {
+      opacity: 1;
     }
 
     .nav-arrow:active {
@@ -237,29 +336,26 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
+      from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* Character Slide Styles */
-    .char-slide {
-      display: none; 
+    .char-slide, .board-slide {
+      display: none;
       align-items: center;
       justify-content: center;
       width: 100%;
       animation: fadeIn 0.3s ease;
       padding: 0 10px;
-      position: relative;
     }
 
-    .char-slide.active {
+    .char-slide.active, .board-slide.active {
       display: flex;
     }
 
-    /* Container for Cropping Transparent Margins */
     .char-img-container {
-      width: 260px;
-      height: 380px;
+      width: 240px;
+      height: 350px;
       overflow: hidden;
       position: relative;
       border-radius: 16px;
@@ -276,13 +372,11 @@
       object-fit: cover;
       object-position: center 10%;
       filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
-      display: block;
     }
 
-    /* Outfit Selector: DESKTOP (Vertically Centered) */
     .outfits {
       position: absolute;
-      left: 20px;
+      left: 15px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
@@ -292,8 +386,8 @@
     }
 
     .outfit-btn {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       background-color: #cce6ff;
       border: 2.5px solid #ffffff;
       border-radius: 12px;
@@ -301,52 +395,43 @@
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       cursor: pointer;
       transition: transform 0.25s ease;
     }
 
-    .outfit-btn.pink-shirt {
-      background-color: #ffb3d9;
-    }
-
+    .outfit-btn.pink-shirt { background-color: #ffb3d9; }
     .outfit-btn.active {
       transform: scale(1.1);
       border-color: #ffcc00;
     }
 
-    .char-info-container {
+    .char-info-container, .board-info-container {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       padding-left: 10px;
-      max-width: 420px;
+      max-width: 400px;
       min-width: 0;
     }
 
-    .char-title-group {
-      display: flex;
-      flex-direction: column;
-    }
-
     .char-info-container h3, .board-info-container h3 {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1;
       margin-bottom: 2px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #ffffff;
       text-transform: lowercase;
       margin-bottom: 8px;
-      letter-spacing: 0.5px;
     }
 
     .meta-details {
@@ -354,7 +439,7 @@
       flex-direction: column;
       align-items: flex-start;
       margin-bottom: 8px;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #ffffff;
     }
@@ -369,45 +454,28 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border: 2px solid #ffffff;
       border-radius: 50%;
-      font-size: 1rem;
-      line-height: 1;
+      font-size: 0.9rem;
     }
 
-    /* Tagline styled in UPPERCASE */
     .char-tagline {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #ffffff;
       text-transform: uppercase;
       margin-bottom: 8px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     .char-bio {
       font-size: 0.825rem;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.3;
+      line-height: 1.35;
       text-transform: lowercase;
       opacity: 0.95;
-      max-width: 360px;
-    }
-
-    /* Board Slide Styles */
-    .board-slide {
-      display: none; 
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .board-slide.active {
-      display: flex;
     }
 
     .board-img-container {
@@ -418,21 +486,13 @@
     }
 
     .board-img-container img {
-      max-height: 180px;
+      max-height: 170px;
       max-width: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.25));
+      filter: drop-shadow(0 12px 12px rgba(0,0,0,0.25));
     }
 
-    .board-info-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 10px;
-    }
-
-    /* Light Mode Modal Styling for Credits */
+    /* Modal Styling */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -440,7 +500,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(8px);
       z-index: 1000;
       justify-content: center;
@@ -451,19 +511,13 @@
     .modal-card {
       background: #f8fafc;
       border-radius: 20px;
-      max-width: 500px;
+      max-width: 480px;
       width: 100%;
-      padding: 28px 24px;
+      padding: 26px 22px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid #e2e8f0;
       position: relative;
       text-align: center;
-      animation: modalFadeIn 0.25s ease-out forwards;
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: #0f172a;
     }
 
     .close-modal-btn {
@@ -475,20 +529,13 @@
       cursor: pointer;
       background: none;
       border: none;
-      transition: color 0.2s ease;
-    }
-
-    .close-modal-btn:hover {
-      color: #0f172a;
     }
 
     .credits-content h3 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 800;
       text-transform: uppercase;
-      color: #0f172a;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
+      margin-bottom: 18px;
     }
 
     .credits-list {
@@ -500,313 +547,183 @@
 
     .credits-item {
       background-color: #ffffff;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border-left: 5px solid #d97706;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 4px solid #d97706;
       border-top: 1px solid #e2e8f0;
       border-right: 1px solid #e2e8f0;
       border-bottom: 1px solid #e2e8f0;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .credits-item span {
       display: block;
-      font-size: 0.725rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       font-weight: 800;
       color: #92400e;
-      letter-spacing: 0.8px;
     }
 
     .credits-item p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #0f172a;
       margin-top: 2px;
     }
 
-    /* Footer Container */
+    /* Footer */
     footer {
-      background-color: #383838;
+      background-color: #121212;
       color: #d8d8d8;
-      padding: 60px 10%;
+      padding: 40px 8%;
       margin-top: auto;
       width: 100%;
+      border-top: 1px solid #222;
     }
 
     .footer-content {
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
+      gap: 30px;
     }
 
-    .brand-col { display: flex; flex-direction: column; gap: 24px; }
-    .footer-logo { max-width: 180px; height: auto; }
-    .social-grid { display: flex; gap: 12px; flex-wrap: wrap; max-width: 240px; }
+    .brand-col { display: flex; flex-direction: column; gap: 15px; }
+    .footer-logo { max-width: 140px; height: auto; }
+    .social-grid { display: flex; gap: 10px; }
     
     .social-link {
-      width: 42px; height: 42px; border: 1.5px solid #888888; border-radius: 50%;
+      width: 36px; height: 36px; border: 1px solid #555555; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: #e0e0e0; text-decoration: none; font-size: 1rem; transition: all 0.2s ease;
+      color: #e0e0e0; text-decoration: none; font-size: 0.85rem;
     }
-    .social-link:hover { border-color: #ffffff; color: #ffffff; background-color: rgba(255, 255, 255, 0.15); }
-    .copyright { font-size: 0.85rem; color: #a0a0a0; margin-top: 8px; }
+
+    .copyright { font-size: 0.78rem; color: #777777; }
 
     .nav-col ul { list-style: none; }
-    .nav-col li { margin-bottom: 16px; }
-    .nav-col a { color: #d0d0d0; text-decoration: none; font-size: 1rem; transition: color 0.2s ease; cursor: pointer; }
+    .nav-col li { margin-bottom: 10px; }
+    .nav-col a { color: #aaaaaa; text-decoration: none; font-size: 0.9rem; cursor: pointer; }
     .nav-col a:hover { color: #ffffff; }
 
-    /* Responsive Adjustments */
-    @media (max-width: 900px) {
-      .footer-content { grid-template-columns: 1fr; gap: 32px; }
-    }
-    
-    @media (max-width: 600px) {
-      .page-header h1 {
-        font-size: 1.5rem;
-        padding-left: 30px;
-        padding-right: 10px;
-      }
-      .back-home-btn {
-        font-size: 0.9rem;
-        left: 12px;
-      }
-      .char-slide, .board-slide {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      /* Mobile Mask Container Bounds */
-      .char-img-container {
-        width: 210px;
-        height: 310px;
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-
-      /* Outfit Selector: MOBILE (Horizontal & Positioned Under Title) */
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 650px) {
+      .timeline-hero { min-height: 480px; padding: 20px 15px 15px 15px; }
+      .city-hero-title h2 { font-size: 2.2rem; }
+      .city-quick-specs { gap: 20px; }
+      .spec-item .spec-value { font-size: 1rem; }
+      
+      .char-slide, .board-slide { flex-direction: column; text-align: center; }
+      .char-img-container { width: 190px; height: 280px; margin-right: 0; margin-bottom: 10px; }
       .outfits {
         position: static;
         transform: none;
         flex-direction: row;
         justify-content: center;
-        gap: 12px;
-        margin: 6px 0 12px 0;
-        width: 100%;
+        gap: 10px;
+        margin: 5px 0 10px 0;
       }
-
-      .outfit-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 1.05rem;
-      }
-
-      .char-info-container, .board-info-container {
-        align-items: center;
-        padding-left: 0;
-        margin-top: 5px;
-        width: 100%;
-      }
-
-      .meta-details {
-        align-items: center;
-        margin-top: 4px;
-      }
-
-      .char-bio {
-        text-align: center;
-        padding: 0 10px;
-      }
-
+      .char-info-container, .board-info-container { align-items: center; padding-left: 0; }
+      .meta-details { align-items: center; }
+      .char-bio { text-align: center; }
+      .board-img-container { justify-content: center; padding-right: 0; margin-bottom: 10px; }
       .board-img-container img { max-height: 120px; }
-      .char-info-container h3, .board-info-container h3 { font-size: 2rem; }
-      .subtitle { margin-bottom: 2px; }
-      .nav-arrow { font-size: 2.2rem; padding: 5px 6px; }
+      .nav-arrow { font-size: 2.2rem; padding: 5px; }
+      .footer-content { grid-template-columns: 1fr; gap: 25px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="page-header">
+  <!-- Top Hero Header with Dynamic Background Image -->
+  <header class="timeline-hero" id="hero-header">
     <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
-    <h1>World Tour Destinations</h1>
-  </header>
 
-  <main class="world-tour-list">
-    
-    <!-- MILAN SECTION -->
-    <section class="city-section" id="milan">
-      
-      <!-- Milan Header Banner Area -->
-      <div class="city-info-grid">
-        <div class="city-text">
-          <h2 class="city-name">MILAN</h2>
-          <div class="expand-trigger" id="milan-trigger" onclick="toggleRoster('milan')">
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        
-        <div class="city-media">
-          <img src="world-tour-milan.png" alt="World Tour Milan Banner">
-        </div>
+    <!-- World Tour Logo -->
+    <div class="hero-logo-container">
+      <img id="hero-logo" src="world-tour-logo.png" alt="World Tour Logo">
+    </div>
+
+    <!-- Active City Display -->
+    <div class="hero-display-grid">
+      <div class="city-hero-title">
+        <h2 id="hero-city-name">MILAN</h2>
+        <p id="hero-city-tag">Fashion Capital</p>
       </div>
 
-      <!-- Expandable Roster (Characters & Boards) -->
-      <div class="roster-container" id="milan-roster">
+      <div class="city-quick-specs">
+        <div class="spec-item">
+          <span class="spec-label">Character</span>
+          <span class="spec-value" id="hero-char-name">PENNY</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Hoverboard</span>
+          <span class="spec-value" id="hero-board-name">MILAN</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Location</span>
+          <span class="spec-value" id="hero-location-name">ITALY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Bar (Milan Only) -->
+    <div class="timeline-bar-wrapper">
+      <svg class="timeline-svg" viewBox="0 0 800 35" preserveAspectRatio="none">
+        <path class="timeline-path" d="M 0,8 Q 400,32 800,8" />
+      </svg>
+
+      <div class="timeline-nodes">
+        <!-- Milan Active -->
+        <div class="time-node active" onclick="selectCity('milan', this)">
+          <span class="node-date">AUG 2026</span>
+          <div class="node-dot"></div>
+          <img src="world-tour-milan-logo.png" class="node-badge-logo" alt="Milan" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle Chevron Arrow -->
+    <div class="expand-trigger" id="expand-trigger" onclick="toggleRoster()">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+  </header>
+
+  <!-- Dynamic Content Roster (Characters & Boards) -->
+  <main class="roster-container" id="main-roster">
+    
+    <!-- Characters Section -->
+    <section class="characters-section" id="characters-section">
+      <h2 class="section-title">CHARACTERS</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="nav-arrow" onclick="navigateCharSlide(-1)"><i class="fas fa-chevron-left"></i></button>
         
-        <!-- Characters Section -->
-        <div class="characters-section" id="milan-characters-section">
-          <h2 class="section-title">CHARACTERS</h2>
-          
-          <div class="carousel-wrapper">
-            <button class="nav-arrow" onclick="changeCharSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
-            
-            <div class="slides-container" id="milan-char-slides">
-              
-              <!-- Slide 1: Penny -->
-              <div class="char-slide active" data-bg="linear-gradient(135deg, #ff65b3 0%, #d81b60 100%)">
-                <div class="char-img-container">
-                  <img src="penny-render.png" alt="Penny">
-                </div>
-
-                <div class="char-info-container">
-                  <div class="char-title-group">
-                    <h3>Penny</h3>
-                    <div class="subtitle">milan surfer</div>
-                  </div>
-                  
-                  <!-- Outfits -->
-                  <div class="outfits">
-                    <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                    <div class="outfit-btn pink-shirt" title="Influencer Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                  </div>
-
-                  <div class="meta-details">
-                    <span>she/her</span>
-                    <div class="age-zodiac-row">
-                      <span>19 years old</span>
-                      <span class="zodiac-badge">♎</span>
-                    </div>
-                  </div>
-
-                  <div class="char-tagline">the bimbo princess</div>
-                  <p class="char-bio">penny is a popular makeup influencer from milan, she’s pretty much the definition of a bimbo. she loves shopping, is boy-crazy and she’s actually really sweet and can befriend literally everyone!</p>
-                </div>
-              </div>
-
-              <!-- Slide 2: Fabrizio -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #4c63db 0%, #212c73 100%)">
-                <div class="char-img-container">
-                  <img src="fabrizioeventpose.png" alt="Fabrizio">
-                </div>
-
-                <div class="char-info-container">
-                  <div class="char-title-group">
-                    <h3>Fabrizio</h3>
-                    <div class="subtitle">milan surfer</div>
-                  </div>
-
-                  <div class="meta-details">
-                    <span>he/him</span>
-                    <div class="age-zodiac-row">
-                      <span>19 years old</span>
-                      <span class="zodiac-badge">♓</span>
-                    </div>
-                  </div>
-
-                  <div class="char-tagline">the drama queen</div>
-                  <p class="char-bio">fabrizio is charming, unfiltered and VERY dramatic, hes a tailor who runs his own boutique. he does have kinda big ego but he cares deeply and never backs down from standing up for his friends.</p>
-                </div>
-              </div>
-
-              <!-- Slide 3: Chiara -->
-              <div class="char-slide" data-bg="linear-gradient(135deg, #9b6be6 0%, #522d93 100%)">
-                <div class="char-img-container">
-                  <img src="chiaraeventpose.png" alt="Chiara">
-                </div>
-
-                <div class="char-info-container">
-                  <div class="char-title-group">
-                    <h3>Chiara</h3>
-                    <div class="subtitle">milan surfer</div>
-                  </div>
-
-                  <div class="meta-details">
-                    <span>she/her</span>
-                    <div class="age-zodiac-row">
-                      <span>20 years old</span>
-                      <span class="zodiac-badge">♓</span>
-                    </div>
-                  </div>
-
-                  <div class="char-tagline">the silent star</div>
-                  <p class="char-bio">chiara is focused and composed, and works well under pressure. very artistic with her clothing & graphic design skills. she could come off stubborn and is also a big perfectionist, but she doesnt let it stop her from expressing herself.</p>
-                </div>
-              </div>
-
-            </div>
-            
-            <button class="nav-arrow" onclick="changeCharSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
-          </div>
+        <div class="slides-container" id="char-slides-container">
+          <!-- Dynamically Injected Slides -->
         </div>
+        
+        <button class="nav-arrow" onclick="navigateCharSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
 
-        <!-- Boards Section -->
-        <div class="boards-section" id="milan-boards-section">
-          <h2 class="section-title">BOARDS</h2>
-          
-          <div class="carousel-wrapper">
-            <button class="nav-arrow" onclick="changeBoardSlide('milan', -1)"><i class="fas fa-chevron-left"></i></button>
-            
-            <div class="slides-container" id="milan-board-slides">
-              
-              <!-- Slide 1: Milan Board -->
-              <div class="board-slide active" data-bg="linear-gradient(135deg, #00bfff 0%, #0080ff 100%)">
-                <div class="board-img-container">
-                  <img src="milan-board.png" alt="Milan Board">
-                </div>
-                <div class="board-info-container">
-                  <h3>Milan</h3>
-                  <div class="subtitle">milan board</div>
-                </div>
-              </div>
-
-              <!-- Slide 2: Picture Perfect -->
-              <div class="board-slide" data-bg="linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%)">
-                <div class="board-img-container">
-                  <img src="picture-perfect.png" alt="Picture Perfect Board">
-                </div>
-                <div class="board-info-container">
-                  <h3>Picture Perfect</h3>
-                  <div class="subtitle">milan board</div>
-                </div>
-              </div>
-
-              <!-- Slide 3: Blush -->
-              <div class="board-slide" data-bg="linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)">
-                <div class="board-img-container">
-                  <img src="blush-board.png" alt="Blush Board">
-                </div>
-                <div class="board-info-container">
-                  <h3>Blush</h3>
-                  <div class="subtitle">milan board</div>
-                </div>
-              </div>
-
-            </div>
-            
-            <button class="nav-arrow" onclick="changeBoardSlide('milan', 1)"><i class="fas fa-chevron-right"></i></button>
-          </div>
+    <!-- Boards Section -->
+    <section class="boards-section" id="boards-section">
+      <h2 class="section-title">BOARDS</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="nav-arrow" onclick="navigateBoardSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="slides-container" id="board-slides-container">
+          <!-- Dynamically Injected Slides -->
         </div>
-
+        
+        <button class="nav-arrow" onclick="navigateBoardSlide(1)"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
 
   </main>
 
-  <!-- Interactive Light Mode Credits Modal Popup -->
+  <!-- Credits Modal Popup -->
   <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
@@ -848,11 +765,11 @@
       <div class="brand-col">
         <img src="logo.png" alt="Game Logo" class="footer-logo">
         <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+          <a href="https://facebook.com" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
         </div>
         <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
       </div>
@@ -875,76 +792,215 @@
     </div>
   </footer>
 
-  <!-- Interactive Scripts -->
+  <!-- Interactive Logic -->
   <script>
-    function toggleRoster(cityId) {
-      const rosterContainer = document.getElementById(cityId + '-roster');
-      const triggerBtn = document.getElementById(cityId + '-trigger');
+    // City Data Structure (Milan Only)
+    const cityDatabase = {
+      milan: {
+        name: "MILAN",
+        tagline: "Fashion Capital",
+        featuredChar: "PENNY",
+        featuredBoard: "MILAN",
+        location: "ITALY",
+        bgImage: "world-tour-milan.png",
+        characters: [
+          {
+            name: "Penny",
+            subtitle: "milan surfer",
+            gender: "she/her",
+            age: "19 years old",
+            zodiac: "♎",
+            tagline: "the bimbo princess",
+            bio: "penny is a popular makeup influencer from milan, she’s pretty much the definition of a bimbo. she loves shopping, is boy-crazy and she’s actually really sweet and can befriend literally everyone!",
+            img: "penny-render.png",
+            bgGradient: "linear-gradient(135deg, #ff65b3 0%, #d81b60 100%)",
+            hasOutfits: true
+          },
+          {
+            name: "Fabrizio",
+            subtitle: "milan surfer",
+            gender: "he/him",
+            age: "19 years old",
+            zodiac: "♓",
+            tagline: "the drama queen",
+            bio: "fabrizio is charming, unfiltered and VERY dramatic, hes a tailor who runs his own boutique. he does have kinda big ego but he cares deeply and never backs down from standing up for his friends.",
+            img: "fabrizioeventpose.png",
+            bgGradient: "linear-gradient(135deg, #4c63db 0%, #212c73 100%)",
+            hasOutfits: false
+          },
+          {
+            name: "Chiara",
+            subtitle: "milan surfer",
+            gender: "she/her",
+            age: "20 years old",
+            zodiac: "♓",
+            tagline: "the silent star",
+            bio: "chiara is focused and composed, and works well under pressure. very artistic with her clothing & graphic design skills. she could come off stubborn and is also a big perfectionist.",
+            img: "chiaraeventpose.png",
+            bgGradient: "linear-gradient(135deg, #9b6be6 0%, #522d93 100%)",
+            hasOutfits: false
+          }
+        ],
+        boards: [
+          {
+            name: "Milan",
+            subtitle: "milan board",
+            img: "milan-board.png",
+            bgGradient: "linear-gradient(135deg, #00bfff 0%, #0080ff 100%)"
+          },
+          {
+            name: "Picture Perfect",
+            subtitle: "milan board",
+            img: "picture-perfect.png",
+            bgGradient: "linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%)"
+          },
+          {
+            name: "Blush",
+            subtitle: "milan board",
+            img: "blush-board.png",
+            bgGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
+          }
+        ]
+      }
+    };
+
+    let activeCityKey = "milan";
+    let activeCharIdx = 0;
+    let activeBoardIdx = 0;
+
+    function selectCity(cityKey, nodeElement) {
+      if (!cityDatabase[cityKey]) return;
+      activeCityKey = cityKey;
+      activeCharIdx = 0;
+      activeBoardIdx = 0;
+
+      document.querySelectorAll('.time-node').forEach(node => node.classList.remove('active'));
+      nodeElement.classList.add('active');
+
+      const data = cityDatabase[cityKey];
+
+      document.getElementById('hero-city-name').innerText = data.name;
+      document.getElementById('hero-city-tag').innerText = data.tagline;
+      document.getElementById('hero-char-name').innerText = data.featuredChar;
+      document.getElementById('hero-board-name').innerText = data.featuredBoard;
+      document.getElementById('hero-location-name').innerText = data.location;
+
+      const heroHeader = document.getElementById('hero-header');
+      heroHeader.style.backgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('${data.bgImage}')`;
+
+      renderCityContent();
+    }
+
+    function renderCityContent() {
+      const city = cityDatabase[activeCityKey];
+      const charContainer = document.getElementById('char-slides-container');
+      const boardContainer = document.getElementById('board-slides-container');
+
+      charContainer.innerHTML = city.characters.map((char, index) => `
+        <div class="char-slide ${index === activeCharIdx ? 'active' : ''}">
+          <div class="char-img-container">
+            <img src="${char.img}" alt="${char.name}" onerror="this.src='penny-render.png'">
+            ${char.hasOutfits ? `
+              <div class="outfits">
+                <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+                <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="char-info-container">
+            <h3>${char.name}</h3>
+            <div class="subtitle">${char.subtitle}</div>
+            <div class="meta-details">
+              <span>${char.gender}</span>
+              <div class="age-zodiac-row">
+                <span>${char.age}</span>
+                <span class="zodiac-badge">${char.zodiac}</span>
+              </div>
+            </div>
+            <div class="char-tagline">${char.tagline}</div>
+            <p class="char-bio">${char.bio}</p>
+          </div>
+        </div>
+      `).join('');
+
+      boardContainer.innerHTML = city.boards.map((board, index) => `
+        <div class="board-slide ${index === activeBoardIdx ? 'active' : ''}">
+          <div class="board-img-container">
+            <img src="${board.img}" alt="${board.name}" onerror="this.src='milan-board.png'">
+          </div>
+          <div class="board-info-container">
+            <h3>${board.name}</h3>
+            <div class="subtitle">${board.subtitle}</div>
+          </div>
+        </div>
+      `).join('');
+
+      updateSlideGradients();
+    }
+
+    function updateSlideGradients() {
+      const city = cityDatabase[activeCityKey];
       
-      rosterContainer.classList.toggle('active');
-      triggerBtn.classList.toggle('active');
+      if (city.characters[activeCharIdx]) {
+        document.getElementById('characters-section').style.background = city.characters[activeCharIdx].bgGradient;
+      }
+      if (city.boards[activeBoardIdx]) {
+        document.getElementById('boards-section').style.background = city.boards[activeBoardIdx].bgGradient;
+      }
+    }
+
+    function navigateCharSlide(direction) {
+      const city = cityDatabase[activeCityKey];
+      const slides = document.querySelectorAll('.char-slide');
+      if (slides.length === 0) return;
+
+      slides[activeCharIdx].classList.remove('active');
+      activeCharIdx = (activeCharIdx + direction + slides.length) % slides.length;
+      slides[activeCharIdx].classList.add('active');
+
+      updateSlideGradients();
+    }
+
+    function navigateBoardSlide(direction) {
+      const city = cityDatabase[activeCityKey];
+      const slides = document.querySelectorAll('.board-slide');
+      if (slides.length === 0) return;
+
+      slides[activeBoardIdx].classList.remove('active');
+      activeBoardIdx = (activeBoardIdx + direction + slides.length) % slides.length;
+      slides[activeBoardIdx].classList.add('active');
+
+      updateSlideGradients();
+    }
+
+    function toggleRoster() {
+      const roster = document.getElementById('main-roster');
+      const trigger = document.getElementById('expand-trigger');
+      roster.classList.toggle('hidden');
+      trigger.classList.toggle('collapsed');
     }
 
     function selectOutfit(element) {
       const container = element.parentElement;
-      const buttons = container.querySelectorAll('.outfit-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
+      container.querySelectorAll('.outfit-btn').forEach(btn => btn.classList.remove('active'));
       element.classList.add('active');
     }
 
-    const currentCharSlide = { 'milan': 0 };
-    const currentBoardSlide = { 'milan': 0 };
-
-    function changeCharSlide(cityId, direction) {
-      const slidesContainer = document.getElementById(cityId + '-char-slides');
-      const slides = slidesContainer.querySelectorAll('.char-slide');
-      const charSection = document.getElementById(cityId + '-characters-section');
-      
-      slides[currentCharSlide[cityId]].classList.remove('active');
-      currentCharSlide[cityId] = (currentCharSlide[cityId] + direction + slides.length) % slides.length;
-      
-      const newActiveSlide = slides[currentCharSlide[cityId]];
-      newActiveSlide.classList.add('active');
-
-      const newBg = newActiveSlide.getAttribute('data-bg');
-      if (newBg) {
-        charSection.style.background = newBg;
-      }
-    }
-
-    function changeBoardSlide(cityId, direction) {
-      const slidesContainer = document.getElementById(cityId + '-board-slides');
-      const slides = slidesContainer.querySelectorAll('.board-slide');
-      const boardSection = document.getElementById(cityId + '-boards-section');
-      
-      slides[currentBoardSlide[cityId]].classList.remove('active');
-      currentBoardSlide[cityId] = (currentBoardSlide[cityId] + direction + slides.length) % slides.length;
-      
-      const newActiveSlide = slides[currentBoardSlide[cityId]];
-      newActiveSlide.classList.add('active');
-
-      const newBg = newActiveSlide.getAttribute('data-bg');
-      if (newBg) {
-        boardSection.style.background = newBg;
-      }
-    }
-
-    /* Modal Controls */
     function openCreditsModal(event) {
       if (event) event.preventDefault();
-      const modal = document.getElementById('creditsModal');
-      if (modal) modal.style.display = 'flex';
+      document.getElementById('creditsModal').style.display = 'flex';
     }
 
     function closeCreditsModal(event) {
       if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
-      const modal = document.getElementById('creditsModal');
-      if (modal) modal.style.display = 'none';
+      document.getElementById('creditsModal').style.display = 'none';
     }
 
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') closeCreditsModal();
     });
+
+    renderCityContent();
   </script>
 
 </body>
