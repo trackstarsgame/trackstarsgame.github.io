@@ -10,369 +10,631 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome CDN -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
+    /* Reset & Base Styles[cite: 3] */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    a, button, input, select, textarea {
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
-      background-color: #1e1e1e;
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      background-color: #0d0d0d;
       color: #ffffff;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Navbar / Header Bar */
-    header.page-header {
-      background-color: #161b22;
-      padding: 20px 40px;
+    /* Top Hero Header[cite: 3] */
+    .timeline-hero {
+      position: relative;
+      padding: 40px 20px 30px 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      border-bottom: 1px solid #333;
+      justify-content: center;
+      min-height: 420px;
+      border-bottom: 1px solid #222;
+      overflow: hidden;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(22, 27, 34, 0.9), rgba(13, 13, 13, 1));
     }
 
     .back-home-btn {
+      position: absolute;
+      left: 20px;
+      top: 20px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: color 0.2s ease;
+      gap: 6px;
+      z-index: 10;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
     }
 
     .back-home-btn:hover {
-      color: #E3B546;
+      opacity: 1;
     }
 
-    /* Page Hero Area */
-    .crew-hero {
-      text-align: center;
-      padding: 60px 20px 40px 20px;
-      background: linear-gradient(180deg, #161b22 0%, #1e1e1e 100%);
-    }
-
-    .crew-hero h4 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #E3B546;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .crew-hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .crew-hero p {
-      font-size: 1.1rem;
-      color: #b0b0b0;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Showcase Section (Carousels container style) */
-    .showcase-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px 80px 20px;
-      width: 100%;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 24px;
+    /* Hero Display Grid[cite: 3] */
+    .hero-display-grid {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
-      color: #ffffff;
-      border-left: 5px solid #E3B546;
-      padding-left: 12px;
+      text-align: center;
+      width: 100%;
+      max-width: 900px;
+      gap: 20px;
+      margin-bottom: 25px;
     }
 
-    .carousel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
+    .city-hero-title h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9);
     }
 
-    .showcase-card {
-      background-color: #262c36;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      border: 1px solid #333;
+    .city-hero-title p {
+      font-size: 1.05rem;
+      color: #dddddd;
+      margin-top: 6px;
+      font-weight: 500;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .city-quick-specs {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .spec-item {
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease;
+      align-items: center;
+      max-width: 250px;
     }
 
-    .showcase-card:hover {
-      transform: translateY(-5px);
+    .spec-item .spec-label {
+      font-size: 0.8rem;
+      color: #bbbbbb;
+      text-transform: capitalize;
+      font-weight: 600;
     }
 
-    .card-media {
-      width: 100%;
-      height: 320px;
-      background-color: #111;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-info {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-    }
-
-    .card-info h3 {
-      font-size: 1.5rem;
+    .spec-item .spec-value {
+      font-size: 1rem;
       font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 8px;
-      color: #fff;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+      line-height: 1.45;
+      margin-top: 5px;
+      text-align: center;
     }
 
-    .card-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      background: rgba(227, 181, 70, 0.15);
-      color: #E3B546;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-
-    .card-info p {
-      font-size: 0.95rem;
-      color: #b8b8b8;
-      line-height: 1.5;
-    }
-
-    /* Footer Container */
-    footer {
-      background-color: #161b22;
-      color: #d8d8d8;
-      padding: 60px 10%;
-      margin-top: auto;
-      border-top: 1px solid #333;
-    }
-
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .footer-logo {
-      max-width: 180px;
-      height: auto;
-    }
-
-    .social-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      max-width: 240px;
-    }
-
-    .social-link {
-      width: 42px;
-      height: 42px;
-      border: 1.5px solid #888888;
-      border-radius: 50%;
+    /* Chevron Toggle Button[cite: 3] */
+    .expand-trigger {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #e0e0e0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: all 0.2s ease;
-    }
-
-    .social-link:hover {
-      border-color: #ffffff;
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .copyright {
-      font-size: 0.85rem;
-      color: #a0a0a0;
-      margin-top: 8px;
-    }
-
-    .nav-col ul {
-      list-style: none;
-    }
-
-    .nav-col li {
-      margin-bottom: 16px;
-    }
-
-    .nav-col a {
-      color: #d0d0d0;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.2s ease;
+      margin-top: 10px;
       cursor: pointer;
+      padding: 5px;
     }
 
-    .nav-col a:hover {
+    .expand-trigger i {
+      font-size: 3rem;
+      color: #ffffff;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+    }
+
+    .expand-trigger.collapsed i {
+      transform: rotate(180deg);
+    }
+
+    /* Dynamic Roster Display Area[cite: 3] */
+    .roster-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .roster-container.hidden {
+      display: none;
+    }
+
+    /* Characters & Boards Sections[cite: 3] */
+    .characters-section, .boards-section {
+      padding: 35px 0 45px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      transition: background 0.4s ease;
+    }
+
+    .characters-section {
+      background: linear-gradient(135deg, #B17B33 0%, #E3B546 100%);
+    }
+
+    .boards-section {
+      background: linear-gradient(135deg, #00bfff 0%, #0080ff 100%);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1.5px;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 850px;
+      position: relative;
+    }
+
+    .nav-arrow {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 3rem;
+      cursor: pointer;
+      padding: 10px 15px;
+      opacity: 0.9;
+      transition: transform 0.2s, opacity 0.2s;
+      z-index: 20;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      flex-shrink: 0;
+    }
+
+    .nav-arrow:hover { opacity: 1; }
+    .nav-arrow:active { transform: scale(0.9); }
+
+    .slides-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .char-slide, .board-slide {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+      padding: 0 10px;
+    }
+
+    .char-slide.active, .board-slide.active {
+      display: flex;
+    }
+
+    .char-img-container {
+      width: 260px;
+      height: 380px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      margin-right: 20px;
+    }
+
+    .char-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.18);
+      transform-origin: center bottom;
+      filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
+    }
+
+    .outfits {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin: 12px 0 15px 0;
+    }
+
+    .outfit-btn {
+      width: 40px;
+      height: 40px;
+      background-color: #cce6ff;
+      border: 2.5px solid #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .outfit-btn.pink-shirt { background-color: #ffb3d9; }
+    .outfit-btn.active {
+      transform: scale(1.1);
+      border-color: #ffcc00;
+    }
+
+    .char-info-container, .board-info-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 10px;
+      max-width: 400px;
+      min-width: 0;
+    }
+
+    .char-info-container h3, .board-info-container h3 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 2px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: lowercase;
+      margin-bottom: 2px;
+    }
+
+    .meta-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 700;
       color: #ffffff;
     }
 
-    @media (max-width: 900px) {
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .crew-hero h1 {
-        font-size: 2.3rem;
-      }
+    .age-zodiac-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .zodiac-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      font-size: 0.9rem;
+    }
+
+    .char-tagline {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .char-bio {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      text-transform: lowercase;
+      opacity: 0.95;
+    }
+
+    .board-img-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 20px;
+    }
+
+    .board-img-container img {
+      max-height: 170px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 12px rgba(0,0,0,0.25));
+    }
+
+    /* Modal Styling[cite: 3] */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #f8fafc;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      padding: 26px 22px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      position: relative;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 1.5rem;
+      color: #64748b;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .credits-content h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .credits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .credits-item {
+      background-color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 4px solid #d97706;
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .credits-item span {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #92400e;
+    }
+
+    .credits-item p {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    /* Footer[cite: 3] */
+    footer {
+      background-color: #121212;
+      color: #d8d8d8;
+      padding: 40px 8%;
+      margin-top: auto;
+      width: 100%;
+      border-top: 1px solid #222;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    .brand-col { display: flex; flex-direction: column; gap: 15px; }
+    .footer-logo { max-width: 140px; height: auto; }
+    .social-grid { display: flex; gap: 10px; }
+    
+    .social-link {
+      width: 36px; height: 36px; border: 1px solid #555555; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #e0e0e0; text-decoration: none; font-size: 0.85rem;
+    }
+
+    .copyright { font-size: 0.78rem; color: #777777; }
+
+    .nav-col ul { list-style: none; }
+    .nav-col li { margin-bottom: 10px; }
+    .nav-col a { color: #aaaaaa; text-decoration: none; font-size: 0.9rem; cursor: pointer; }
+    .nav-col a:hover { color: #ffffff; }
+
+    /* Mobile Responsive Adjustments[cite: 3] */
+    @media (max-width: 650px) {
+      .timeline-hero { min-height: 380px; padding: 20px 15px 15px 15px; }
+      .city-hero-title h2 { font-size: 2.2rem; }
+      .city-quick-specs { gap: 15px; flex-wrap: wrap; }
+      .spec-item .spec-value { font-size: 0.85rem; }
+      
+      .char-slide, .board-slide { flex-direction: column; text-align: center; }
+      .char-img-container { width: 100%; max-width: 280px; height: 380px; margin-right: 0; margin-bottom: 0; }
+      .char-img-container img { transform: scale(1.22); }
+      
+      .outfits { justify-content: center; margin: 10px 0 15px 0; }
+      
+      .char-info-container, .board-info-container { align-items: center; padding-left: 0; text-align: center; }
+      .meta-details { align-items: center; }
+      .char-bio { text-align: center; }
+      .board-img-container { justify-content: center; padding-right: 0; margin-bottom: 10px; }
+      .board-img-container img { max-height: 120px; }
+      .nav-arrow { font-size: 2.2rem; padding: 5px; }
+      .footer-content { grid-template-columns: 1fr; gap: 25px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="page-header">
-    <a href="index.html" class="back-home-btn">
-      <i class="fas fa-arrow-left"></i> Back to Home
-    </a>
-  </header>
+  <!-- Top Hero Header -->
+  <header class="timeline-hero">
+    <a href="index.html" class="back-home-btn"><i class="fas fa-chevron-left"></i> Home</a>
 
-  <main>
-    <section class="crew-hero">
-      <h4>The Core Crew Showcase</h4>
-      <h1>Meet The Crew</h1>
-      <p>Explore the elite runners and high-speed boards leading the charge in Track Stars!</p>
-    </section>
-
-    <div class="showcase-section">
-      <!-- Characters Carousel Section -->
-      <h2 class="section-title">Featured Characters</h2>
-      <div class="carousel-grid">
-        
-        <!-- Sabre Character Card -->
-        <div class="showcase-card">
-          <div class="card-media">
-            <img src="sabre.png" alt="Sabre" onerror="this.src='world-tour.png'">
-          </div>
-          <div class="card-info">
-            <div>
-              <span class="card-tag">Runner</span>
-              <h3>Sabre</h3>
-              <p>Fearless and lightning-fast, Sabre brings unmatched energy and style to every track and subway line.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Malikai Character Card -->
-        <div class="showcase-card">
-          <div class="card-media">
-            <img src="malikai.png" alt="Malikai" onerror="this.src='world-tour.png'">
-          </div>
-          <div class="card-info">
-            <div>
-              <span class="card-tag">Runner</span>
-              <h3>Malikai</h3>
-              <p>Calculated, smooth, and always ahead of the guard, Malikai glides past obstacles effortlessly.</p>
-            </div>
-          </div>
-        </div>
-
+    <!-- Core Crew Header Display Grid -->
+    <div class="hero-display-grid">
+      <div class="city-hero-title">
+        <h2>CORE CREW</h2>
+        <p>Meet The Main Runners</p>
       </div>
 
-      <!-- Boards Carousel Section -->
-      <h2 class="section-title">Signature Boards</h2>
-      <div class="carousel-grid">
-        
-        <!-- Board Card 1 -->
-        <div class="showcase-card">
-          <div class="card-media">
-            <img src="board-sabre.png" alt="Sabre's Board" onerror="this.src='world-tour.png'">
-          </div>
-          <div class="card-info">
-            <div>
-              <span class="card-tag">Hoverboard</span>
-              <h3>Blade Runner</h3>
-              <p>Sabre's signature board equipped with custom boosters for ultimate velocity.</p>
-            </div>
-          </div>
+      <div class="city-quick-specs">
+        <div class="spec-item">
+          <span class="spec-label">Characters</span>
+          <span class="spec-value">SABRE<br>MALIKAI</span>
         </div>
-
-        <!-- Board Card 2 -->
-        <div class="showcase-card">
-          <div class="card-media">
-            <img src="board-malikai.png" alt="Malikai's Board" onerror="this.src='world-tour.png'">
-          </div>
-          <div class="card-info">
-            <div>
-              <span class="card-tag">Hoverboard</span>
-              <h3>Phantom Glide</h3>
-              <p>Malikai's sleek board designed for silent, high-precision maneuvers.</p>
-            </div>
-          </div>
+        <div class="spec-item">
+          <span class="spec-label">Hoverboards</span>
+          <span class="spec-value">PLACEHOLDER 1<br>PLACEHOLDER 2</span>
         </div>
-
+        <div class="spec-item">
+          <span class="spec-label">Status</span>
+          <span class="spec-value">AVAILABLE</span>
+        </div>
       </div>
     </div>
+
+    <!-- Toggle Chevron Arrow[cite: 3] -->
+    <div class="expand-trigger collapsed" id="expand-trigger" onclick="toggleRoster()">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+  </header>
+
+  <!-- Dynamic Content Roster (Characters & Boards)[cite: 3] -->
+  <main class="roster-container hidden" id="main-roster">
+    
+    <!-- Characters Section -->
+    <section class="characters-section" id="characters-section">
+      <h2 class="section-title">CHARACTERS</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="nav-arrow" onclick="navigateCharSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="slides-container" id="char-slides-container">
+          <!-- Dynamically Injected Slides -->
+        </div>
+        
+        <button class="nav-arrow" onclick="navigateCharSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Boards Section -->
+    <section class="boards-section" id="boards-section">
+      <h2 class="section-title">BOARDS</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="nav-arrow" onclick="navigateBoardSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="slides-container" id="board-slides-container">
+          <!-- Dynamically Injected Slides -->
+        </div>
+        
+        <button class="nav-arrow" onclick="navigateBoardSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
   </main>
 
+  <!-- Credits Modal Popup[cite: 3] -->
+  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
+      <div class="credits-content">
+        <h3>Game Credits</h3>
+        <div class="credits-list">
+          <div class="credits-item">
+            <span>Development & Engineering</span>
+            <p>Snow</p>
+          </div>
+          <div class="credits-item">
+            <span>3D Art & Animation</span>
+            <p>Surfers G Art, Fernando Artwork, Helicopty, Snow</p>
+          </div>
+          <div class="credits-item">
+            <span>2D Art & Concepts</span>
+            <p>Helicopty, Surfers G Art, Snow, Hou, Fernando Artwork</p>
+          </div>
+          <div class="credits-item">
+            <span>Music & Sound Design</span>
+            <p>Mark (SurfVibes)</p>
+          </div>
+          <div class="credits-item">
+            <span>Publisher & Distribution</span>
+            <p>Track Stars</p>
+          </div>
+          <div class="credits-item">
+            <span>Special Credits</span>
+            <p>SYBO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer[cite: 3] -->
   <footer>
     <div class="footer-content">
       <div class="brand-col">
         <img src="logo.png" alt="Game Logo" class="footer-logo">
-
         <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+          <a href="https://facebook.com" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
         </div>
-
         <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
       </div>
 
@@ -388,12 +650,166 @@
         <ul>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="index.html">Credits</a></li>
+          <li><a onclick="openCreditsModal(event)">Credits</a></li>
         </ul>
       </div>
-
     </div>
   </footer>
+
+  <!-- Interactive Logic[cite: 3] -->
+  <script>
+    const crewData = {
+      characters: [
+        {
+          name: "Sabre",
+          subtitle: "core crew",
+          gender: "he/him",
+          age: "18 years old",
+          zodiac: "🔥",
+          tagline: "the lightning runner",
+          bio: "sabre is fearless and lightning-fast, bringing unmatched energy and style to every track and subway line.",
+          img: "sabre.png",
+          bgGradient: "linear-gradient(135deg, #B17B33 0%, #E3B546 100%)",
+          hasOutfits: true
+        },
+        {
+          name: "Malikai",
+          subtitle: "core crew",
+          gender: "he/him",
+          age: "18 years old",
+          zodiac: "⚡",
+          tagline: "the smooth operator",
+          bio: "calculated, smooth, and always ahead of the guard, malikai glides past obstacles effortlessly.",
+          img: "malikai.png",
+          bgGradient: "linear-gradient(135deg, #2b5876 0%, #4e4376 100%)",
+          hasOutfits: true
+        }
+      ],
+      boards: [
+        {
+          name: "Placeholder 1",
+          subtitle: "signature board",
+          img: "board-sabre.png",
+          bgGradient: "linear-gradient(135deg, #00bfff 0%, #0080ff 100%)"
+        },
+        {
+          name: "Placeholder 2",
+          subtitle: "signature board",
+          img: "board-malikai.png",
+          bgGradient: "linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%)"
+        }
+      ]
+    };
+
+    let activeCharIdx = 0;
+    let activeBoardIdx = 0;
+
+    function renderCrewContent() {
+      const charContainer = document.getElementById('char-slides-container');
+      const boardContainer = document.getElementById('board-slides-container');
+
+      charContainer.innerHTML = crewData.characters.map((char, index) => `
+        <div class="char-slide ${index === activeCharIdx ? 'active' : ''}">
+          <div class="char-img-container">
+            <img src="${char.img}" alt="${char.name}" onerror="this.src='penny-render.png'">
+          </div>
+          <div class="char-info-container">
+            <h3 id="name text">${char.name}</h3>
+            <div class="subtitle">${char.subtitle}</div>
+            ${char.hasOutfits ? `
+              <div class="outfits">
+                <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-shirt"></i></div>
+                <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"><i class="fas fa-shirt"></i></div>
+              </div>
+            ` : ''}
+            <div class="meta-details">
+              <span>${char.gender}</span>
+              <div class="age-zodiac-row">
+                <span>${char.age}</span>
+                <span class="zodiac-badge">${char.zodiac}</span>
+              </div>
+            </div>
+            <div class="char-tagline">${char.tagline}</div>
+            <p class="char-bio">${char.bio}</p>
+          </div>
+        </div>
+      `).join('');
+
+      boardContainer.innerHTML = crewData.boards.map((board, index) => `
+        <div class="board-slide ${index === activeBoardIdx ? 'active' : ''}">
+          <div class="board-img-container">
+            <img src="${board.img}" alt="${board.name}" onerror="this.src='milan-board.png'">
+          </div>
+          <div class="board-info-container">
+            <h3>${board.name}</h3>
+            <div class="subtitle">${board.subtitle}</div>
+          </div>
+        </div>
+      `).join('');
+
+      updateSlideGradients();
+    }
+
+    function updateSlideGradients() {
+      if (crewData.characters[activeCharIdx]) {
+        document.getElementById('characters-section').style.background = crewData.characters[activeCharIdx].bgGradient;
+      }
+      if (crewData.boards[activeBoardIdx]) {
+        document.getElementById('boards-section').style.background = crewData.boards[activeBoardIdx].bgGradient;
+      }
+    }
+
+    function navigateCharSlide(direction) {
+      const slides = document.querySelectorAll('.char-slide');
+      if (slides.length === 0) return;
+
+      slides[activeCharIdx].classList.remove('active');
+      activeCharIdx = (activeCharIdx + direction + slides.length) % slides.length;
+      slides[activeCharIdx].classList.add('active');
+
+      updateSlideGradients();
+    }
+
+    function navigateBoardSlide(direction) {
+      const slides = document.querySelectorAll('.board-slide');
+      if (slides.length === 0) return;
+
+      slides[activeBoardIdx].classList.remove('active');
+      activeBoardIdx = (activeBoardIdx + direction + slides.length) % slides.length;
+      slides[activeBoardIdx].classList.add('active');
+
+      updateSlideGradients();
+    }
+
+    function toggleRoster() {
+      const roster = document.getElementById('main-roster');
+      const trigger = document.getElementById('expand-trigger');
+      roster.classList.toggle('hidden');
+      trigger.classList.toggle('collapsed');
+    }
+
+    function selectOutfit(element) {
+      const container = element.parentElement;
+      container.querySelectorAll('.outfit-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function openCreditsModal(event) {
+      if (event) event.preventDefault();
+      document.getElementById('creditsModal').style.display = 'flex';
+    }
+
+    function closeCreditsModal(event) {
+      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
+      document.getElementById('creditsModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeCreditsModal();
+    });
+
+    renderCrewContent();
+  </script>
 
 </body>
 </html>
