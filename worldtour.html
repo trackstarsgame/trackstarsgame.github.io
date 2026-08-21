@@ -353,10 +353,9 @@
       display: flex;
     }
 
-    /* Fixed image container to prevent cropping */
     .char-img-container {
-      width: 240px;
-      height: 350px;
+      width: 260px; /* Slightly wider */
+      height: 380px; /* Taller container to prevent clipping */
       position: relative;
       display: flex;
       justify-content: center;
@@ -368,8 +367,10 @@
     .char-img-container img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Prevents feet from getting cropped out */
-      object-position: center bottom; /* Anchors the character nicely to the bottom */
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.18); /* Boosts size without cropping feet */
+      transform-origin: center bottom;
       filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
     }
 
@@ -378,7 +379,7 @@
       display: flex;
       flex-direction: row;
       gap: 10px;
-      margin: 10px 0;
+      margin: 12px 0 15px 0;
     }
 
     .outfit-btn {
@@ -427,7 +428,7 @@
       font-weight: 700;
       color: #ffffff;
       text-transform: lowercase;
-      margin-bottom: 8px;
+      margin-bottom: 2px; /* reduced margin since outfits are below it now */
     }
 
     .meta-details {
@@ -609,10 +610,12 @@
       .spec-item .spec-value { font-size: 1rem; }
       
       .char-slide, .board-slide { flex-direction: column; text-align: center; }
-      .char-img-container { width: 100%; max-width: 240px; height: 320px; margin-right: 0; margin-bottom: 10px; }
+      .char-img-container { width: 100%; max-width: 280px; height: 380px; margin-right: 0; margin-bottom: 0; }
       
-      /* Make sure outfits stay centered on mobile */
-      .outfits { justify-content: center; }
+      /* Additional boost on mobile layout */
+      .char-img-container img { transform: scale(1.22); }
+      
+      .outfits { justify-content: center; margin: 10px 0 15px 0; }
       
       .char-info-container, .board-info-container { align-items: center; padding-left: 0; text-align: center; }
       .meta-details { align-items: center; }
@@ -895,13 +898,13 @@
           </div>
           <div class="char-info-container">
             <h3>${char.name}</h3>
+            <div class="subtitle">${char.subtitle}</div>
             ${char.hasOutfits ? `
               <div class="outfits">
                 <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
                 <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
               </div>
             ` : ''}
-            <div class="subtitle">${char.subtitle}</div>
             <div class="meta-details">
               <span>${char.gender}</span>
               <div class="age-zodiac-row">
