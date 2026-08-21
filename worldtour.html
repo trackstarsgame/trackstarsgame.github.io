@@ -119,7 +119,8 @@
     .city-quick-specs {
       display: flex;
       justify-content: center;
-      gap: 35px;
+      align-items: flex-start;
+      gap: 40px;
       width: 100%;
     }
 
@@ -144,7 +145,9 @@
       letter-spacing: 0.5px;
       color: #ffffff;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-      line-height: 1.3;
+      line-height: 1.45;
+      margin-top: 5px;
+      text-align: center;
     }
 
     /* Interactive Timeline Slider Bar */
@@ -639,11 +642,12 @@
       <div class="city-quick-specs">
         <div class="spec-item">
           <span class="spec-label">Characters</span>
-          <span class="spec-value" id="hero-char-name">PENNY, FABRIZIO, CHIARA</span>
+          <!-- Changed to use line breaks for initial load just in case -->
+          <span class="spec-value" id="hero-char-name">PENNY<br>FABRIZIO<br>CHIARA</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Hoverboards</span>
-          <span class="spec-value" id="hero-board-name">MILAN, PICTURE PERFECT, BLUSH</span>
+          <span class="spec-value" id="hero-board-name">MILAN<br>PICTURE PERFECT<br>BLUSH</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Location</span>
@@ -783,8 +787,9 @@
       milan: {
         name: "MILAN",
         tagline: "Fashion Capital",
-        featuredChar: "PENNY, FABRIZIO, CHIARA",
-        featuredBoard: "MILAN, PICTURE PERFECT, BLUSH",
+        // Using <br> instead of commas for stacked layout
+        featuredChar: "PENNY<br>FABRIZIO<br>CHIARA",
+        featuredBoard: "MILAN<br>PICTURE PERFECT<br>BLUSH",
         location: "ITALY",
         bgImage: "milan_banner.png",      
         cityIcon: "milan_cityNameIcon.png",
@@ -866,9 +871,11 @@
 
       document.getElementById('hero-city-name').innerText = data.name;
       document.getElementById('hero-city-tag').innerText = data.tagline;
-      document.getElementById('hero-char-name').innerText = data.featuredChar;
-      document.getElementById('hero-board-name').innerText = data.featuredBoard;
-      document.getElementById('hero-location-name').innerText = data.location;
+      
+      // Changed to innerHTML so it reads the <br> tags instead of treating them as raw text
+      document.getElementById('hero-char-name').innerHTML = data.featuredChar;
+      document.getElementById('hero-board-name').innerHTML = data.featuredBoard;
+      document.getElementById('hero-location-name').innerHTML = data.location;
 
       document.getElementById('hero-logo').src = data.cityIcon;
 
