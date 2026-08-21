@@ -654,7 +654,6 @@
       <div class="city-quick-specs">
         <div class="spec-item">
           <span class="spec-label">Characters</span>
-          <!-- Changed to use line breaks for initial load just in case -->
           <span class="spec-value" id="hero-char-name">PENNY<br>FABRIZIO<br>CHIARA</span>
         </div>
         <div class="spec-item">
@@ -799,7 +798,6 @@
       milan: {
         name: "MILAN",
         tagline: "Fashion Capital",
-        // Using <br> instead of commas for stacked layout
         featuredChar: "PENNY<br>FABRIZIO<br>CHIARA",
         featuredBoard: "LEATHER LUXURY<br>PICTURE PERFECT<br>BLUSH",
         location: "ITALY",
@@ -883,15 +881,11 @@
 
       document.getElementById('hero-city-name').innerText = data.name;
       document.getElementById('hero-city-tag').innerText = data.tagline;
-      
-      // Changed to innerHTML so it reads the <br> tags instead of treating them as raw text
       document.getElementById('hero-char-name').innerHTML = data.featuredChar;
       document.getElementById('hero-board-name').innerHTML = data.featuredBoard;
       document.getElementById('hero-location-name').innerHTML = data.location;
-
       document.getElementById('hero-logo').src = data.cityIcon;
 
-      // Update the CSS variable instead of the background image directly to preserve the blur
       const heroHeader = document.getElementById('hero-header');
       heroHeader.style.setProperty('--hero-bg', `url('${data.bgImage}')`);
 
@@ -913,8 +907,8 @@
             <div class="subtitle">${char.subtitle}</div>
             ${char.hasOutfits ? `
               <div class="outfits">
-                <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"></div>
-                <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"></div>
+                <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-shirt"></i></div>
+                <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"><i class="fas fa-shirt"></i></div>
               </div>
             ` : ''}
             <div class="meta-details">
