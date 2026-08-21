@@ -127,6 +127,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      max-width: 250px;
     }
 
     .spec-item .spec-label {
@@ -137,12 +138,13 @@
     }
 
     .spec-item .spec-value {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       color: #ffffff;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+      line-height: 1.3;
     }
 
     /* Interactive Timeline Slider Bar */
@@ -318,13 +320,8 @@
       flex-shrink: 0;
     }
 
-    .nav-arrow:hover {
-      opacity: 1;
-    }
-
-    .nav-arrow:active {
-      transform: scale(0.9);
-    }
+    .nav-arrow:hover { opacity: 1; }
+    .nav-arrow:active { transform: scale(0.9); }
 
     .slides-container {
       flex: 1;
@@ -374,7 +371,6 @@
       filter: drop-shadow(0 12px 15px rgba(0,0,0,0.25));
     }
 
-    /* Outfit buttons styling for inline placement */
     .outfits {
       display: flex;
       flex-direction: row;
@@ -493,10 +489,8 @@
     .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(8px);
       z-index: 1000;
@@ -519,8 +513,7 @@
 
     .close-modal-btn {
       position: absolute;
-      top: 16px;
-      right: 20px;
+      top: 16px; right: 20px;
       font-size: 1.5rem;
       color: #64748b;
       cursor: pointer;
@@ -606,12 +599,11 @@
     @media (max-width: 650px) {
       .timeline-hero { min-height: 480px; padding: 20px 15px 15px 15px; }
       .city-hero-title h2 { font-size: 2.2rem; }
-      .city-quick-specs { gap: 20px; }
-      .spec-item .spec-value { font-size: 1rem; }
+      .city-quick-specs { gap: 15px; flex-wrap: wrap; }
+      .spec-item .spec-value { font-size: 0.85rem; }
       
       .char-slide, .board-slide { flex-direction: column; text-align: center; }
       .char-img-container { width: 100%; max-width: 280px; height: 380px; margin-right: 0; margin-bottom: 0; }
-      
       .char-img-container img { transform: scale(1.22); }
       
       .outfits { justify-content: center; margin: 10px 0 15px 0; }
@@ -646,12 +638,12 @@
 
       <div class="city-quick-specs">
         <div class="spec-item">
-          <span class="spec-label">Character</span>
-          <span class="spec-value" id="hero-char-name">PENNY</span>
+          <span class="spec-label">Characters</span>
+          <span class="spec-value" id="hero-char-name">PENNY, FABRIZIO, CHIARA</span>
         </div>
         <div class="spec-item">
-          <span class="spec-label">Hoverboard</span>
-          <span class="spec-value" id="hero-board-name">MILAN</span>
+          <span class="spec-label">Hoverboards</span>
+          <span class="spec-value" id="hero-board-name">MILAN, PICTURE PERFECT, BLUSH</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Location</span>
@@ -667,7 +659,6 @@
       </svg>
 
       <div class="timeline-nodes">
-        <!-- Milan Node using the same icon -->
         <div class="time-node active" onclick="selectCity('milan', this)">
           <span class="node-date">AUG 2026</span>
           <div class="node-dot"></div>
@@ -792,8 +783,8 @@
       milan: {
         name: "MILAN",
         tagline: "Fashion Capital",
-        featuredChar: "PENNY",
-        featuredBoard: "MILAN",
+        featuredChar: "PENNY, FABRIZIO, CHIARA",
+        featuredBoard: "MILAN, PICTURE PERFECT, BLUSH",
         location: "ITALY",
         bgImage: "milan_banner.png",      
         cityIcon: "milan_cityNameIcon.png",
