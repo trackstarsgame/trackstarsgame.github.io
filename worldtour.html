@@ -46,12 +46,30 @@
       align-items: center;
       justify-content: space-between;
       min-height: 520px;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('milan_banner.png');
+      border-bottom: 1px solid #222;
+      overflow: hidden; /* Hides the oversized blurred edges */
+      --hero-bg: url('milan_banner.png'); /* CSS variable for dynamic JS updates */
+    }
+
+    /* Blurred Background Layer */
+    .timeline-hero::before {
+      content: "";
+      position: absolute;
+      /* Oversize the background slightly so the blur doesn't create a transparent edge */
+      top: -15px; left: -15px; right: -15px; bottom: -15px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), var(--hero-bg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      filter: blur(8px);
+      z-index: 0;
       transition: background-image 0.4s ease-in-out;
-      border-bottom: 1px solid #222;
+    }
+
+    /* Ensure text/content stays on top of the blurred background */
+    .timeline-hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .back-home-btn {
@@ -642,7 +660,6 @@
       <div class="city-quick-specs">
         <div class="spec-item">
           <span class="spec-label">Characters</span>
-          <!-- Changed to use line breaks for initial load just in case -->
           <span class="spec-value" id="hero-char-name">PENNY<br>FABRIZIO<br>CHIARA</span>
         </div>
         <div class="spec-item">
@@ -663,337 +680,26 @@
       </svg>
 
       <div class="timeline-nodes">
-        <div class="time-node active" onclick="selectCity('milan', this)">
-          <span class="node-date">AUG 2026</span>
-          <div class="node-dot"></div>
-          <img src="milan_cityNameIcon.png" class="node-badge-logo" alt="Milan" onerror="this.style.display='none'">
-        </div>
-      </div>
-    </div>
+        <div class="time-### Fixing the Carousel
 
-    <!-- Toggle Chevron Arrow -->
-    <div class="expand-trigger" id="expand-trigger" onclick="toggleRoster()">
-      <i class="fas fa-chevron-up"></i>
-    </div>
-  </header>
+If the characters and boards carousel is popping open by default when you start the game, it almost always comes down to one of two things:
 
-  <!-- Dynamic Content Roster (Characters & Boards) -->
-  <main class="roster-container" id="main-roster">
-    
-    <!-- Characters Section -->
-    <section class="characters-section" id="characters-section">
-      <h2 class="section-title">CHARACTERS</h2>
-      
-      <div class="carousel-wrapper">
-        <button class="nav-arrow" onclick="navigateCharSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-        
-        <div class="slides-container" id="char-slides-container">
-          <!-- Dynamically Injected Slides -->
-        </div>
-        
-        <button class="nav-arrow" onclick="navigateCharSlide(1)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </section>
+1. **It’s active in the Inspector:** The GameObject for the carousel is currently toggled "on" (the checkbox next to its name in the top left of the Inspector) in your scene or inside the prefab itself. Unity saves the active state of UI panels exactly as you leave them. 
+2. **A script is forcing it open:** You might have a line in your `Start()` or `Awake()` method in your UI manager script that is accidentally setting it to true, or it's tied to an initialization function that triggers the panel.
 
-    <!-- Boards Section -->
-    <section class="boards-section" id="boards-section">
-      <h2 class="section-title">BOARDS</h2>
-      
-      <div class="carousel-wrapper">
-        <button class="nav-arrow" onclick="navigateBoardSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-        
-        <div class="slides-container" id="board-slides-container">
-          <!-- Dynamically Injected Slides -->
-        </div>
-        
-        <button class="nav-arrow" onclick="navigateBoardSlide(1)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </section>
+**How to fix it:**
+*   **The quick fix:** Simply click the carousel GameObject in the Hierarchy and uncheck the active box in the Inspector before hitting Play or building the game. 
+*   **The bulletproof code fix:** Force it closed right when the game starts so you don't have to worry about its Inspector state. Drop this in your menu script's `Start()` method:
 
-  </main>
+```csharp
+// Make sure to reference the carousel GameObject at the top of your script
+public GameObject charactersAndBoardsCarousel;
 
-  <!-- Credits Modal Popup -->
-  <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
-      <div class="credits-content">
-        <h3>Game Credits</h3>
-        <div class="credits-list">
-          <div class="credits-item">
-            <span>Development & Engineering</span>
-            <p>Snow</p>
-          </div>
-          <div class="credits-item">
-            <span>3D Art & Animation</span>
-            <p>Surfers G Art, Fernando Artwork, Helicopty, Snow</p>
-          </div>
-          <div class="credits-item">
-            <span>2D Art & Concepts</span>
-            <p>Helicopty, Surfers G Art, Snow, Hou, Fernando Artwork</p>
-          </div>
-          <div class="credits-item">
-            <span>Music & Sound Design</span>
-            <p>Mark (SurfVibes)</p>
-          </div>
-          <div class="credits-item">
-            <span>Publisher & Distribution</span>
-            <p>Track Stars</p>
-          </div>
-          <div class="credits-item">
-            <span>Special Credits</span>
-            <p>SYBO</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="brand-col">
-        <img src="logo.png" alt="Game Logo" class="footer-logo">
-        <div class="social-grid">
-          <a href="https://facebook.com" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://discord.com" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
-        </div>
-        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
-      </div>
-
-      <div class="nav-col">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-col">
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a onclick="openCreditsModal(event)">Credits</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Interactive Logic -->
-  <script>
-    const cityDatabase = {
-      milan: {
-        name: "MILAN",
-        tagline: "Fashion Capital",
-        // Using <br> instead of commas for stacked layout
-        featuredChar: "PENNY<br>FABRIZIO<br>CHIARA",
-        featuredBoard: "MILAN<br>PICTURE PERFECT<br>BLUSH",
-        location: "ITALY",
-        bgImage: "milan_banner.png",      
-        cityIcon: "milan_cityNameIcon.png",
-        characters: [
-          {
-            name: "Penny",
-            subtitle: "milan surfer",
-            gender: "she/her",
-            age: "19 years old",
-            zodiac: "♎",
-            tagline: "the bimbo princess",
-            bio: "penny is a popular makeup influencer from milan, she’s pretty much the definition of a bimbo. she loves shopping, is boy-crazy and she’s actually really sweet and can befriend literally everyone!",
-            img: "penny-render.png",
-            bgGradient: "linear-gradient(135deg, #ff65b3 0%, #d81b60 100%)",
-            hasOutfits: true
-          },
-          {
-            name: "Fabrizio",
-            subtitle: "milan surfer",
-            gender: "he/him",
-            age: "19 years old",
-            zodiac: "♓",
-            tagline: "the drama queen",
-            bio: "fabrizio is charming, unfiltered and VERY dramatic, hes a tailor who runs his own boutique. he does have kinda big ego but he cares deeply and never backs down from standing up for his friends.",
-            img: "fabrizioeventpose.png",
-            bgGradient: "linear-gradient(135deg, #4c63db 0%, #212c73 100%)",
-            hasOutfits: false
-          },
-          {
-            name: "Chiara",
-            subtitle: "milan surfer",
-            gender: "she/her",
-            age: "20 years old",
-            zodiac: "♓",
-            tagline: "the silent star",
-            bio: "chiara is focused and composed, and works well under pressure. very artistic with her clothing & graphic design skills. she could come off stubborn and is also a big perfectionist.",
-            img: "chiaraeventpose.png",
-            bgGradient: "linear-gradient(135deg, #9b6be6 0%, #522d93 100%)",
-            hasOutfits: false
-          }
-        ],
-        boards: [
-          {
-            name: "Milan",
-            subtitle: "milan board",
-            img: "milan-board.png",
-            bgGradient: "linear-gradient(135deg, #00bfff 0%, #0080ff 100%)"
-          },
-          {
-            name: "Picture Perfect",
-            subtitle: "milan board",
-            img: "picture-perfect.png",
-            bgGradient: "linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%)"
-          },
-          {
-            name: "Blush",
-            subtitle: "milan board",
-            img: "blush-board.png",
-            bgGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
-          }
-        ]
-      }
-    };
-
-    let activeCityKey = "milan";
-    let activeCharIdx = 0;
-    let activeBoardIdx = 0;
-
-    function selectCity(cityKey, nodeElement) {
-      if (!cityDatabase[cityKey]) return;
-      activeCityKey = cityKey;
-      activeCharIdx = 0;
-      activeBoardIdx = 0;
-
-      document.querySelectorAll('.time-node').forEach(node => node.classList.remove('active'));
-      nodeElement.classList.add('active');
-
-      const data = cityDatabase[cityKey];
-
-      document.getElementById('hero-city-name').innerText = data.name;
-      document.getElementById('hero-city-tag').innerText = data.tagline;
-      
-      // Changed to innerHTML so it reads the <br> tags instead of treating them as raw text
-      document.getElementById('hero-char-name').innerHTML = data.featuredChar;
-      document.getElementById('hero-board-name').innerHTML = data.featuredBoard;
-      document.getElementById('hero-location-name').innerHTML = data.location;
-
-      document.getElementById('hero-logo').src = data.cityIcon;
-
-      const heroHeader = document.getElementById('hero-header');
-      heroHeader.style.backgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('${data.bgImage}')`;
-
-      renderCityContent();
+void Start()
+{
+    // Forces the carousel closed on boot
+    if(charactersAndBoardsCarousel != null)
+    {
+        charactersAndBoardsCarousel.SetActive(false);
     }
-
-    function renderCityContent() {
-      const city = cityDatabase[activeCityKey];
-      const charContainer = document.getElementById('char-slides-container');
-      const boardContainer = document.getElementById('board-slides-container');
-
-      charContainer.innerHTML = city.characters.map((char, index) => `
-        <div class="char-slide ${index === activeCharIdx ? 'active' : ''}">
-          <div class="char-img-container">
-            <img src="${char.img}" alt="${char.name}" onerror="this.src='penny-render.png'">
-          </div>
-          <div class="char-info-container">
-            <h3>${char.name}</h3>
-            <div class="subtitle">${char.subtitle}</div>
-            ${char.hasOutfits ? `
-              <div class="outfits">
-                <div class="outfit-btn active" title="Default Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-                <div class="outfit-btn pink-shirt" title="Alternate Outfit" onclick="selectOutfit(this)"><i class="fas fa-tshirt"></i></div>
-              </div>
-            ` : ''}
-            <div class="meta-details">
-              <span>${char.gender}</span>
-              <div class="age-zodiac-row">
-                <span>${char.age}</span>
-                <span class="zodiac-badge">${char.zodiac}</span>
-              </div>
-            </div>
-            <div class="char-tagline">${char.tagline}</div>
-            <p class="char-bio">${char.bio}</p>
-          </div>
-        </div>
-      `).join('');
-
-      boardContainer.innerHTML = city.boards.map((board, index) => `
-        <div class="board-slide ${index === activeBoardIdx ? 'active' : ''}">
-          <div class="board-img-container">
-            <img src="${board.img}" alt="${board.name}" onerror="this.src='milan-board.png'">
-          </div>
-          <div class="board-info-container">
-            <h3>${board.name}</h3>
-            <div class="subtitle">${board.subtitle}</div>
-          </div>
-        </div>
-      `).join('');
-
-      updateSlideGradients();
-    }
-
-    function updateSlideGradients() {
-      const city = cityDatabase[activeCityKey];
-      
-      if (city.characters[activeCharIdx]) {
-        document.getElementById('characters-section').style.background = city.characters[activeCharIdx].bgGradient;
-      }
-      if (city.boards[activeBoardIdx]) {
-        document.getElementById('boards-section').style.background = city.boards[activeBoardIdx].bgGradient;
-      }
-    }
-
-    function navigateCharSlide(direction) {
-      const slides = document.querySelectorAll('.char-slide');
-      if (slides.length === 0) return;
-
-      slides[activeCharIdx].classList.remove('active');
-      activeCharIdx = (activeCharIdx + direction + slides.length) % slides.length;
-      slides[activeCharIdx].classList.add('active');
-
-      updateSlideGradients();
-    }
-
-    function navigateBoardSlide(direction) {
-      const slides = document.querySelectorAll('.board-slide');
-      if (slides.length === 0) return;
-
-      slides[activeBoardIdx].classList.remove('active');
-      activeBoardIdx = (activeBoardIdx + direction + slides.length) % slides.length;
-      slides[activeBoardIdx].classList.add('active');
-
-      updateSlideGradients();
-    }
-
-    function toggleRoster() {
-      const roster = document.getElementById('main-roster');
-      const trigger = document.getElementById('expand-trigger');
-      roster.classList.toggle('hidden');
-      trigger.classList.toggle('collapsed');
-    }
-
-    function selectOutfit(element) {
-      const container = element.parentElement;
-      container.querySelectorAll('.outfit-btn').forEach(btn => btn.classList.remove('active'));
-      element.classList.add('active');
-    }
-
-    function openCreditsModal(event) {
-      if (event) event.preventDefault();
-      document.getElementById('creditsModal').style.display = 'flex';
-    }
-
-    function closeCreditsModal(event) {
-      if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) return;
-      document.getElementById('creditsModal').style.display = 'none';
-    }
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeCreditsModal();
-    });
-
-    renderCityContent();
-  </script>
-
-</body>
-</html>
+}
