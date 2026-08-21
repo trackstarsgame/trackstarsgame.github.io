@@ -45,7 +45,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 420px;
+      min-height: 220px;
       border-bottom: 1px solid #222;
       overflow: hidden;
       z-index: 1;
@@ -80,8 +80,7 @@
       text-align: center;
       width: 100%;
       max-width: 900px;
-      gap: 20px;
-      margin-bottom: 25px;
+      gap: 10px;
     }
 
     .city-hero-title h2 {
@@ -101,71 +100,12 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     }
 
-    .city-quick-specs {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      width: 100%;
-    }
-
-    .spec-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 250px;
-    }
-
-    .spec-item .spec-label {
-      font-size: 0.8rem;
-      color: #bbbbbb;
-      text-transform: capitalize;
-      font-weight: 600;
-    }
-
-    .spec-item .spec-value {
-      font-size: 1rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #ffffff;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-      line-height: 1.45;
-      margin-top: 5px;
-      text-align: center;
-    }
-
-    /* Chevron Toggle Button[cite: 3] */
-    .expand-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      cursor: pointer;
-      padding: 5px;
-    }
-
-    .expand-trigger i {
-      font-size: 3rem;
-      color: #ffffff;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
-    }
-
-    .expand-trigger.collapsed i {
-      transform: rotate(180deg);
-    }
-
     /* Dynamic Roster Display Area[cite: 3] */
     .roster-container {
       display: flex;
       flex-direction: column;
       width: 100%;
       transition: all 0.3s ease;
-    }
-
-    .roster-container.hidden {
-      display: none;
     }
 
     /* Characters & Boards Sections[cite: 3] */
@@ -496,10 +436,8 @@
 
     /* Mobile Responsive Adjustments[cite: 3] */
     @media (max-width: 650px) {
-      .timeline-hero { min-height: 380px; padding: 20px 15px 15px 15px; }
+      .timeline-hero { min-height: 160px; padding: 20px 15px 15px 15px; }
       .city-hero-title h2 { font-size: 2.2rem; }
-      .city-quick-specs { gap: 15px; flex-wrap: wrap; }
-      .spec-item .spec-value { font-size: 0.85rem; }
       
       .char-slide, .board-slide { flex-direction: column; text-align: center; }
       .char-img-container { width: 100%; max-width: 280px; height: 380px; margin-right: 0; margin-bottom: 0; }
@@ -529,31 +467,11 @@
         <h2>CORE CREW</h2>
         <p>Meet The Main Runners</p>
       </div>
-
-      <div class="city-quick-specs">
-        <div class="spec-item">
-          <span class="spec-label">Characters</span>
-          <span class="spec-value">SABRE<br>MALIKAI</span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label">Hoverboards</span>
-          <span class="spec-value">PLACEHOLDER 1<br>PLACEHOLDER 2</span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-label">Status</span>
-          <span class="spec-value">AVAILABLE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Toggle Chevron Arrow[cite: 3] -->
-    <div class="expand-trigger collapsed" id="expand-trigger" onclick="toggleRoster()">
-      <i class="fas fa-chevron-up"></i>
     </div>
   </header>
 
-  <!-- Dynamic Content Roster (Characters & Boards)[cite: 3] -->
-  <main class="roster-container hidden" id="main-roster">
+  <!-- Dynamic Content Roster (Characters & Boards) - Open by Default -->
+  <main class="roster-container" id="main-roster">
     
     <!-- Characters Section -->
     <section class="characters-section" id="characters-section">
@@ -663,12 +581,12 @@
         {
           name: "Sabre",
           subtitle: "core crew",
-          gender: "he/him",
+          gender: "she/her",
           age: "18 years old",
-          zodiac: "🔥",
-          tagline: "the lightning runner",
-          bio: "sabre is fearless and lightning-fast, bringing unmatched energy and style to every track and subway line.",
-          img: "sabre.png",
+          zodiac: "♌︎",
+          tagline: "sabre lightsaber",
+          bio: "by nummy",
+          img: "sabreeventpose.png",
           bgGradient: "linear-gradient(135deg, #B17B33 0%, #E3B546 100%)",
           hasOutfits: true
         },
@@ -676,10 +594,10 @@
           name: "Malikai",
           subtitle: "core crew",
           gender: "he/him",
-          age: "18 years old",
-          zodiac: "⚡",
-          tagline: "the smooth operator",
-          bio: "calculated, smooth, and always ahead of the guard, malikai glides past obstacles effortlessly.",
+          age: "0 years old",
+          zodiac: "",
+          tagline: "dl trade",
+          bio: "placeholder",
           img: "malikai.png",
           bgGradient: "linear-gradient(135deg, #2b5876 0%, #4e4376 100%)",
           hasOutfits: true
@@ -726,7 +644,7 @@
               <span>${char.gender}</span>
               <div class="age-zodiac-row">
                 <span>${char.age}</span>
-                <span class="zodiac-badge">${char.zodiac}</span>
+                ${char.zodiac ? `<span class="zodiac-badge">${char.zodiac}</span>` : ''}
               </div>
             </div>
             <div class="char-tagline">${char.tagline}</div>
@@ -779,13 +697,6 @@
       slides[activeBoardIdx].classList.add('active');
 
       updateSlideGradients();
-    }
-
-    function toggleRoster() {
-      const roster = document.getElementById('main-roster');
-      const trigger = document.getElementById('expand-trigger');
-      roster.classList.toggle('hidden');
-      trigger.classList.toggle('collapsed');
     }
 
     function selectOutfit(element) {
