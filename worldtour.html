@@ -46,7 +46,6 @@
       align-items: center;
       justify-content: space-between;
       min-height: 520px;
-      /* Updated default background to follow the banner convention */
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('milan_banner.png');
       background-size: cover;
       background-position: center;
@@ -635,7 +634,7 @@
 
     <!-- Dynamic World Tour Logo -->
     <div class="hero-logo-container">
-      <img id="hero-logo" src="city_milanIcon.png" alt="City Tour Logo">
+      <img id="hero-logo" src="milan_cityNameIcon.png" alt="City Tour Logo">
     </div>
 
     <!-- Active City Display -->
@@ -668,15 +667,12 @@
       </svg>
 
       <div class="timeline-nodes">
-        <!-- Example Milan Node -->
+        <!-- Milan Node using the same icon -->
         <div class="time-node active" onclick="selectCity('milan', this)">
           <span class="node-date">AUG 2026</span>
           <div class="node-dot"></div>
-          <img src="world-tour-milan-logo.png" class="node-badge-logo" alt="Milan" onerror="this.style.display='none'">
+          <img src="milan_cityNameIcon.png" class="node-badge-logo" alt="Milan" onerror="this.style.display='none'">
         </div>
-        <!-- You can easily add more cities to this timeline row like so: 
-        <div class="time-node" onclick="selectCity('paris', this)">...</div> 
-        -->
       </div>
     </div>
 
@@ -723,7 +719,6 @@
 
   <!-- Credits Modal Popup -->
   <div class="modal-overlay" id="creditsModal" onclick="closeCreditsModal(event)">
-    <!-- Same credits modal content... -->
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="close-modal-btn" onclick="closeCreditsModal()">&times;</button>
       <div class="credits-content">
@@ -793,7 +788,6 @@
 
   <!-- Interactive Logic -->
   <script>
-    // Expanded City Data Structure to support new naming conventions
     const cityDatabase = {
       milan: {
         name: "MILAN",
@@ -801,8 +795,8 @@
         featuredChar: "PENNY",
         featuredBoard: "MILAN",
         location: "ITALY",
-        bgImage: "milan_banner.png",      // Uses your _banner naming
-        cityIcon: "city_milanIcon.png",   // Uses your city_cityNameIcon naming
+        bgImage: "milan_banner.png",      
+        cityIcon: "milan_cityNameIcon.png",
         characters: [
           {
             name: "Penny",
@@ -862,13 +856,6 @@
           }
         ]
       }
-      // Example structure for a future city to visualize how it flows:
-      // paris: {
-      //   name: "PARIS",
-      //   bgImage: "paris_banner.png",
-      //   cityIcon: "city_parisIcon.png",
-      //   ...
-      // }
     };
 
     let activeCityKey = "milan";
@@ -886,17 +873,14 @@
 
       const data = cityDatabase[cityKey];
 
-      // Update Text Displays
       document.getElementById('hero-city-name').innerText = data.name;
       document.getElementById('hero-city-tag').innerText = data.tagline;
       document.getElementById('hero-char-name').innerText = data.featuredChar;
       document.getElementById('hero-board-name').innerText = data.featuredBoard;
       document.getElementById('hero-location-name').innerText = data.location;
 
-      // Update the main City Icon Logo 
       document.getElementById('hero-logo').src = data.cityIcon;
 
-      // Update Background Banner
       const heroHeader = document.getElementById('hero-header');
       heroHeader.style.backgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url('${data.bgImage}')`;
 
