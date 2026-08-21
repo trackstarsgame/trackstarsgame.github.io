@@ -1,1 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Stars - Meet the Crew</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    a, button, input, select, textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navbar / Header Bar */
+    header.page-header {
+      background-color: #161b22;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+
+    .back-home-btn {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s ease;
+    }
+
+    .back-home-btn:hover {
+      color: #E3B546;
+    }
+
+    /* Page Hero Area */
+    .crew-hero {
+      text-align: center;
+      padding: 60px 20px 40px 20px;
+      background: linear-gradient(180deg, #161b22 0%, #1e1e1e 100%);
+    }
+
+    .crew-hero h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #E3B546;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .crew-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .crew-hero p {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Showcase Section (Carousels container style) */
+    .showcase-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px 20px;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      border-left: 5px solid #E3B546;
+      padding-left: 12px;
+    }
+
+    .carousel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .showcase-card {
+      background-color: #262c36;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-media {
+      width: 100%;
+      height: 320px;
+      background-color: #111;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .card-info h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(227, 181, 70, 0.15);
+      color: #E3B546;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .card-info p {
+      font-size: 0.95rem;
+      color: #b8b8b8;
+      line-height: 1.5;
+    }
+
+    /* Footer Container */
+    footer {
+      background-color: #161b22;
+      color: #d8d8d8;
+      padding: 60px 10%;
+      margin-top: auto;
+      border-top: 1px solid #333;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      max-width: 180px;
+      height: auto;
+    }
+
+    .social-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 240px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid #888888;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      color: #a0a0a0;
+      margin-top: 8px;
+    }
+
+    .nav-col ul {
+      list-style: none;
+    }
+
+    .nav-col li {
+      margin-bottom: 16px;
+    }
+
+    .nav-col a {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-col a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .crew-hero h1 {
+        font-size: 2.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </header>
+
+  <main>
+    <section class="crew-hero">
+      <h4>The Core Crew Showcase</h4>
+      <h1>Meet The Crew</h1>
+      <p>Explore the elite runners and high-speed boards leading the charge in Track Stars!</p>
+    </section>
+
+    <div class="showcase-section">
+      <!-- Characters Carousel Section -->
+      <h2 class="section-title">Featured Characters</h2>
+      <div class="carousel-grid">
+        
+        <!-- Sabre Character Card -->
+        <div class="showcase-card">
+          <div class="card-media">
+            <img src="sabre.png" alt="Sabre" onerror="this.src='world-tour.png'">
+          </div>
+          <div class="card-info">
+            <div>
+              <span class="card-tag">Runner</span>
+              <h3>Sabre</h3>
+              <p>Fearless and lightning-fast, Sabre brings unmatched energy and style to every track and subway line.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Malikai Character Card -->
+        <div class="showcase-card">
+          <div class="card-media">
+            <img src="malikai.png" alt="Malikai" onerror="this.src='world-tour.png'">
+          </div>
+          <div class="card-info">
+            <div>
+              <span class="card-tag">Runner</span>
+              <h3>Malikai</h3>
+              <p>Calculated, smooth, and always ahead of the guard, Malikai glides past obstacles effortlessly.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Boards Carousel Section -->
+      <h2 class="section-title">Signature Boards</h2>
+      <div class="carousel-grid">
+        
+        <!-- Board Card 1 -->
+        <div class="showcase-card">
+          <div class="card-media">
+            <img src="board-sabre.png" alt="Sabre's Board" onerror="this.src='world-tour.png'">
+          </div>
+          <div class="card-info">
+            <div>
+              <span class="card-tag">Hoverboard</span>
+              <h3>Blade Runner</h3>
+              <p>Sabre's signature board equipped with custom boosters for ultimate velocity.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Board Card 2 -->
+        <div class="showcase-card">
+          <div class="card-media">
+            <img src="board-malikai.png" alt="Malikai's Board" onerror="this.src='world-tour.png'">
+          </div>
+          <div class="card-info">
+            <div>
+              <span class="card-tag">Hoverboard</span>
+              <h3>Phantom Glide</h3>
+              <p>Malikai's sleek board designed for silent, high-precision maneuvers.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="brand-col">
+        <img src="logo.png" alt="Game Logo" class="footer-logo">
+
+        <div class="social-grid">
+          <a href="https://facebook.com" class="social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://tiktok.com" class="social-link" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com" class="social-link" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+
+        <p class="copyright">&copy; Copyright Track Stars, SYBO 2026</p>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-col">
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="index.html">Credits</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
